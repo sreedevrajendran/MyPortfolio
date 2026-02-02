@@ -10,7 +10,6 @@ const projects = [
         description: "A premium photography portfolio and booking platform. Featured project showcasing modern web design and functionality.",
         tags: ["React", "Netlify", "Web Design"],
         demo: "https://topviewframes.netlify.app/",
-        repo: "https://github.com/sreedevrajendran/topviewframeportfolio",
         highlight: true,
     },
     {
@@ -83,15 +82,17 @@ export default function Projects() {
                                                 Live Demo
                                             </Link>
                                         )}
-                                        <Link
-                                            href={project.repo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-colors"
-                                        >
-                                            <Github size={16} />
-                                            GitHub
-                                        </Link>
+                                        {project.repo && (
+                                            <Link
+                                                href={project.repo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-colors"
+                                            >
+                                                <Github size={16} />
+                                                GitHub
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
                             </motion.div>
