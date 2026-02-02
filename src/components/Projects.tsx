@@ -15,6 +15,14 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: "Weather Forecast",
+        description: "A modern weather forecast application with real-time weather data and intuitive UI.",
+        tags: ["JavaScript", "Web App", "API"],
+        demo: "https://wheatherforecast.netlify.app/",
+        repo: "https://github.com/sreedevrajendran/wheatherforecast",
+        highlight: false,
+    },
+    {
         title: "SentimentAnalysis",
         description: "Analyze and classify dataset sentiment using basic Machine Learning and Natural Language Processing techniques.",
         tags: ["Python", "ML", "NLP"],
