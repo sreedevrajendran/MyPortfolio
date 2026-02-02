@@ -25,6 +25,7 @@ const projects: Project[] = [
         title: "bunk-calculator",
         description: "A mini project to calculate class attendance and bunk eligibility using Python and Streamlit.",
         tags: ["Python", "Streamlit"],
+        demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
         repo: "https://github.com/sreedevrajendran/bunk-calculator",
         highlight: false,
     },
