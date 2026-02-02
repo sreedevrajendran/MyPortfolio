@@ -3,15 +3,17 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
+// Define Project interface to fix TS inference issues with optional properties
+interface Project {
+    title: string;
+    description: string;
+    tags: string[];
+    repo?: string;
+    demo?: string;
+    highlight: boolean;
+}
 
-const projects = [
-    {
-        title: "topviewframes",
-        description: "A premium photography portfolio and booking platform. Featured project showcasing modern web design and functionality.",
-        tags: ["React", "Netlify", "Web Design"],
-        demo: "https://topviewframes.netlify.app/",
-        highlight: true,
-    },
+const projects: Project[] = [
     {
         title: "SentimentAnalysis",
         description: "Analyze and classify dataset sentiment using basic Machine Learning and Natural Language Processing techniques.",
