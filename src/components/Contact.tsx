@@ -19,7 +19,7 @@ export default function Contact() {
 
         // Get your free access key from https://web3forms.com/
         // Sign up with sreerajar40@gmail.com to receive form submissions
-        formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+        formData.append("access_key", "2333cf35-4ce9-44c2-bba3-398b450032dd");
 
         // This ensures emails are sent to your address
         formData.append("email", "sreerajar40@gmail.com");
