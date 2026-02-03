@@ -16,8 +16,14 @@ export default function Contact() {
         setError("");
 
         const formData = new FormData(event.currentTarget);
-        // TODO: Replace with your actual Web3Forms Access Key
+
+        // Get your free access key from https://web3forms.com/
+        // Sign up with sreerajar40@gmail.com to receive form submissions
         formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+
+        // This ensures emails are sent to your address
+        formData.append("email", "sreerajar40@gmail.com");
+        formData.append("subject", "New Portfolio Contact Form Submission");
 
         try {
             const response = await fetch("https://api.web3forms.com/submit", {
