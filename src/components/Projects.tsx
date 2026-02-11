@@ -15,12 +15,12 @@ interface Project {
 }
 
 const projects: Project[] = [
+
     {
-        title: "Weather Forecast",
-        description: "A modern weather forecast application with real-time weather data and intuitive UI.",
-        tags: ["JavaScript", "Web App", "API"],
-        demo: "https://wheatherforecast.netlify.app/",
-        repo: "https://github.com/sreedevrajendran/wheatherforecast",
+        title: "Simple Banking System",
+        description: "A secure and efficient Java-based banking application for managing customer accounts, transactions, and balance inquiries.",
+        tags: ["Java", "OOP", "Console App"],
+        repo: "https://github.com/sreedevrajendran/SimpleBankingSystem-JAVA",
         highlight: false,
     },
     {
