@@ -43,6 +43,7 @@ const projects: Project[] = [
         description: "A native Android application for real-time weather tracking. Download the APK directly.",
         tags: ["Android", "React Native", "APK"],
         demo: "/AquWeather.apk",
+        repo: "https://github.com/sreedevrajendran/WeatherNativeProject",
         highlight: true,
         isDownload: true,
     },
