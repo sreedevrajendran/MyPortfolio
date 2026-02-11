@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Download } from "lucide-react";
 import Link from "next/link";
 // Define Project interface to fix TS inference issues with optional properties
 interface Project {
@@ -11,6 +11,7 @@ interface Project {
     repo?: string;
     demo?: string;
     highlight: boolean;
+    isDownload?: boolean;
 }
 
 const projects: Project[] = [
@@ -36,6 +37,14 @@ const projects: Project[] = [
         demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
         repo: "https://github.com/sreedevrajendran/bunk-calculator",
         highlight: false,
+    },
+    {
+        title: "WeatherNativeProject",
+        description: "A native Android application for real-time weather tracking. Download the APK directly.",
+        tags: ["Android", "React Native", "APK"],
+        demo: "/AquWeather.apk",
+        highlight: true,
+        isDownload: true,
     },
 ];
 
@@ -88,9 +97,10 @@ export default function Projects() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-600 to-blue-600 hover:from-pink-500 hover:to-blue-500 text-white rounded-full font-medium transition-all"
+                                                download={project.isDownload}
                                             >
-                                                <ExternalLink size={16} />
-                                                Live Demo
+                                                {project.isDownload ? <Download size={16} /> : <ExternalLink size={16} />}
+                                                {project.isDownload ? "Download APK" : "Live Demo"}
                                             </Link>
                                         )}
                                         {project.repo && (
