@@ -1,61 +1,47 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
+import { Code2, Globe, Rocket, Cpu } from "lucide-react";
 
 export default function About() {
     return (
-        <section id="about" className="py-20 bg-black/50">
-            <div className="container mx-auto px-6">
+        <section id="about" className="py-24 relative overflow-hidden">
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col md:flex-row items-center gap-12"
+                    className="flex flex-col md:flex-row items-center gap-16 md:gap-24"
                 >
-                    {/* Profile Image Styles */}
-                    <div className="w-full md:w-1/3 flex justify-center">
-                        <motion.div
-                            className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-emerald-500/20 group shadow-2xl shadow-emerald-500/20"
-                            animate={{ y: [0, -15, 0] }}
-                            transition={{
-                                duration: 6,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            whileHover={{ scale: 1.05, rotate: 5 }}
-                        >
-                            <div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay z-10" />
-                            <img
-                                src="/profile.png"
-                                alt="Sreedev Rajendran"
-                                className="w-full h-full object-cover object-center"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-20" />
-                        </motion.div>
+                    {/* Left Column: Clean Profile Image */}
+                    <div className="w-full md:w-5/12 flex justify-center md:justify-end">
+                        <div className="relative group">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-white/10 shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-500">
+                                <img
+                                    src="/profile.png"
+                                    alt="Sreedev Rajendran"
+                                    className="w-full h-full object-cover object-center"
+                                />
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-500" />
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="w-full md:w-2/3 space-y-6">
-                        <h2 className="text-3xl md:text-4xl font-bold">
-                            About <span className="text-emerald-500">Me</span>
+                    {/* Right Column: Professional Content */}
+                    <div className="w-full md:w-7/12 space-y-8 text-left">
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                            About <span className="text-gray-500">Me</span>
                         </h2>
-                        <div className="text-lg text-gray-300 leading-relaxed space-y-4">
+
+                        <div className="space-y-6 text-gray-300 font-medium leading-relaxed">
                             <p>
-                                Hi, I&apos;m <span className="text-white font-semibold">Sreedev Rajendran</span>! 👋
+                                I am a second-year <span className="text-white">B.Tech Computer Science and AI student</span> at <span className="text-white">Providence College of Engineering</span> with a passion for building functional, intelligent, and aesthetically pleasing digital solutions. My expertise spans across Python, Web Development, and Mobile App Development, where I focus on creating seamless user experiences—from weather forecast platforms to mobile applications.
                             </p>
                             <p>
-                                CS & AI Engineer | Developer | Visual Creator
+                                Beyond the code, I am the Founder of <span className="text-white">topviewframes</span>, a venture where I merge my technical background with my eye for <span className="text-white">visual storytelling</span>. I’m constantly looking for ways to integrate AI-driven concepts into real-world applications and thrive at the intersection of logic and creativity.
                             </p>
-                            <p>
-                                Currently I&apos;m a B.Tech Undergraduate @ Providence College Of Engineering.
-                            </p>
-                            <blockquote className="border-l-4 border-emerald-500 pl-4 py-2 bg-white/5 rounded-r-lg">
-                                <p className="italic">
-                                    &quot;Not likes just Coding likes -<span className="text-emerald-400 font-bold">VibeCoding</span>.
-                                    Creating Useful for Someones, Capturing Something Useful to Someones and this is i called as -<span className="text-emerald-400 font-bold">Passion</span>.&quot;
-                                </p>
-                            </blockquote>
                         </div>
                     </div>
                 </motion.div>

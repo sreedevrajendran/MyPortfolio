@@ -11,7 +11,7 @@ const navLinks = [
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Contact Us", href: "#contact" },
+    { name: "Connect", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -32,7 +32,7 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                 isScrolled
-                    ? "bg-black/50 backdrop-blur-md border-b border-white/10 py-4"
+                    ? "bg-black/50 backdrop-blur-md border-b border-white/5 py-4"
                     : "bg-transparent py-6"
             )}
             initial={{ y: -100 }}
@@ -40,7 +40,7 @@ export default function Navbar() {
             transition={{ duration: 0.5 }}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="#" className="text-xl font-bold tracking-tighter hover:text-pink-400 transition-colors">
+                <Link href="#" className="text-xl font-bold tracking-tighter hover-gradient-text text-white transition-colors">
                     Sreedev Rajendran
                 </Link>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors"
+                            className="text-sm font-medium text-gray-400 hover-gradient-text transition-colors"
                         >
                             {link.name}
                         </Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-lg font-medium text-gray-300 hover:text-blue-400"
+                                className="text-lg font-medium text-gray-300 hover:text-white"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {link.name}

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Sreedev Rajendran | Visual Creator & Engineer",
-  description: "Portfolio of Sreedev Rajendran - Computer Science & AI Engineer, Web Developer, and Visual Creator.",
+  description: "Portfolio of Sreedev Rajendran - Computer Science & AI Engineer, Developer, and Visual Creator.",
 };
 
 export default function RootLayout({
