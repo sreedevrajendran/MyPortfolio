@@ -1,6 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sreedev Rajendran - Portfolio
 
-## Getting Started
+A modern, high-performance portfolio website built with **Next.js 15**, **React**, **TypeScript**, and **Tailwind CSS**. Designed to showcase my work as a Computer Science & AI Engineer, Developer, and Visual Creator.
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Deployment**: Vercel / Netlify (Recommended)
+
+## ✨ Features
+
+- **Modern UI/UX**: Clean, dark-themed aesthetic with glassmorphism effects and mesh gradients.
+- **Responsive Design**: Fully optimized for desktops, tablets, and mobile devices.
+- **Scroll Animations**: Smooth entry animations using Framer Motion.
+- **Interactive Components**: Hover effects on cards, buttons, and icons.
+- **Optimized Performance**: Static generation and optimized assets for fast load times.
+
+## 🛠️ Getting Started
 
 First, run the development server:
 
@@ -16,21 +35,24 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- \`src/app/\`: App Router pages and global layouts.
+- \`src/components/\`: Reusable UI components (Hero, About, Projects, etc.).
+- \`src/lib/\`: Utility functions using \`clsx\` and \`tailwind-merge\`.
 
-## Learn More
+## 🎨 Visual Identity
 
-To learn more about Next.js, take a look at the following resources:
+- **Theme**: Dark Mode (Zinc/Neutral Palette)
+- **Accents**: Purple, Pink, Blue (Gradients)
+- **Typography**: Inter / Sans-serif
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👤 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Sreedev Rajendran**
+- Computer Science & AI Student @ Providence College of Engineering
+- Founder of *topviewframes*
+- Developer & Visual Creator
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+© 2026 Sreedev Rajendran. All rights reserved.
