@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 
+import { Outfit } from "next/font/google"; // Add this import
+
+const outfit = Outfit({ subsets: ["latin"] }); // Initialize the font
+
 export default function Hero() {
     return (
         <section id="home" className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent">
@@ -24,7 +28,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-4xl md:text-7xl font-bold tracking-tighter mb-6 text-white"
+                    className={`${outfit.className} text-4xl md:text-7xl font-bold tracking-tighter mb-6 text-white`}
                 >
                     Sreedev Rajendran
                 </motion.h1>

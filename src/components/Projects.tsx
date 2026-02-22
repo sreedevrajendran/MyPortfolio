@@ -15,7 +15,13 @@ interface Project {
 }
 
 const projects: Project[] = [
-
+    {
+        title: "Oasis — AI Expense Tracker",
+        description: "An AI-powered financial companion that thinks, learns, and protects. Features include AI Receipt Scanner (snap a photo to extract amount, merchant & category), Gmail Auto-Sync to log transactions automatically, a personalized AI Finance Coach with a health score, Smart Budgets with real-time tracking, and a Privacy Mode to blur all amounts instantly.",
+        tags: ["AI", "React", "Firebase", "Netlify", "Gmail API"],
+        demo: "https://oasisexpensetracker.netlify.app",
+        highlight: true,
+    },
     {
         title: "Simple Banking System",
         description: "A secure and efficient Java-based banking application for managing customer accounts, transactions, and balance inquiries.",
@@ -44,7 +50,7 @@ const projects: Project[] = [
         tags: ["Android", "React Native", "APK"],
         demo: "/AquWeather.apk",
         repo: "https://github.com/sreedevrajendran/WeatherNativeProject",
-        highlight: true,
+        highlight: false,
         isDownload: true,
     },
 ];
