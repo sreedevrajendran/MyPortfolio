@@ -17,9 +17,9 @@ interface Project {
 const projects: Project[] = [
     {
         title: "Oasis — AI Expense Tracker",
-        description: "An AI-powered financial companion that thinks, learns, and protects. Features include AI Receipt Scanner (snap a photo to extract amount, merchant & category), Gmail Auto-Sync to log transactions automatically, a personalized AI Finance Coach with a health score, Smart Budgets with real-time tracking, and a Privacy Mode to blur all amounts instantly.",
+        description: "Oasis is a smart personal finance app that uses AI to make money management effortless. Snap a receipt and let the AI extract merchant, amount & category instantly. Sync your Gmail to auto-log transactions, get a personal Finance Health Score, set smart budgets with live tracking, and toggle Privacy Mode to hide all balances with one tap.",
         tags: ["AI", "React", "Firebase", "Netlify", "Gmail API"],
-        demo: "https://oasisexpensetracker.netlify.app",
+        demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
         highlight: true,
     },
     {
