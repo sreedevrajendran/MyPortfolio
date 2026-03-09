@@ -19,16 +19,16 @@ const skills = [
 
 export default function Skills() {
     return (
-        <section id="skills" className="py-24 bg-black">
-            <div className="container mx-auto px-6">
+        <section id="skills" className="py-24 relative">
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-white tracking-tight">
-                        Technical <span className="text-gray-400">Skills</span>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center text-white tracking-tight">
+                        Technical Skills
                     </h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -39,16 +39,16 @@ export default function Skills() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                                className="group p-6 rounded-xl bg-zinc-900/50 border border-white/5 flex flex-col items-center gap-4 hover:bg-white/5 transition-all hover:border-white/10"
+                                className="group p-6 rounded-3xl bg-[#1c1c1f] border border-white/5 flex flex-col items-center gap-4 hover:bg-[#28292d] hover:border-white/10 transition-all hover:-translate-y-1 shadow-md"
                             >
-                                <div className="relative w-12 h-12 flex items-center justify-center grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300">
+                                <div className="relative w-12 h-12 flex items-center justify-center opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
                                     <img
                                         src={skill.icon}
                                         alt={skill.name}
                                         className="w-full h-full object-contain"
                                     />
                                 </div>
-                                <span className="font-medium text-sm text-gray-400 group-hover:text-white transition-colors group-hover-gradient-text">{skill.name}</span>
+                                <span className="font-medium text-sm text-gray-400 group-hover:text-white transition-colors">{skill.name}</span>
                             </motion.div>
                         ))}
                     </div>

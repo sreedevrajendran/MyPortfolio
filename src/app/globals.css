@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --card: #121212;
-  --card-foreground: #ffffff;
-  --popover: #000000;
-  --popover-foreground: #ffffff;
-  --primary: #ffffff;
+  --background: #0f0f11;
+  --foreground: #f8f9fa;
+  --card: #1c1c1f;
+  --card-foreground: #f8f9fa;
+  --popover: #0f0f11;
+  --popover-foreground: #f8f9fa;
+  --primary: #8ab4f8;
+  /* Google Dark Blue */
   --primary-foreground: #000000;
-  --secondary: #27272a;
-  --secondary-foreground: #ffffff;
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  --accent: #27272a;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #d4d4d8;
-  --radius: 0.5rem;
+  --secondary: #28292d;
+  --secondary-foreground: #e8eaed;
+  --muted: #28292d;
+  --muted-foreground: #9aa0a6;
+  --accent: #28292d;
+  --accent-foreground: #e8eaed;
+  --destructive: #f28b82;
+  /* Google Dark Red */
+  --destructive-foreground: #000000;
+  --border: #3c4043;
+  --input: #3c4043;
+  --ring: #8ab4f8;
+  --radius: 1.5rem;
+  /* Large rounded corners for Google aesthetic */
 }
 
 @theme inline {
@@ -41,8 +44,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 /* Flowing Gradient Animation */
@@ -92,15 +95,7 @@ html {
 }
 
 body {
-  background-color: #030014;
-  background-image:
-    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-    radial-gradient(at 50% 0%, hsla(225, 39%, 25%, 1) 0, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(339, 49%, 25%, 1) 0, transparent 50%),
-    radial-gradient(at 80% 50%, hsla(266, 50%, 15%, 1) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, hsla(340, 50%, 15%, 1) 0px, transparent 50%);
-  background-attachment: fixed;
-  background-size: cover;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   -webkit-font-smoothing: antialiased;

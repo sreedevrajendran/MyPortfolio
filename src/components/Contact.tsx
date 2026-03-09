@@ -48,9 +48,9 @@ export default function Contact() {
     }
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden bg-black">
+        <section id="contact" className="py-24 relative overflow-hidden bg-transparent">
             {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1c1c1f]/50 to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10 text-center">
                 <motion.div
@@ -60,29 +60,29 @@ export default function Contact() {
                     transition={{ duration: 0.6 }}
                     className="max-w-3xl mx-auto"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white tracking-tight">
-                        Let&apos;s <span className="text-gray-400">Connect</span>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white tracking-tight">
+                        Let&apos;s Connect
                     </h2>
 
-                    <p className="text-xl text-gray-300 mb-12 font-medium">
+                    <p className="text-xl text-gray-400 mb-12 font-medium">
                         Specific project in mind or just want to connect? Send me a message below.
                     </p>
 
-                    <div className="bg-zinc-900/30 border border-white/5 rounded-2xl p-8 mb-12 backdrop-blur-sm">
+                    <div className="bg-[#1c1c1f] border border-white/5 rounded-[40px] p-8 md:p-12 mb-12 shadow-xl">
                         {isSuccess ? (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="text-center py-12"
                             >
-                                <div className="w-16 h-16 bg-white/5 text-white rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
-                                    <Send size={32} />
+                                <div className="w-20 h-20 bg-[#8ab4f8]/20 text-[#8ab4f8] rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <Send size={40} className="translate-x-1" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                                <p className="text-gray-400">Thanks for reaching out. I&apos;ll get back to you soon.</p>
+                                <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
+                                <p className="text-gray-400 text-lg mb-8">Thanks for reaching out. I&apos;ll get back to you soon.</p>
                                 <button
                                     onClick={() => setIsSuccess(false)}
-                                    className="mt-6 text-white hover:text-gray-300 underline"
+                                    className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-full font-semibold transition-all"
                                 >
                                     Send another message
                                 </button>
@@ -91,43 +91,43 @@ export default function Contact() {
                             <form onSubmit={handleSubmit} className="space-y-6 text-left">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="name" className="text-sm font-medium text-gray-400">Name</label>
+                                        <label htmlFor="name" className="text-sm font-semibold text-gray-300 ml-2">Name</label>
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
                                             required
-                                            className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-white/20 hover:border-white/20 transition-all placeholder:text-gray-700"
+                                            className="w-full bg-[#28292d] border border-transparent rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#8ab4f8] hover:bg-[#33353a] transition-all placeholder:text-gray-500"
                                             placeholder="Your Name"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium text-gray-400">Email</label>
+                                        <label htmlFor="email" className="text-sm font-semibold text-gray-300 ml-2">Email</label>
                                         <input
                                             type="email"
                                             id="email"
                                             name="email"
                                             required
-                                            className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-white/20 hover:border-white/20 transition-all placeholder:text-gray-700"
+                                            className="w-full bg-[#28292d] border border-transparent rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#f28b82] hover:bg-[#33353a] transition-all placeholder:text-gray-500"
                                             placeholder="your.email@example.com"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium text-gray-400">Message</label>
+                                    <label htmlFor="message" className="text-sm font-semibold text-gray-300 ml-2">Message</label>
                                     <textarea
                                         id="message"
                                         name="message"
                                         required
                                         rows={5}
-                                        className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-white/20 hover:border-white/20 transition-all resize-none placeholder:text-gray-700"
+                                        className="w-full bg-[#28292d] border border-transparent rounded-3xl px-5 py-5 text-white focus:outline-none focus:border-[#fdd663] hover:bg-[#33353a] transition-all resize-none placeholder:text-gray-500"
                                         placeholder="Tell me about your project..."
                                     />
                                 </div>
 
                                 {error && (
-                                    <div className="text-red-400 text-sm text-center bg-red-900/10 py-2 rounded-lg border border-red-900/20">
+                                    <div className="text-[#f28b82] text-sm font-medium text-center bg-[#f28b82]/10 py-3 rounded-2xl">
                                         {error}
                                     </div>
                                 )}
@@ -135,7 +135,7 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full bg-white/5 border border-white/10 text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2 group hover-gradient-text hover:scale-[1.02]"
+                                    className="w-full bg-[#8ab4f8] text-[#000000] hover:bg-[#aecbfa] disabled:opacity-50 disabled:cursor-not-allowed font-bold py-4 rounded-full transition-all flex items-center justify-center gap-2 group hover:scale-[1.02] shadow-lg mt-4"
                                 >
                                     {isSubmitting ? (
                                         <>
@@ -153,37 +153,37 @@ export default function Contact() {
                         )}
                     </div>
 
-                    <div className="flex justify-center gap-8">
+                    <div className="flex justify-center gap-6">
                         <Link
                             href="https://github.com/sreedevrajendran"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-white transition-all transform hover:scale-125 hover:-translate-y-1 p-2 hover:bg-white/5 rounded-full duration-300"
+                            className="text-gray-400 hover:text-white hover:bg-white/10 transition-all p-4 rounded-full bg-[#1c1c1f] hover:scale-110 duration-300"
                         >
-                            <Github size={28} />
+                            <Github size={24} />
                             <span className="sr-only">GitHub</span>
                         </Link>
                         <Link
                             href="https://www.linkedin.com/in/sreedev-rajendran-3296b5321/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-[#0077b5] transition-all transform hover:scale-125 hover:-translate-y-1 p-2 hover:bg-white/5 rounded-full duration-300"
+                            className="text-gray-400 hover:text-[#0077b5] hover:bg-[#0077b5]/10 transition-all p-4 rounded-full bg-[#1c1c1f] hover:scale-110 duration-300"
                         >
-                            <Linkedin size={28} />
+                            <Linkedin size={24} />
                             <span className="sr-only">LinkedIn</span>
                         </Link>
                         <Link
                             href="https://www.instagram.com/zrr.dev/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-[#E1306C] transition-all transform hover:scale-125 hover:-translate-y-1 p-2 hover:bg-white/5 rounded-full duration-300"
+                            className="text-gray-400 hover:text-[#E1306C] hover:bg-[#E1306C]/10 transition-all p-4 rounded-full bg-[#1c1c1f] hover:scale-110 duration-300"
                         >
-                            <Instagram size={28} />
+                            <Instagram size={24} />
                             <span className="sr-only">Instagram</span>
                         </Link>
                     </div>
 
-                    <div className="mt-12 pt-8 border-t border-white/5 text-sm text-gray-600">
+                    <div className="mt-16 pt-8 text-sm text-gray-500 font-medium">
                         <p className="flex items-center justify-center gap-2">
                             Kerala, India 🇮🇳
                         </p>

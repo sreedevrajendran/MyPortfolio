@@ -57,19 +57,19 @@ const projects: Project[] = [
 
 export default function Projects() {
     return (
-        <section id="projects" className="py-24 bg-black">
-            <div className="container mx-auto px-6">
+        <section id="projects" className="py-24 relative bg-transparent">
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-white tracking-tight">
-                        Featured <span className="text-gray-400">Projects</span>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center text-white tracking-tight">
+                        Featured Projects
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {projects.map((project, index) => (
                             <motion.div
                                 key={index}
@@ -77,36 +77,36 @@ export default function Projects() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`group relative bg-zinc-900/30 border border-white/10 rounded-xl overflow-hidden hover:border-white/20 hover:bg-gradient-to-br hover:from-purple-900/20 hover:via-zinc-900 hover:to-black transition-all duration-300 ${project.highlight ? "md:col-span-2 lg:col-span-2" : ""
+                                className={`group relative bg-[#1c1c1f] border border-white/5 rounded-[32px] overflow-hidden hover:border-white/10 hover:bg-[#212124] transition-all duration-300 shadow-lg ${project.highlight ? "md:col-span-2 lg:col-span-2" : ""
                                     }`}
                             >
-                                <div className="p-8 h-full flex flex-col items-start">
+                                <div className="p-8 md:p-10 h-full flex flex-col items-start">
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {project.tags.map((tag) => (
-                                            <span key={tag} className="px-3 py-1 text-xs font-medium text-gray-300 bg-white/5 border border-white/5 rounded-full">
+                                            <span key={tag} className="px-4 py-1.5 text-xs font-semibold text-[#8ab4f8] bg-[#8ab4f8]/10 rounded-full">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <h3 className={`font-bold text-white mb-3 ${project.highlight ? "text-3xl" : "text-xl"}`}>
+                                    <h3 className={`font-bold text-white mb-4 tracking-tight ${project.highlight ? "text-3xl md:text-4xl" : "text-2xl"}`}>
                                         {project.title}
                                     </h3>
 
-                                    <p className="text-gray-300 mb-8 flex-grow leading-relaxed font-medium">
+                                    <p className="text-gray-400 mb-8 flex-grow leading-relaxed font-medium text-lg">
                                         {project.description}
                                     </p>
 
-                                    <div className="flex gap-4 pt-4 mt-auto">
+                                    <div className="flex flex-wrap gap-3 pt-4 mt-auto">
                                         {project.demo && (
                                             <Link
                                                 href={project.demo}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 text-white rounded-full font-medium transition-all text-sm hover:scale-105 hover:bg-white/10 hover-gradient-text group/btn"
+                                                className="flex items-center gap-2 px-6 py-3 bg-[#8ab4f8] text-[#000000] rounded-full font-bold transition-all text-sm hover:bg-[#aecbfa] hover:scale-105 group/btn"
                                                 download={project.isDownload}
                                             >
-                                                {project.isDownload ? <Download size={16} className="group-hover/btn:scale-110 transition-transform" /> : <ExternalLink size={16} className="group-hover/btn:scale-110 transition-transform" />}
+                                                {project.isDownload ? <Download size={18} className="group-hover/btn:scale-110 transition-transform" /> : <ExternalLink size={18} className="group-hover/btn:scale-110 transition-transform" />}
                                                 <span>{project.isDownload ? "Download APK" : "Live Demo"}</span>
                                             </Link>
                                         )}
@@ -115,9 +115,9 @@ export default function Projects() {
                                                 href={project.repo}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 text-white rounded-full font-medium transition-all text-sm hover:scale-105 hover:bg-white/10 hover-gradient-text group/btn"
+                                                className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-full font-medium transition-all text-sm hover:bg-white/10 hover:scale-105 group/btn"
                                             >
-                                                <Github size={16} className="group-hover/btn:scale-110 transition-transform" />
+                                                <Github size={18} className="group-hover/btn:scale-110 transition-transform" />
                                                 <span>Code</span>
                                             </Link>
                                         )}
