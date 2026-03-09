@@ -49,9 +49,6 @@ export default function Contact() {
 
     return (
         <section id="contact" className="py-24 relative overflow-hidden bg-transparent">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1c1c1f]/50 to-transparent pointer-events-none" />
-
             <div className="container mx-auto px-6 relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
