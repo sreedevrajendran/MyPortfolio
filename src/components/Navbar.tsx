@@ -18,13 +18,27 @@ export default function Navbar() {
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
+        // Handle background opacity based on scroll position
         if (latest > 50) {
             setIsScrolled(true);
         } else {
             setIsScrolled(false);
         }
+
+        // Handle visibility based on scroll direction
+        if (latest > lastScrollY && latest > 150) {
+            // Scrolling down and past the top section
+            setIsVisible(false);
+        } else {
+            // Scrolling up or at the very top
+            setIsVisible(true);
+        }
+
+        setLastScrollY(latest);
     });
 
     return (
@@ -37,8 +51,8 @@ export default function Navbar() {
                         : "bg-transparent py-4 px-6 border border-transparent"
                 )}
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
+                animate={{ y: isVisible ? 0 : -150 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
             >
                 <div className="flex items-center justify-between w-full">
                     <Link href="#" className="flex items-center group">
