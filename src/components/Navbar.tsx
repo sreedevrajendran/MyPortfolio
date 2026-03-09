@@ -41,6 +41,24 @@ export default function Navbar() {
         setLastScrollY(latest);
     });
 
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        e.preventDefault();
+        const href = e.currentTarget.href;
+        const targetId = href.replace(/.*\#/, "");
+        const elem = document.getElementById(targetId);
+
+        if (elem) {
+            // Adjust offset to account for the fixed navbar height
+            const offsetTop = elem.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth"
+            });
+        }
+
+        setIsOpen(false);
+    };
+
     return (
         <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
             <motion.nav
@@ -55,7 +73,7 @@ export default function Navbar() {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
             >
                 <div className="flex items-center justify-between w-full">
-                    <Link href="#" className="flex items-center group">
+                    <Link href="#home" onClick={handleScroll} className="flex items-center group">
                         <span className="text-base font-bold tracking-tight text-white transition-colors group-hover:text-gray-300">
                             Sreedev Rajendran
                         </span>
@@ -67,6 +85,7 @@ export default function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
+                                onClick={handleScroll}
                                 className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
                             >
                                 {link.name}
@@ -97,7 +116,7 @@ export default function Navbar() {
                                     key={link.name}
                                     href={link.href}
                                     className="px-5 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-2xl transition-all"
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={handleScroll}
                                 >
                                     {link.name}
                                 </Link>
