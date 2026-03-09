@@ -40,15 +40,20 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="flex items-center justify-end md:justify-center">
+                <div className="flex items-center justify-between w-full">
+                    <Link href="#" className="flex items-center group">
+                        <span className="text-base font-bold tracking-tight text-white transition-colors group-hover:text-gray-300">
+                            Sreedev Rajendran
+                        </span>
+                    </Link>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-1 bg-white/5 p-1 rounded-full border border-white/5">
+                    <div className="hidden md:flex items-center space-x-1">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
+                                className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
                             >
                                 {link.name}
                             </Link>
