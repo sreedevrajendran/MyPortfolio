@@ -72,7 +72,7 @@ export default function Contact() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="text-center py-12"
                             >
-                                <div className="w-20 h-20 bg-gradient-to-br from-violet-600/20 to-black/20 text-violet-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-violet-500/10">
+                                <div className="w-20 h-20 bg-gradient-to-br from-violet-600/20 to-black/20 text-violet-400 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Send size={40} className="translate-x-1" />
                                 </div>
                                 <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
@@ -132,7 +132,7 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full bg-gradient-to-r from-violet-600 to-black text-white hover:from-violet-500 hover:to-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed font-bold py-4 rounded-full transition-all flex items-center justify-center gap-2 group hover:scale-[1.02] shadow-lg mt-4 border border-violet-500/20"
+                                    className="w-full bg-gradient-to-r from-violet-600 to-black text-white hover:from-violet-500 hover:to-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed font-bold py-4 rounded-full transition-all flex items-center justify-center gap-2 group hover:scale-[1.02] shadow-lg mt-4"
                                 >
                                     {isSubmitting ? (
                                         <>

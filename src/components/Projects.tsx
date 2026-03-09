@@ -103,7 +103,7 @@ export default function Projects() {
                                                 href={project.demo}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-black text-white rounded-full font-bold transition-all text-sm hover:from-violet-500 hover:to-zinc-900 hover:scale-105 group/btn border border-violet-500/20"
+                                                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-black text-white rounded-full font-bold transition-all text-sm hover:from-violet-500 hover:to-zinc-900 hover:scale-105 group/btn"
                                                 download={project.isDownload}
                                             >
                                                 {project.isDownload ? <Download size={18} className="group-hover/btn:scale-110 transition-transform" /> : <ExternalLink size={18} className="group-hover/btn:scale-110 transition-transform" />}
