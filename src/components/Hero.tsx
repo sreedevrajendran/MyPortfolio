@@ -31,7 +31,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className={`${outfit.className} text-5xl md:text-8xl font-bold tracking-tight mb-6 text-white leading-tight`}
+                    className={`${outfit.className} text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-white leading-tight`}
                 >
                     Sreedev Rajendran
                 </motion.h1>
@@ -53,7 +53,7 @@ export default function Hero() {
                 >
                     <Link
                         href="#projects"
-                        className="group flex items-center justify-center gap-2 bg-[#8ab4f8] text-[#000000] w-full md:w-auto px-8 py-4 rounded-full font-bold hover:bg-[#aecbfa] transition-all hover:scale-105"
+                        className="group flex items-center justify-center gap-2 bg-gradient-to-r from-[#8ab4f8] via-[#c58af9] to-[#f28b82] text-gray-900 w-full md:w-auto px-8 py-4 rounded-full font-bold hover:opacity-90 transition-all hover:scale-105"
                     >
                         <span>View My Work</span>
                         <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />

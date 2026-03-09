@@ -42,10 +42,10 @@ export default function Navbar() {
             >
                 <div className="flex items-center justify-between">
                     <Link href="#" className="flex items-center gap-3 group">
-                        <div className="w-9 h-9 rounded-full bg-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
-                            <span className="text-blue-400 font-bold text-lg leading-none">S</span>
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#8ab4f8] via-[#c58af9] to-[#f28b82] flex items-center justify-center group-hover:opacity-80 transition-opacity">
+                            <span className="text-gray-900 font-bold text-lg leading-none">S</span>
                         </div>
-                        <span className="text-lg font-medium tracking-tight text-white transition-colors">
+                        <span className="text-base font-semibold tracking-tight text-white transition-colors">
                             Sreedev Rajendran
                         </span>
                     </Link>
