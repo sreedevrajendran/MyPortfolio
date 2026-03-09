@@ -77,13 +77,16 @@ export default function Projects() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`group relative bg-[#1c1c1f] border border-white/5 rounded-[32px] overflow-hidden hover:border-white/10 hover:bg-[#212124] transition-all duration-300 shadow-lg ${project.highlight ? "md:col-span-2 lg:col-span-2" : ""
+                                className={`group relative bg-[#1c1c1f] border border-white/5 rounded-[32px] overflow-hidden transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-violet-900/20 ${project.highlight ? "md:col-span-2 lg:col-span-2" : ""
                                     }`}
                             >
-                                <div className="p-8 md:p-10 h-full flex flex-col items-start">
+                                {/* Premium Card Background gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                <div className="relative p-8 md:p-10 h-full flex flex-col items-start z-10">
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {project.tags.map((tag) => (
-                                            <span key={tag} className="px-4 py-1.5 text-xs font-semibold text-[#8ab4f8] bg-[#8ab4f8]/10 rounded-full">
+                                            <span key={tag} className="px-4 py-1.5 text-xs font-semibold text-violet-400 bg-violet-400/10 rounded-full border border-violet-400/10">
                                                 {tag}
                                             </span>
                                         ))}
