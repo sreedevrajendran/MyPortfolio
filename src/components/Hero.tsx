@@ -53,7 +53,7 @@ export default function Hero() {
                 >
                     <Link
                         href="#projects"
-                        className="group flex items-center justify-center gap-2 bg-gradient-to-r from-[#8ab4f8] via-[#c58af9] to-[#f28b82] text-gray-900 w-full md:w-auto px-8 py-4 rounded-full font-bold hover:opacity-90 transition-all hover:scale-105"
+                        className="group flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-black text-white w-full md:w-auto px-8 py-4 rounded-full font-bold hover:from-violet-500 hover:to-zinc-900 transition-all hover:scale-105 border border-violet-500/20"
                     >
                         <span>View My Work</span>
                         <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
