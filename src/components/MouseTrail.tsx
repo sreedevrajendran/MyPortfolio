@@ -1,40 +1,92 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
-const STICKY_RADIUS = 100;
-const TRAIL_COUNT = 6;
+const GRID_SIZE = 15; // Number of columns and rows
+const REPULSION_RADIUS = 150;
+const REPULSION_STRENGTH = 40;
+
+interface MagneticPointProps {
+  baseX: number;
+  baseY: number;
+  mouseX: any;
+  mouseY: any;
+}
+
+const MagneticPoint = ({ baseX, baseY, mouseX, mouseY }: MagneticPointProps) => {
+  const x = useSpring(baseX, { stiffness: 150, damping: 15 });
+  const y = useSpring(baseY, { stiffness: 150, damping: 15 });
+  const rotation = useSpring(0, { stiffness: 150, damping: 15 });
+
+  useEffect(() => {
+    const updatePosition = () => {
+      const latestX = mouseX.get();
+      const latestY = mouseY.get();
+      const dx = latestX - baseX;
+      const dy = latestY - baseY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < REPULSION_RADIUS) {
+        const force = (1 - distance / REPULSION_RADIUS) * REPULSION_STRENGTH;
+        const angle = Math.atan2(dy, dx);
+        x.set(baseX - Math.cos(angle) * force);
+        y.set(baseY - Math.sin(angle) * force);
+        // Rotate line to point away from cursor
+        rotation.set((angle * 180) / Math.PI + 90);
+      } else {
+        x.set(baseX);
+        y.set(baseY);
+        rotation.set(0);
+      }
+    };
+
+    const unsubscribeX = mouseX.on("change", updatePosition);
+    const unsubscribeY = mouseY.on("change", updatePosition);
+
+    return () => {
+      unsubscribeX();
+      unsubscribeY();
+    };
+  }, [baseX, baseY, mouseX, mouseY, x, y, rotation]);
+
+  return (
+    <motion.div
+      style={{
+        x,
+        y,
+        rotate: rotation,
+        translateX: "-50%",
+        translateY: "-50%",
+      }}
+      className="absolute w-0.5 h-3 bg-white/40 rounded-full"
+    />
+  );
+};
 
 export default function MouseTrail() {
   const [isMobile, setIsMobile] = useState(false);
-  
-  // Base mouse position
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Array of springs for the trail effect
-  // Each element in the trail will follow the next one with a bit of delay/smoothness
-  const springs = Array.from({ length: TRAIL_COUNT }).map((_, i) => ({
-    x: useSpring(mouseX, {
-      stiffness: 150 - i * 20,
-      damping: 20 + i * 2,
-      restDelta: 0.001,
-    }),
-    y: useSpring(mouseY, {
-      stiffness: 150 - i * 20,
-      damping: 20 + i * 2,
-      restDelta: 0.001,
-    }),
-  }));
+  const [points, setPoints] = useState<{ x: number; y: number }[]>([]);
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
 
   useEffect(() => {
-    // Check if mobile (don't show trail on touch screens)
     const checkMobile = () => {
       setIsMobile(window.matchMedia("(max-width: 768px)").matches);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+
+    // Generate grid points
+    const newPoints = [];
+    const spacingX = window.innerWidth / (GRID_SIZE + 1);
+    const spacingY = window.innerHeight / (GRID_SIZE + 1);
+
+    for (let i = 1; i <= GRID_SIZE; i++) {
+      for (let j = 1; j <= GRID_SIZE; j++) {
+        newPoints.push({ x: i * spacingX, y: j * spacingY });
+      }
+    }
+    setPoints(newPoints);
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -42,6 +94,7 @@ export default function MouseTrail() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", checkMobile);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -52,33 +105,18 @@ export default function MouseTrail() {
   if (isMobile) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9999]">
-      {springs.map((spring, i) => (
-        <motion.div
+    <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
+      {points.map((point, i) => (
+        <MagneticPoint
           key={i}
-          style={{
-            x: spring.x,
-            y: spring.y,
-            translateX: "-50%",
-            translateY: "-50%",
-          }}
-          className="absolute"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="rounded-full bg-pink-500/40 blur-sm ring-1 ring-pink-500/20"
-            style={{
-              width: 20 - i * 2.5 + "px",
-              height: 20 - i * 2.5 + "px",
-              opacity: 1 - i * 0.15,
-              mixBlendMode: "screen",
-            }}
-          />
-        </motion.div>
+          baseX={point.x}
+          baseY={point.y}
+          mouseX={mouseX}
+          mouseY={mouseY}
+        />
       ))}
       
-      {/* Primary Dot */}
+      {/* Subtle cursor pointer */}
       <motion.div
         style={{
           x: mouseX,
@@ -86,7 +124,7 @@ export default function MouseTrail() {
           translateX: "-50%",
           translateY: "-50%",
         }}
-        className="absolute w-3 h-3 bg-white rounded-full z-10 mix-blend-difference"
+        className="absolute w-2 h-2 bg-white rounded-full z-10 blur-[1px]"
       />
     </div>
   );
