@@ -101,6 +101,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  cursor: none;
 }
 
 /* Custom Scrollbar for Chrome, Safari and Opera */
