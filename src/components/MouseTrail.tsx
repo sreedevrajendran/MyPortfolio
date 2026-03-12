@@ -74,19 +74,27 @@ export default function MouseTrail() {
     const checkMobile = () => {
       setIsMobile(window.matchMedia("(max-width: 768px)").matches);
     };
-    checkMobile();
 
-    // Generate grid points
-    const newPoints = [];
-    const spacingX = window.innerWidth / (GRID_SIZE + 1);
-    const spacingY = window.innerHeight / (GRID_SIZE + 1);
+    const generatePoints = () => {
+      const newPoints = [];
+      const spacingX = window.innerWidth / (GRID_SIZE + 1);
+      const spacingY = window.innerHeight / (GRID_SIZE + 1);
 
-    for (let i = 1; i <= GRID_SIZE; i++) {
-      for (let j = 1; j <= GRID_SIZE; j++) {
-        newPoints.push({ x: i * spacingX, y: j * spacingY });
+      for (let i = 1; i <= GRID_SIZE; i++) {
+        for (let j = 1; j <= GRID_SIZE; j++) {
+          newPoints.push({ x: i * spacingX, y: j * spacingY });
+        }
       }
-    }
-    setPoints(newPoints);
+      setPoints(newPoints);
+    };
+
+    const handleResize = () => {
+      checkMobile();
+      generatePoints();
+    };
+
+    // Initial setup
+    handleResize();
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -94,11 +102,11 @@ export default function MouseTrail() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("resize", handleResize);
     };
   }, [mouseX, mouseY]);
 
