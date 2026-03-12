@@ -113,7 +113,7 @@ export default function MouseTrail() {
   if (isMobile) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {points.map((point, i) => (
         <MagneticPoint
           key={i}
@@ -123,17 +123,6 @@ export default function MouseTrail() {
           mouseY={mouseY}
         />
       ))}
-      
-      {/* Subtle cursor pointer */}
-      <motion.div
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        className="absolute w-2 h-2 bg-white rounded-full z-10 blur-[1px]"
-      />
     </div>
   );
 }
