@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Portfolio of Sreedev Rajendran - Computer Science & AI Engineer, Developer, and Visual Creator.",
 };
 
-import MouseTrail from "@/components/MouseTrail";
+import ParticleBackground from "@/components/ParticleBackground";
 
 export default function RootLayout({
   children,
@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${jetBrainsMono.variable} antialiased`}
       >
-        <MouseTrail />
+        <ParticleBackground />
         {children}
       </body>
     </html>
