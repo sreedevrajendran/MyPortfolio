@@ -10,6 +10,10 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "sreedev@portfolio:~",
   description: "Terminal portfolio of Sreedev Rajendran",
+  icons: {
+    icon: "/sreedev.jpg",
+    apple: "/sreedev.jpg",
+  },
 };
 
 export default function RootLayout({
