@@ -1,0 +1,61 @@
+---
+import '../globals.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/jpeg" href="/sreedev.jpg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>Sreedev Rajendran | Portfolio</title>
+    <meta name="description" content="Terminal-inspired portfolio of Sreedev Rajendran, a B.Tech Computer Science and AI student. Exploring Web Development, Python, and AI." />
+    <meta name="keywords" content="sreedev, sreedevrajendran, Sreedev, Sreedev Rajendran, Portfolio, Web Developer, AI Student" />
+    <meta name="author" content="Sreedev Rajendran" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://sreedev-portfolio.vercel.app" />
+    <meta property="og:title" content="Sreedev Rajendran | Portfolio" />
+    <meta property="og:description" content="Personal portfolio of Sreedev Rajendran, showcasing projects in Web Dev and AI." />
+    <meta property="og:site_name" content="Sreedev Rajendran Portfolio" />
+    <meta property="og:image" content="/sreedev.jpg" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sreedev Rajendran | Portfolio" />
+    <meta name="twitter:description" content="Personal portfolio of Sreedev Rajendran, showcasing projects in Web Dev and AI." />
+    <meta name="twitter:image" content="/sreedev.jpg" />
+    <meta name="twitter:creator" content="@HeyItsSreedev" />
+    <meta name="twitter:site" content="@HeyItsSreedev" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Profile Information -->
+    <script type="application/ld+json" set:html={`{
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sreedev Rajendran",
+      "alternateName": ["sreedev", "sreedevrajendran"],
+      "url": "https://sreedev-portfolio.vercel.app",
+      "image": "/sreedev.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/sreedev-rajendran-3296b5321/",
+        "https://www.instagram.com/zrr.dev/",
+        "https://github.com/sreedevrajendran",
+        "https://x.com/HeyItsSreedev"
+      ],
+      "jobTitle": "Web Developer & AI Student",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Providence College of Engineering"
+      }
+    }`} />
+  </head>
+  <body class="antialiased bg-[#050505] min-h-screen relative overflow-x-hidden" style="font-family: 'JetBrains Mono', monospace;">
+    <slot />
+  </body>
+</html>

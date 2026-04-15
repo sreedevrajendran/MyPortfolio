@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Terminal, Send, Mail, Github, Linkedin, Instagram, Twitter } from "lucide-react";
 
 export default function Contact() {
@@ -74,22 +73,22 @@ export default function Contact() {
                     
                     <div className="flex flex-col gap-6 w-full">
                         <div className="text-[#666] tracking-widest text-xs font-bold w-full uppercase mb-2">Available Nodes</div>
-                        <Link href="https://github.com/sreedevrajendran" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        <a href="https://github.com/sreedevrajendran" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Github size={20} /></div>
                             <span className="font-bold">GitHub</span>
-                        </Link>
-                        <Link href="https://www.linkedin.com/in/sreedev-rajendran-3296b5321/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        </a>
+                        <a href="https://www.linkedin.com/in/sreedev-rajendran-3296b5321/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                            <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Linkedin size={20} /></div>
                             <span className="font-bold">LinkedIn</span>
-                        </Link>
-                        <Link href="https://www.instagram.com/zrr.dev/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        </a>
+                        <a href="https://www.instagram.com/zrr.dev/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Instagram size={20} /></div>
                             <span className="font-bold">Instagram</span>
-                        </Link>
-                        <Link href="https://x.com/HeyItsSreedev" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        </a>
+                        <a href="https://x.com/HeyItsSreedev" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Twitter size={20} /></div>
                             <span className="font-bold">Twitter</span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
 

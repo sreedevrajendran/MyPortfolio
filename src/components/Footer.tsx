@@ -16,8 +16,8 @@ export default function Footer() {
                     </span>
                     <span>&amp;</span>
                     <span className="flex items-center gap-1.5">
-                        <img src="https://cdn.simpleicons.org/nextdotjs/white" alt="Next.js" className="w-4 h-4 inline-block" />
-                        <span className="text-white">Next.js</span>
+                        <img src="https://cdn.simpleicons.org/astro/white" alt="Astro" className="w-4 h-4 inline-block" />
+                        <span className="text-white">Astro</span>
                     </span>
                 </div>
 

@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #4af626;
+  --card: #050505;
+  --card-foreground: #4af626;
+  --popover: #000000;
+  --popover-foreground: #4af626;
+  --primary: #4af626;
+  --primary-foreground: #000000;
+  --secondary: #111111;
+  --secondary-foreground: #4af626;
+  --muted: #111111;
+  --muted-foreground: #228c11;
+  --accent: #111111;
+  --accent-foreground: #4af626;
+  --destructive: #ff0000;
+  --destructive-foreground: #000000;
+  --border: #222222;
+  --input: #111111;
+  --ring: #4af626;
+  --radius: 0rem; /* No rounded corners inside terminal */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-mono: var(--font-mono);
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono), monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar for Terminal */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-left: 1px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4af626;
+  border-radius: 0; /* Block cursor look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #39cc1c;
+}
+
+/* Blinking Cursor Animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+::selection {
+  background-color: #4af626;
+  color: #000;
+}

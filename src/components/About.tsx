@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 
 export default function About() {
   return (
@@ -46,14 +46,14 @@ export default function About() {
             </p>
             <p>
               Beyond the code, I am the Founder of{" "}
-              <Link
+              <a
                 href="https://topviewframes.netlify.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#8ab4f8] font-bold hover:text-[#4af626] hover:underline transition-colors cursor-pointer"
               >
                 @topviewframes
-              </Link>
+              </a>
               , a venture where I merge my technical background with my eye for visual storytelling. I&apos;m constantly looking for ways to integrate AI-driven concepts into real-world applications and thrive at the intersection of logic and creativity.
             </p>
           </div>

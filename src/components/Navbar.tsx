@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Home, User, Cpu, FolderOpen, Mail, Menu, X } from "lucide-react";
 
@@ -74,7 +73,7 @@ export default function Navbar() {
             const id = href.replace("#", "");
             const isActive = active === id;
             return (
-              <Link
+              <a
                 key={name}
                 href={href}
                 onClick={(e) => handleScroll(e, href)}
@@ -90,7 +89,7 @@ export default function Navbar() {
                 {isActive && (
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-[#4af626] rounded-full shadow-[0_0_6px_#4af626]" />
                 )}
-              </Link>
+              </a>
             );
           })}
         </div>
@@ -112,7 +111,7 @@ export default function Navbar() {
             const id = href.replace("#", "");
             const isActive = active === id;
             return (
-              <Link
+              <a
                 key={name}
                 href={href}
                 onClick={(e) => handleScroll(e, href)}
@@ -121,7 +120,7 @@ export default function Navbar() {
               >
                 <Icon size={16} />
                 {name}
-              </Link>
+              </a>
             );
           })}
         </div>

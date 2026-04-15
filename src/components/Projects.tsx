@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Download } from "lucide-react";
 
 interface Project {
@@ -98,14 +97,14 @@ export default function Projects() {
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-[#333]/50 mt-auto">
                                     {project.demo && (
-                                        <Link href={project.demo} target="_blank" className="flex items-center justify-center bg-[#222] text-white border border-transparent hover:border-[#4af626] hover:bg-[#4af626]/10 hover:text-[#4af626] py-2 px-4 transition-all text-xs md:text-sm font-bold flex-1" download={project.isDownload}>
+                                        <a href={project.demo} target="_blank" className="flex items-center justify-center bg-[#222] text-white border border-transparent hover:border-[#4af626] hover:bg-[#4af626]/10 hover:text-[#4af626] py-2 px-4 transition-all text-xs md:text-sm font-bold flex-1" download={project.isDownload}>
                                             ./{project.isDownload ? "download_apk" : "run_demo"}
-                                        </Link>
+                                        </a>
                                     )}
                                     {project.repo && (
-                                        <Link href={project.repo} target="_blank" className="flex items-center justify-center bg-transparent border border-[#444] text-[#8ab4f8] hover:border-[#8ab4f8] hover:bg-[#8ab4f8]/10 py-2 px-4 transition-all text-xs md:text-sm font-bold flex-1">
+                                        <a href={project.repo} target="_blank" className="flex items-center justify-center bg-transparent border border-[#444] text-[#8ab4f8] hover:border-[#8ab4f8] hover:bg-[#8ab4f8]/10 py-2 px-4 transition-all text-xs md:text-sm font-bold flex-1">
                                             ./view_code
-                                        </Link>
+                                        </a>
                                     )}
                                 </div>
                             </div>
