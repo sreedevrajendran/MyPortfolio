@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Terminal, Send, Mail, Github, Linkedin, Instagram } from "lucide-react";
+import { Terminal, Send, Mail, Github, Linkedin, Instagram, Twitter } from "lucide-react";
 
 export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -85,6 +85,10 @@ export default function Contact() {
                         <Link href="https://www.instagram.com/zrr.dev/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Instagram size={20} /></div>
                             <span className="font-bold">Instagram</span>
+                        </Link>
+                        <Link href="https://x.com/HeyItsSreedev" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                            <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Twitter size={20} /></div>
+                            <span className="font-bold">Twitter</span>
                         </Link>
                     </div>
                 </div>
