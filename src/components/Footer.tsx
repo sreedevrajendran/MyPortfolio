@@ -1,5 +1,6 @@
 export default function Footer() {
     const socialLinks = [
+        {
             href: "https://www.linkedin.com/in/sreedevrajendran",
             label: "View Sreedev Rajendran's Professional Experience on LinkedIn",
         },
