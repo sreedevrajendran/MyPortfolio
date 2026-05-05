@@ -1,6 +1,40 @@
 export default function Footer() {
+    const socialLinks = [
+        {
+            href: "https://www.linkedin.com/in/sreedev-rajendran-3296b5321/",
+            label: "View Sreedev Rajendran's Professional Experience on LinkedIn",
+        },
+        {
+            href: "https://github.com/sreedevrajendran",
+            label: "Explore Sreedev Rajendran's Open Source Projects on GitHub",
+        },
+        {
+            href: "https://x.com/HeyItsSreedev",
+            label: "Follow Sreedev Rajendran's Thoughts on X (Twitter)",
+        },
+        {
+            href: "https://www.instagram.com/zrr.dev/",
+            label: "See Sreedev Rajendran's Creative Work on Instagram",
+        },
+    ];
+
     return (
         <footer className="py-10 font-mono border-t border-[#1a1a1a]">
+            {/* SEO Reciprocal Text Links */}
+            <nav aria-label="Social profiles" className="flex flex-wrap justify-center gap-x-6 gap-y-2 px-4 mb-8">
+                {socialLinks.map(({ href, label }) => (
+                    <a
+                        key={href}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-[#555] hover:text-[#8ab4f8] transition-colors underline underline-offset-4 decoration-[#333] hover:decoration-[#8ab4f8]"
+                    >
+                        {label}
+                    </a>
+                ))}
+            </nav>
+
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm px-2">
                 {/* Copyright */}
                 <p className="text-[#555]">

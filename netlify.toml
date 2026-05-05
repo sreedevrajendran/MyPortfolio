@@ -4,3 +4,25 @@
 
 [build.environment]
   NETLIFY_SKIP_NEXTJS_RUNTIME = "true"
+
+# 301 Redirects: Enforce canonical URL (https://sreedevrajendran.in)
+# Redirect www (HTTPS) → non-www (HTTPS)
+[[redirects]]
+  from = "https://www.sreedevrajendran.in/*"
+  to   = "https://sreedevrajendran.in/:splat"
+  status = 301
+  force  = true
+
+# Redirect www (HTTP) → non-www (HTTPS)
+[[redirects]]
+  from = "http://www.sreedevrajendran.in/*"
+  to   = "https://sreedevrajendran.in/:splat"
+  status = 301
+  force  = true
+
+# Redirect plain HTTP → HTTPS
+[[redirects]]
+  from = "http://sreedevrajendran.in/*"
+  to   = "https://sreedevrajendran.in/:splat"
+  status = 301
+  force  = true
