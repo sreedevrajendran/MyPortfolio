@@ -77,15 +77,15 @@ export default function Contact() {
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Github size={20} /></div>
                             <span className="font-bold">GitHub</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/sreedev-rajendran-3296b5321/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        <a href="https://www.linkedin.com/in/sreedevrajendran" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                            <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Linkedin size={20} /></div>
                             <span className="font-bold">LinkedIn</span>
                         </a>
-                        <a href="https://www.instagram.com/zrr.dev/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        <a href="https://www.instagram.com/sreedevrajendran_/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Instagram size={20} /></div>
                             <span className="font-bold">Instagram</span>
                         </a>
-                        <a href="https://x.com/HeyItsSreedev" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        <a href="https://x.com/sreedevv_" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Twitter size={20} /></div>
                             <span className="font-bold">Twitter</span>
                         </a>

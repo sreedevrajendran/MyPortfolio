@@ -1,7 +1,6 @@
 export default function Footer() {
     const socialLinks = [
-        {
-            href: "https://www.linkedin.com/in/sreedev-rajendran-3296b5321/",
+            href: "https://www.linkedin.com/in/sreedevrajendran",
             label: "View Sreedev Rajendran's Professional Experience on LinkedIn",
         },
         {
@@ -9,11 +8,11 @@ export default function Footer() {
             label: "Explore Sreedev Rajendran's Open Source Projects on GitHub",
         },
         {
-            href: "https://x.com/HeyItsSreedev",
+            href: "https://x.com/sreedevv_",
             label: "Follow Sreedev Rajendran's Thoughts on X (Twitter)",
         },
         {
-            href: "https://www.instagram.com/zrr.dev/",
+            href: "https://www.instagram.com/sreedevrajendran_/",
             label: "See Sreedev Rajendran's Creative Work on Instagram",
         },
     ];
