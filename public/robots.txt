@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sreedev-portfolio.vercel.app/sitemap.xml
+Sitemap: https://sreedevrajendran.in/sitemap.xml
