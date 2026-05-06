@@ -148,19 +148,19 @@ import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
             </div>
           </div>
           <pre class="p-4 overflow-x-auto text-sm text-[#8ab4f8]"><code>// Document classifier + extractor using Gemini 2.5 Flash inlineData
-const prompt = `Analyze this document carefully. Determine if it is:
+const prompt = &#96;Analyze this document carefully. Determine if it is:
 
 1. ITEMIZED BILL (Line items with quantities)
 2. EXPENSE (Single receipt)
 3. INCOME (Salary slip)
 4. BANK STATEMENT (Multiple transactions)
 
-Return JSON with specific schemas for each type...`;
+Return JSON with specific schemas for each type...&#96;;
 
 // Base64 image piped directly into Gemini inlineData
 const result = await model.generateContent([
-  { inlineData: { mimeType: "image/jpeg", data: base64Image } },
-  { text: prompt }
+  &#123; inlineData: &#123; mimeType: "image/jpeg", data: base64Image &#125; &#125;,
+  &#123; text: prompt &#125;
 ]);</code></pre>
         </div>
 
