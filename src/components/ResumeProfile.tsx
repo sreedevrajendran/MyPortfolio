@@ -152,7 +152,7 @@ export default function ResumeProfile() {
                   className="flex items-center gap-1.5 text-[#8ab4f8] hover:text-[#4af626] transition-colors"
                 >
                   <ExternalLink size={13} />
-                  topviewframes.netlify.app
+                  topviewframes
                 </a>
               </div>
 
@@ -180,10 +180,10 @@ export default function ResumeProfile() {
               {/* Social links */}
               <div className="flex flex-wrap gap-3 pt-2">
                 {[
-                  { label: "GitHub",    href: "https://github.com/sreedevrajendran",        icon: "https://cdn.simpleicons.org/github/white" },
-                  { label: "LinkedIn",  href: "https://www.linkedin.com/in/sreedevrajendran", icon: "https://cdn.simpleicons.org/linkedin" },
+                  { label: "GitHub",    href: "https://github.com/sreedevrajendran",         icon: "https://cdn.simpleicons.org/github/white" },
+                  { label: "LinkedIn",  href: "https://www.linkedin.com/in/sreedevrajendran", icon: "https://cdn.simpleicons.org/linkedin/0A66C2" },
                   { label: "Instagram", href: "https://www.instagram.com/sreedevrajendran_/", icon: "https://cdn.simpleicons.org/instagram" },
-                  { label: "X",         href: "https://x.com/sreedevv_",                     icon: "https://cdn.simpleicons.org/x/white" },
+                  { label: "X",         href: "https://x.com/sreedevv_",                      icon: "https://cdn.simpleicons.org/x/white" },
                 ].map(({ label, href, icon }) => (
                   <a
                     key={label}
@@ -238,46 +238,69 @@ export default function ResumeProfile() {
       {/* ── Achievements ── */}
       <section id="resume-achievements">
         <SectionHeader icon={Trophy} title="Achievements" />
-        <TerminalCard title="bash: cat achievements.log">
-          <div className="p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {achievements.map((a, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="p-5 rounded-xl bg-[#111] border border-[#222] hover:border-[#4af626] transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col gap-3"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      {a.badge && <span className="text-base leading-none">{a.badge}</span>}
-                      <h3 className="text-white font-bold text-sm md:text-base leading-tight">{a.title}</h3>
-                    </div>
-                    <p className="text-[#8ab4f8] text-xs mt-0.5">{a.org}</p>
-                  </div>
-                  <span className="shrink-0 flex items-center gap-1 text-[#555] text-xs">
-                    <Calendar size={10} />
-                    {a.year}
-                  </span>
+        <div className="flex flex-col gap-6">
+          {achievements.map((a, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="group flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden hover:border-[#4af626]/60 hover:shadow-[0_0_30px_rgba(74,246,38,0.06)] transition-all duration-300"
+            >
+              {/* Mac title bar */}
+              <div className="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
                 </div>
-                <p className="text-[#888] text-xs leading-relaxed flex-1">{a.description}</p>
-                {a.link && (
-                  <a
-                    href={a.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-[#4af626] text-xs hover:underline"
-                  >
-                    <ExternalLink size={11} />
-                    View Certificate
-                  </a>
+                <div className="flex-1 text-center text-[#666] text-[10px] font-sans tracking-widest">
+                  bash: cat achievement_{i + 1}.txt
+                </div>
+                <span className="shrink-0 flex items-center gap-1 text-[#555] text-[10px] font-sans">
+                  <Calendar size={10} />
+                  {a.year}
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 md:p-8 flex flex-col md:flex-row gap-5 items-start">
+                {/* Badge */}
+                {a.badge && (
+                  <span className="text-4xl leading-none shrink-0 mt-1">{a.badge}</span>
                 )}
-              </motion.div>
-            ))}
-          </div>
-        </TerminalCard>
+
+                {/* Content */}
+                <div className="flex-1 flex flex-col gap-3">
+                  <div>
+                    <div className="text-[#4af626] font-bold text-sm mb-1">&gt; _</div>
+                    <h3 className="text-white font-bold text-base md:text-lg leading-snug group-hover:text-[#4af626] transition-colors">
+                      {a.title}
+                    </h3>
+                    <p className="text-[#8ab4f8] text-xs mt-1">{a.org}</p>
+                  </div>
+
+                  <p className="text-[#888] text-sm leading-relaxed">{a.description}</p>
+
+                  {a.link && (
+                    <div className="pt-3 border-t border-[#1a1a1a]">
+                      <a
+                        href={a.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-[#4af626] text-xs font-bold hover:underline"
+                      >
+                        <ExternalLink size={11} />
+                        View Certificate
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* ── Skills ── */}

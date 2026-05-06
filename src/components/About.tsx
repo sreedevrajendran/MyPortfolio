@@ -2,7 +2,7 @@
 export default function About() {
   const socials = [
     { label: "GitHub",    href: "https://github.com/sreedevrajendran",         icon: "https://cdn.simpleicons.org/github/white" },
-    { label: "LinkedIn",  href: "https://www.linkedin.com/in/sreedevrajendran", icon: "https://cdn.simpleicons.org/linkedin" },
+    { label: "LinkedIn",  href: "https://www.linkedin.com/in/sreedevrajendran", icon: "https://cdn.simpleicons.org/linkedin/0A66C2" },
     { label: "Instagram", href: "https://www.instagram.com/sreedevrajendran_/", icon: "https://cdn.simpleicons.org/instagram" },
     { label: "X",         href: "https://x.com/sreedevv_",                      icon: "https://cdn.simpleicons.org/x/white" },
   ];
