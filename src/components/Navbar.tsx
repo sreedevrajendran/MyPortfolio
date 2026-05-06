@@ -102,10 +102,7 @@ export default function Navbar() {
               >
                 <Icon size={14} className={`transition-colors ${isActive ? "text-[#4af626]" : "text-[#555] group-hover:text-[#4af626]"}`} />
                 {name}
-                {/* Active dot */}
-                {isActive && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#4af626] rounded-full shadow-[0_0_8px_#4af626]" />
-                )}
+
               </a>
             );
           })}
