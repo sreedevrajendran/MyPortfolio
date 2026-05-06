@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { Home, User, Cpu, FolderOpen, Mail, Menu, X, FileText } from "lucide-react";
 
 const navLinks = [
-  { name: "Home",     href: "/#home",     id: "home",     icon: Home },
-  { name: "About",    href: "/#about",    id: "about",    icon: User },
-  { name: "Skills",   href: "/#skills",   id: "skills",   icon: Cpu },
-  { name: "Projects", href: "/#projects", id: "projects", icon: FolderOpen },
-  { name: "Blog",     href: "/blog",      id: "blog",     icon: FileText },
-  { name: "Contact",  href: "/#contact",  id: "contact",  icon: Mail },
+  { name: "Home",     href: "/#home",     id: "home",       icon: Home },
+  { name: "About",    href: "/#about",    id: "about",      icon: User },
+  { name: "Skills",   href: "/#skills",   id: "skills",     icon: Cpu },
+  { name: "Projects", href: "/projects",  id: "projects",   icon: FolderOpen },
+  { name: "Blog",     href: "/blog",      id: "blog",       icon: FileText },
+  { name: "Contact",  href: "/#contact",  id: "contact",    icon: Mail },
 ];
 
 export default function Navbar() {
@@ -22,6 +22,8 @@ export default function Navbar() {
     setMounted(true);
     if (window.location.pathname.startsWith("/blog")) {
       setActive("blog");
+    } else if (window.location.pathname.startsWith("/projects")) {
+      setActive("projects");
     } else {
       const hash = window.location.hash.replace("#", "");
       if (hash) setActive(hash);

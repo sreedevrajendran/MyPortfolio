@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const projects = [
+  {
+    title: "Floww — AI Expense Tracker",
+    emoji: "💸",
+    status: "Live",
+    date: "2026",
+    description: "Floww is a smart personal finance app that uses AI to make money management completely effortless. It's not just another budgeting tool — it's a full financial engine.",
+    longDescription: `Built from scratch with a vibe-coding approach, Floww turns messy real-world financial data into structured, actionable intelligence. Snap a receipt and Gemini instantly extracts the merchant, amount, and category. Connect your Gmail to auto-log every transaction without lifting a finger.`,
+    features: [
+      "📸 Multi-modal OCR — snap receipts and let Gemini parse every line item instantly",
+      "📬 Gmail Sync — automatically imports and categorizes email-based transactions",
+      "🤖 Agent Floww — an in-app RAG chatbot that answers questions like \"how much did I spend on Swiggy last month?\"",
+      "📊 Finance Health Score — a real-time score based on income vs spending patterns",
+      "💰 Smart Budgets — set budgets per category with live burn-rate tracking",
+      "🔒 Privacy Mode — one tap to blur all balances in public spaces",
+    ],
+    tags: ["AI", "React", "Firebase", "Netlify", "Gmail API", "Gemini 2.5"],
+    demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
+    highlight: true,
+    color: "#4af626",
+  },
+  {
+    title: "WeatherNative",
+    emoji: "🌤️",
+    status: "Released",
+    date: "2025",
+    description: "A native Android weather application built with React Native featuring real-time weather tracking and a clean, modern UI.",
+    longDescription: `WeatherNative delivers accurate, location-aware weather data with a minimal and polished Android-native feel. Built using React Native, it pulls live data from a public weather API and presents it through smooth animations and an intuitive interface.`,
+    features: [
+      "📍 Live location-aware weather fetching",
+      "🌡️ Temperature, humidity, wind speed, and UV index",
+      "📅 7-day forecast view",
+      "🎨 Dynamic backgrounds that change with weather conditions",
+      "📦 Distributed as a standalone APK",
+    ],
+    tags: ["Android", "React Native", "APK", "Weather API"],
+    demo: "/AquWeather.apk",
+    repo: "https://github.com/sreedevrajendran/WeatherNativeProject",
+    isDownload: true,
+    highlight: false,
+    color: "#8ab4f8",
+  },
+  {
+    title: "Bunk Calculator",
+    emoji: "📅",
+    status: "Live",
+    date: "2024",
+    description: "A Python + Streamlit mini-app that calculates exactly how many classes you can bunk while staying above the attendance threshold.",
+    longDescription: `Every student's secret weapon. Enter your total classes, attended classes, and the minimum required attendance percentage — Bunk Calculator instantly tells you how many more classes you can safely skip. Built in a weekend with Python and Streamlit, deployed for free.`,
+    features: [
+      "⚡ Instant calculation — enter 3 numbers, get your answer",
+      "📊 Visual progress bar showing current attendance",
+      "🎯 Safe-to-bunk count with margin buffer",
+      "🌐 Fully web-based via Streamlit — no installation needed",
+    ],
+    tags: ["Python", "Streamlit", "Education"],
+    demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
+    repo: "https://github.com/sreedevrajendran/bunk-calculator",
+    highlight: false,
+    color: "#ffbd2e",
+  },
+  {
+    title: "Sentiment Analysis",
+    emoji: "🧠",
+    status: "Archived",
+    date: "2024",
+    description: "A machine learning pipeline that classifies the emotional sentiment of text datasets using NLP techniques.",
+    longDescription: `A hands-on exploration of Natural Language Processing. This project implements a full sentiment classification pipeline — from raw text preprocessing (tokenization, stopword removal, stemming) through feature extraction (TF-IDF) to model training and evaluation using scikit-learn.`,
+    features: [
+      "🔤 Full NLP preprocessing pipeline (tokenize → clean → stem)",
+      "📊 TF-IDF vectorization for feature extraction",
+      "🤖 Multiple classifiers compared: Naive Bayes, Logistic Regression, SVM",
+      "📈 Accuracy, precision, recall and F1-score reporting",
+      "📂 Works on custom CSV datasets",
+    ],
+    tags: ["Python", "ML", "NLP", "scikit-learn", "TF-IDF"],
+    repo: "https://github.com/sreedevrajendran/SentimentAnalysis",
+    highlight: false,
+    color: "#ff5f56",
+  },
+  {
+    title: "Simple Banking System",
+    emoji: "🏦",
+    status: "Archived",
+    date: "2023",
+    description: "A secure Java console application for managing bank accounts, transactions, and customer data using OOP principles.",
+    longDescription: `A foundational Java project that demonstrates core Object-Oriented Programming concepts in a real-world banking context. Supports multiple accounts, deposits, withdrawals, and balance checks — all secured with basic authentication.`,
+    features: [
+      "👤 Multi-user account management with authentication",
+      "💳 Deposit, withdraw, and transfer between accounts",
+      "📋 Full transaction history per account",
+      "🔐 PIN-based authentication for account access",
+      "🧩 Clean OOP architecture — Account, Customer, Bank classes",
+    ],
+    tags: ["Java", "OOP", "Console App", "Data Structures"],
+    repo: "https://github.com/sreedevrajendran/SimpleBankingSystem-JAVA",
+    highlight: false,
+    color: "#555",
+  },
+];
+
+const statusColor: Record<string, string> = {
+  "Live": "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  "Released": "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
+  "Archived": "text-[#555] bg-[#1a1a1a] border-[#333]",
+};
+---
+
+<Layout
+  title="Projects | Sreedev Rajendran | Developer | Visual Creator"
+  description="Full-stack projects by Sreedev Rajendran — AI apps, Android native apps, ML pipelines, and more."
+  url="https://sreedevrajendran.in/projects"
+>
+  <main class="flex flex-col w-full">
+    <Navbar client:load />
+
+    <div class="max-w-5xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-24 min-h-screen font-mono">
+
+      <!-- Header -->
+      <div class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white flex items-center gap-4 mb-4">
+          <span class="text-[#8ab4f8]">~/</span>Projects
+          <div class="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4 hidden md:block"></div>
+        </h1>
+        <p class="text-[#888]">Things I've shipped — from AI engines to Android apps.</p>
+      </div>
+
+      <!-- Projects -->
+      <div class="flex flex-col gap-12">
+        {projects.map((project, i) => (
+          <article class="group bg-[#0a0a0a] border border-[#222] rounded-2xl overflow-hidden hover:border-[#333] transition-all duration-500 relative">
+
+            <!-- Top accent bar -->
+            <div class={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[${project.color}]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+            <!-- Header section -->
+            <div class="p-6 md:p-10 border-b border-[#1a1a1a]">
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
+                <div class="flex items-center gap-4">
+                  <span class="text-4xl">{project.emoji}</span>
+                  <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white group-hover:text-[#4af626] transition-colors duration-300">{project.title}</h2>
+                    <p class="text-[#555] text-sm mt-1">{project.date}</p>
+                  </div>
+                </div>
+                <span class={`text-xs font-bold px-3 py-1.5 rounded-full border ${statusColor[project.status] ?? statusColor["Archived"]}`}>
+                  {project.status === "Live" ? "● " : ""}{project.status}
+                </span>
+              </div>
+
+              <p class="text-[#999] text-base leading-relaxed mb-3">{project.description}</p>
+              <p class="text-[#666] text-sm leading-relaxed">{project.longDescription}</p>
+            </div>
+
+            <!-- Features -->
+            <div class="p-6 md:p-10 border-b border-[#1a1a1a]">
+              <h3 class="text-xs uppercase tracking-widest text-[#444] mb-5 font-bold">Key Features</h3>
+              <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {project.features.map(f => (
+                  <li class="flex items-start gap-3 text-sm text-[#888]">
+                    <span class="shrink-0">{f.split(' ')[0]}</span>
+                    <span>{f.split(' ').slice(1).join(' ')}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Tags & Links -->
+            <div class="p-6 md:p-10 flex flex-wrap items-center justify-between gap-6">
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map(tag => (
+                  <span class="text-[#ffbd2e] text-[10px] bg-[#ffbd2e]/10 border border-[#ffbd2e]/20 px-2.5 py-1 rounded font-mono">{tag}</span>
+                ))}
+              </div>
+              <div class="flex gap-3">
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target={project.isDownload ? "_self" : "_blank"}
+                    download={project.isDownload || undefined}
+                    class="flex items-center gap-2 bg-[#4af626]/10 border border-[#4af626]/40 text-[#4af626] hover:bg-[#4af626]/20 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                  >
+                    {project.isDownload ? "⬇ Download APK" : "→ Live Demo"}
+                  </a>
+                )}
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    class="flex items-center gap-2 bg-transparent border border-[#333] text-[#8ab4f8] hover:border-[#8ab4f8]/50 hover:bg-[#8ab4f8]/10 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                  >
+                    ↗ Source Code
+                  </a>
+                )}
+              </div>
+            </div>
+
+          </article>
+        ))}
+      </div>
+
+    </div>
+
+    <Footer />
+  </main>
+</Layout>
