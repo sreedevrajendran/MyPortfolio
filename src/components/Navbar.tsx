@@ -91,10 +91,10 @@ export default function Navbar() {
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 group
                   ${isActive
                     ? "text-[#4af626] bg-[#4af626]/10"
-                    : "text-[#666] hover:text-white hover:bg-white/5"
+                    : "text-[#666] hover:text-[#4af626] hover:bg-[#4af626]/10 hover:drop-shadow-[0_0_8px_rgba(74,246,38,0.5)]"
                   }`}
               >
-                <Icon size={14} className={`transition-colors ${isActive ? "text-[#4af626]" : "text-[#555] group-hover:text-white"}`} />
+                <Icon size={14} className={`transition-colors ${isActive ? "text-[#4af626]" : "text-[#555] group-hover:text-[#4af626]"}`} />
                 {name}
                 {/* Active underline */}
                 {isActive && (
@@ -126,10 +126,10 @@ export default function Navbar() {
                 key={name}
                 href={href}
                 onClick={(e) => handleScroll(e, href)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all
-                  ${isActive ? "text-[#4af626] bg-[#4af626]/10" : "text-[#666] hover:text-white hover:bg-white/5"}`}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 group
+                  ${isActive ? "text-[#4af626] bg-[#4af626]/10" : "text-[#666] hover:text-[#4af626] hover:bg-[#4af626]/10 hover:drop-shadow-[0_0_8px_rgba(74,246,38,0.5)]"}`}
               >
-                <Icon size={16} />
+                <Icon size={16} className={`transition-colors ${isActive ? "text-[#4af626]" : "text-[#555] group-hover:text-[#4af626]"}`} />
                 {name}
               </a>
             );
