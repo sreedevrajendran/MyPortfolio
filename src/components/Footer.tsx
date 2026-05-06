@@ -19,7 +19,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="py-12 border-t border-[#1a1a1a] bg-[#0a0a0a] font-mono mt-10">
+        <footer className="py-12 border-t border-[#1a1a1a] font-mono mt-10">
             <div className="max-w-6xl mx-auto px-4 md:px-8">
                 {/* Main Footer Content */}
                 <div className="flex flex-col md:flex-row justify-between gap-10 mb-12">
