@@ -65,18 +65,18 @@ export default function Navbar() {
   if (!mounted) return null;
 
   return (
-    <nav className={`sticky top-0 z-50 w-full font-mono transition-all duration-300 ${scrolled ? "bg-[#050505]/95 backdrop-blur-md shadow-[0_4px_40px_rgba(0,0,0,0.6)]" : "bg-transparent"}`}>
+    <nav className={`fixed top-0 z-50 w-full font-mono transition-all duration-300 ${scrolled ? "bg-[#050505]/95 backdrop-blur-md shadow-[0_4px_40px_rgba(0,0,0,0.6)]" : "bg-transparent"}`}>
       <div className="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 border-b border-[#1a1a1a]">
 
         {/* Brand / Prompt */}
-        <div className="flex items-center gap-1 text-sm md:text-base shrink-0">
+        <a href="/" className="flex items-center gap-1 text-sm md:text-base shrink-0 hover:opacity-80 transition-opacity">
           <span className="text-[#27c93f] font-bold">sreedev</span>
           <span className="text-[#555]">@</span>
           <span className="text-white font-bold">portfolio</span>
           <span className="text-[#555]">:</span>
           <span className="text-[#8ab4f8]">~</span>
           <span className="text-[#555]">$</span>
-        </div>
+        </a>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
