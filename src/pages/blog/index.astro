@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import { Terminal, Calendar, ArrowRight } from 'lucide-react';
+
+const blogs = [
+  {
+    title: "💸 Building Floww: The AI-Native Financial Engine (A Vibe Coding Journey)",
+    slug: "building-floww-ai-native-financial-engine",
+    date: "May 6, 2026",
+    excerpt: "Floww is not just another budgeting app; it is a financial engine that turns your messy, real-world financial data into structured, actionable information. Here's how we built it using Vibe Coding.",
+    tags: ["AI", "Next.js", "Gemini 2.5", "Finance"]
+  }
+];
+---
+
+<Layout 
+  title="Blog | Sreedev Rajendran"
+  description="Thoughts, tutorials, and engineering deep-dives by Sreedev Rajendran."
+>
+  <main class="flex flex-col w-full">
+    <Navbar client:load />
+    
+    <div class="max-w-4xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-24 min-h-screen">
+      
+      <div class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white font-mono flex items-center gap-4 mb-4">
+          <span class="text-[#8ab4f8]">~/</span>Blog
+          <div class="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4 hidden md:block"></div>
+        </h1>
+        <p class="text-[#888] font-mono">Thoughts on AI, web development, and the future of coding.</p>
+      </div>
+
+      <div class="flex flex-col gap-8 font-mono">
+        {blogs.map(blog => (
+          <a href={`/blog/${blog.slug}`} class="group block">
+            <article class="bg-[#0a0a0a] border border-[#222] rounded-xl p-6 md:p-8 hover:border-[#4af626] transition-all duration-300 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-br from-[#4af626]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              
+              <div class="flex flex-wrap items-center gap-3 mb-4">
+                <span class="flex items-center gap-2 text-xs text-[#555]">
+                  <Calendar size={14} />
+                  {blog.date}
+                </span>
+                <span class="text-[#333]">|</span>
+                <div class="flex gap-2">
+                  {blog.tags.map(tag => (
+                    <span class="text-xs bg-[#1a1a1a] text-[#8ab4f8] px-2 py-1 rounded border border-[#333]">{tag}</span>
+                  ))}
+                </div>
+              </div>
+
+              <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-[#4af626] transition-colors">{blog.title}</h2>
+              <p class="text-[#888] mb-6 leading-relaxed text-sm md:text-base">
+                {blog.excerpt}
+              </p>
+
+              <div class="flex items-center text-[#4af626] text-sm font-bold gap-2">
+                <span>Read Article</span>
+                <ArrowRight size={16} class="group-hover:translate-x-1 transition-transform" />
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>

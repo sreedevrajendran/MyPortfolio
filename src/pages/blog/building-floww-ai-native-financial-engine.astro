@@ -1,0 +1,189 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import { Calendar, ArrowLeft } from 'lucide-react';
+---
+
+<Layout 
+  title="💸 Building Floww: The AI-Native Financial Engine | Sreedev Rajendran"
+  description="Floww is not just another budgeting app; it is a financial engine that turns your messy, real-world financial data into structured, actionable information."
+  image="/floww_blog_hero.png"
+  url="https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine"
+  type="article"
+>
+  <main class="flex flex-col w-full bg-[#050505]">
+    <Navbar client:load />
+    
+    <article class="max-w-3xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-24 min-h-screen font-mono">
+      
+      <a href="/blog" class="inline-flex items-center gap-2 text-[#8ab4f8] hover:text-white transition-colors mb-12 text-sm">
+        <ArrowLeft size={16} />
+        Back to Blog
+      </a>
+
+      <header class="mb-12">
+        <div class="flex items-center gap-4 text-xs text-[#555] mb-6">
+          <span class="flex items-center gap-2">
+            <Calendar size={14} />
+            May 6, 2026
+          </span>
+          <span>•</span>
+          <span>5 min read</span>
+          <span>•</span>
+          <div class="flex gap-2">
+            <span class="bg-[#1a1a1a] text-[#4af626] px-2 py-1 rounded border border-[#333]">#AI</span>
+            <span class="bg-[#1a1a1a] text-[#8ab4f8] px-2 py-1 rounded border border-[#333]">#VibeCoding</span>
+          </div>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+          💸 Building Floww: The AI-Native Financial Engine (A Vibe Coding Journey)
+        </h1>
+
+        <img 
+          src="/floww_blog_hero.png" 
+          alt="Floww Dashboard Hero Image" 
+          class="w-full rounded-xl border border-[#222] shadow-2xl mb-8"
+        />
+      </header>
+
+      <div class="prose prose-invert prose-p:text-[#aaa] prose-headings:text-white prose-a:text-[#8ab4f8] max-w-none prose-p:leading-relaxed prose-pre:bg-[#0a0a0a] prose-pre:border prose-pre:border-[#222] prose-img:rounded-xl">
+        
+        <p class="text-lg text-[#ccc] mb-8 font-semibold">
+          I was getting really frustrated with typing in my coffee expenses manually back in 2026. That was the exact moment when Floww was born.
+        </p>
+
+        <p class="mb-8">
+          Floww is not just another budgeting app; it is a financial engine that turns your messy, real-world financial data—like crumpled receipts and complex bank statements—into structured, actionable information.
+        </p>
+
+        <p class="mb-12">
+          This blog dives into how we built Floww, the unique experience of coding alongside AI, and what makes it fundamentally different from traditional finance apps.
+        </p>
+
+        <hr class="border-[#222] my-12" />
+
+        <h2 class="text-2xl font-bold text-[#4af626] mb-6 mt-12 flex items-center gap-3">
+          <span>🏗️</span> The Vision: Moving Beyond Simple Expense Trackers
+        </h2>
+        
+        <p class="mb-6">
+          Most expense trackers are glorified spreadsheets. They let you create, read, update, and delete data, but you end up spending more time manually entering every little transaction than actually understanding your financial health. With Floww, we wanted to flip the script. The AI handles the tedious data entry. You make the decisions.
+        </p>
+
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">What makes Floww fundamentally different?</h3>
+        <ol class="list-decimal pl-6 space-y-4 mb-8 text-[#aaa]">
+          <li><strong class="text-[#ccc]">Universal Intelligence</strong>: Floww doesn't just read simple receipts. It effortlessly understands all kinds of complex documents—like itemized grocery bills, detailed salary slips, and multi-page bank statements.</li>
+          <li><strong class="text-[#ccc]">Agent Floww</strong>: You can actually talk to your finances. Just ask questions like <em>"How much did I spend on Swiggy compared to last month?"</em> and Floww will give you a clear, straight answer without making you dig through charts.</li>
+          <li><strong class="text-[#ccc]">Context-Aware Styling</strong>: Floww understands the context of your spending. It automatically suggests intuitive icons and colors based on the merchant name and note, saving you even more time.</li>
+          <li><strong class="text-[#ccc]">The "Privacy-First" Premium Feel</strong>: We built Floww with a sleek design and incorporated "Privacy Wrappers" to instantly mask sensitive currency data when you're checking it in public spaces.</li>
+        </ol>
+
+        <hr class="border-[#222] my-12" />
+
+        <h2 class="text-2xl font-bold text-[#8ab4f8] mb-6 mt-12 flex items-center gap-3">
+          <span>🛠️</span> The Tech Stack (The "Vibe Coding" Way)
+        </h2>
+        
+        <p class="mb-6">We engineered Floww using a highly modern stack designed for speed and scale:</p>
+        <ul class="list-disc pl-6 space-y-2 mb-8 text-[#aaa]">
+          <li><strong>Framework</strong>: Next.js 15</li>
+          <li><strong>Communication</strong>: tRPC</li>
+          <li><strong>Database</strong>: PostgreSQL + Prisma</li>
+          <li><strong>AI Engine</strong>: Google Gemini 2.5 Flash</li>
+          <li><strong>Styling</strong>: Tailwind CSS + Framer Motion</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">The "Vibe Coding" Experience</h3>
+        <p class="mb-6">
+          Building Floww wasn't a traditional development process. We leaned heavily on AI agents, describing our intent and the "vibe" we wanted, rather than painstakingly writing every line of CSS.
+        </p>
+        
+        <blockquote class="border-l-4 border-[#ffbd2e] pl-4 py-2 mb-6 bg-[#ffbd2e]/5 italic text-[#ccc]">
+          "Give me a dashboard that feels like a premium iOS app, but with a web-first soul."<br/><br/>
+          "Build a document processor that can distinguish between a grocery bill and a bank statement without me writing a single regex."
+        </blockquote>
+
+        <p class="mb-12">
+          The AI handled the boilerplate code while we focused on the core logic: the <strong>Agent Floww</strong> prompt engineering and the multi-modal OCR pipeline. This approach allowed us to go from an empty folder to a production-ready financial engine in a fraction of the time.
+        </p>
+
+        <hr class="border-[#222] my-12" />
+
+        <h2 class="text-2xl font-bold text-[#ff5f56] mb-6 mt-12 flex items-center gap-3">
+          <span>🧠</span> Deep Dive: The Implementation
+        </h2>
+
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">1. The Multi-Modal OCR Pipeline (`aiRouter`)</h3>
+        <p class="mb-6">
+          The beating heart of Floww is its multi-modal mutation pipeline. We leverage Google's Gemini 2.5 Flash to act as a dual <strong>Classifier and Extractor</strong>.
+        </p>
+
+        <div class="bg-[#0a0a0a] border border-[#333] rounded-xl overflow-hidden mb-8 my-6">
+          <div class="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-2 shrink-0">
+            <div class="flex space-x-2">
+              <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <div class="w-full text-center text-[#777] text-xs font-sans tracking-widest">
+              prompt.ts
+            </div>
+          </div>
+          <pre class="p-4 overflow-x-auto text-sm text-[#8ab4f8]"><code>// A glimpse into the logic
+const prompt = `Analyze this document carefully. Determine if it is:
+
+1. ITEMIZED BILL (Line items)
+2. EXPENSE (receipt)
+3. INCOME (Salary slip)
+4. BANK STATEMENT (Multiple transactions)
+
+Return JSON with specific schemas for each type...`;</code></pre>
+        </div>
+
+        <p class="mb-12">
+          By utilizing the <code>inlineData</code> capability of Gemini, we pipe Base64 images directly into the model. The model doesn't just read the raw text; it understands the spatial layout, allowing it to extract line items with incredible accuracy.
+        </p>
+
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">2. Agent Floww: The Context-Aware Assistant</h3>
+        <p class="mb-6">
+          Agent Floww is far more than a simple wrapper over a chatbot. It's an <strong>In-App RAG (Retrieval-Augmented Generation)</strong> agent.
+        </p>
+        <p class="mb-12">
+          When you ask a question, the server dynamically fetches your monthly expenses, incomes, and budgets from the database and injects this data as "Financial Context" into the system prompt. This guarantees the AI provides accurate, hyper-personalized financial advice.
+        </p>
+
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">3. The "Premium" Dashboard</h3>
+        <p class="mb-4">We designed the UI to be a masterclass in <strong>Glassmorphism and Information Density</strong>.</p>
+        <ul class="list-disc pl-6 space-y-2 mb-12 text-[#aaa]">
+          <li><strong>Framer Motion</strong>: Every card entrance and transition is animated with buttery-smooth spring physics.</li>
+          <li><strong>Dynamic Icons</strong>: We built an intelligent icon engine that seamlessly maps merchant names to corresponding Lucide icons.</li>
+          <li><strong>Privacy Mode</strong>: A global state that beautifully blurs all currency values with a single tap, perfect for public spaces.</li>
+        </ul>
+
+        <hr class="border-[#222] my-12" />
+
+        <h2 class="text-2xl font-bold text-white mb-6 mt-12 flex items-center gap-3">
+          <span>🚀</span> The Result
+        </h2>
+
+        <p class="mb-6">
+          Floww represents a massive shift in how we build software today. By leveraging <strong>Vibe Coding</strong>, we didn't just build a functional tool—we built a personalized financial companion. It’s faster, smarter, and looks significantly better than many apps built by entire teams of developers.
+        </p>
+
+        <p class="mb-8">
+          Whether you're quickly scanning a coffee receipt or uploading a massive, multi-page bank statement, Floww handles it all with the same quiet elegance.
+        </p>
+
+        <div class="bg-[#1a1a1a] border border-[#4af626]/30 p-6 rounded-xl text-center mb-8">
+          <p class="text-xl font-bold text-white mb-2">Finance is stressful. Your tools shouldn't be.</p>
+          <p class="text-[#4af626] font-bold">Welcome to Floww. 💸</p>
+        </div>
+
+      </div>
+
+    </article>
+    <Footer />
+  </main>
+</Layout>

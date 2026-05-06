@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Home, User, Cpu, FolderOpen, Mail, Menu, X } from "lucide-react";
+import { Home, User, Cpu, FolderOpen, Mail, Menu, X, FileText } from "lucide-react";
 
 const navLinks = [
-  { name: "Home",     href: "#home",     icon: Home },
-  { name: "About",    href: "#about",    icon: User },
-  { name: "Skills",   href: "#skills",   icon: Cpu },
-  { name: "Projects", href: "#projects", icon: FolderOpen },
-  { name: "Contact",  href: "#contact",  icon: Mail },
+  { name: "Home",     href: "/#home",     icon: Home },
+  { name: "About",    href: "/#about",    icon: User },
+  { name: "Skills",   href: "/#skills",   icon: Cpu },
+  { name: "Projects", href: "/#projects", icon: FolderOpen },
+  { name: "Blog",     href: "/blog",      icon: FileText },
+  { name: "Contact",  href: "/#contact",  icon: Mail },
 ];
 
 export default function Navbar() {
@@ -42,13 +43,23 @@ export default function Navbar() {
   }, []);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
+    if (href.startsWith("/#") || href.startsWith("#")) {
+      e.preventDefault();
+      const id = href.replace("/#", "").replace("#", "");
+      
+      // If we are on the homepage, scroll smoothly
+      if (window.location.pathname === "/") {
+        const el = document.getElementById(id);
+        if (el) {
+          window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
+        }
+      } else {
+        // If we are on another page (like blog), navigate to homepage with hash
+        window.location.href = `/${href.replace("/", "")}`;
+      }
+      setMenuOpen(false);
     }
-    setMenuOpen(false);
+    // If it's a normal link like /blog, let default navigation happen
   };
 
   if (!mounted) return null;

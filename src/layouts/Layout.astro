@@ -1,5 +1,21 @@
 ---
 import '../globals.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+}
+
+const { 
+  title = "Sreedev Rajendran | AI Engineer & Visual Creator",
+  description = "Terminal-inspired portfolio of Sreedev Rajendran, a B.Tech Computer Science and AI student. Exploring Web Development, Python, and AI.",
+  image = "/sreedev.jpg",
+  url = "https://sreedevrajendran.in/",
+  type = "website"
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -10,28 +26,28 @@ import '../globals.css';
     <link rel="icon" type="image/jpeg" href="/sreedev.jpg" />
     <meta name="generator" content={Astro.generator} />
     
-    <title>Sreedev Rajendran | AI Engineer & Visual Creator</title>
-    <meta name="description" content="Terminal-inspired portfolio of Sreedev Rajendran, a B.Tech Computer Science and AI student. Exploring Web Development, Python, and AI." />
-    <meta name="keywords" content="sreedev, sreedevrajendran, Sreedev, Sreedev Rajendran, Portfolio, Web Developer, AI Student" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="sreedev, sreedevrajendran, Sreedev, Sreedev Rajendran, Portfolio, Web Developer, AI Student, Blog" />
     <meta name="author" content="Sreedev Rajendran" />
     
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://sreedevrajendran.in" />
-    <meta property="og:title" content="Sreedev Rajendran | AI Engineer & Visual Creator" />
-    <meta property="og:description" content="Personal portfolio of Sreedev Rajendran, showcasing projects in Web Dev and AI." />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Sreedev Rajendran Portfolio" />
-    <meta property="og:image" content="/sreedev.jpg" />
+    <meta property="og:image" content={image} />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sreedev Rajendran | AI Engineer & Visual Creator" />
-    <meta name="twitter:description" content="Personal portfolio of Sreedev Rajendran, showcasing projects in Web Dev and AI." />
-    <meta name="twitter:image" content="/sreedev.jpg" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
     <meta name="twitter:creator" content="@sreedevv_" />
     <meta name="twitter:site" content="@sreedevv_" />
 
     <!-- Canonical URL: Tells Google the single authoritative version of this page -->
-    <link rel="canonical" href="https://sreedevrajendran.in/" />
+    <link rel="canonical" href={url} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
