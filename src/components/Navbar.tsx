@@ -18,7 +18,15 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [scrolled, setScrolled]   = useState(false);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+    if (window.location.pathname.startsWith("/blog")) {
+      setActive("/blog");
+    } else {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) setActive(hash);
+    }
+  }, []);
 
   // Track scroll position for active section + shadow
   useEffect(() => {
@@ -96,9 +104,9 @@ export default function Navbar() {
               >
                 <Icon size={14} className={`transition-colors ${isActive ? "text-[#4af626]" : "text-[#555] group-hover:text-[#4af626]"}`} />
                 {name}
-                {/* Active underline */}
+                {/* Active dot */}
                 {isActive && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-[#4af626] rounded-full shadow-[0_0_6px_#4af626]" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#4af626] rounded-full shadow-[0_0_8px_#4af626]" />
                 )}
               </a>
             );
