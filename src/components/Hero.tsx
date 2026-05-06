@@ -1,186 +1,460 @@
 "use client";
 
-import { motion, useAnimate, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const loadingSteps = [
-  { label: "Resolving identity...", duration: 600 },
-  { label: "Mounting portfolio...", duration: 700 },
-  { label: "Injecting creativity...", duration: 800 },
-  { label: "Ready.", duration: 400 },
+// Staggered container variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.13,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+// Each item slides up from below
+const itemVariants = {
+  hidden: { opacity: 0, y: 48 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+// Typewriter hook
+function useTypewriter(text: string, speed = 60, startDelay = 400) {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    let i = 0;
+    setDisplayed("");
+    const delay = setTimeout(() => {
+      const interval = setInterval(() => {
+        i++;
+        setDisplayed(text.slice(0, i));
+        if (i >= text.length) clearInterval(interval);
+      }, speed);
+      return () => clearInterval(interval);
+    }, startDelay);
+    return () => clearTimeout(delay);
+  }, [text, speed, startDelay]);
+  return displayed;
+}
+
+const ROLES = [
+  "Full-Stack Developer",
+  "AI Engineer",
+  "Visual Creator",
+  "Founder @topviewframes",
 ];
 
+function useRoleCycle(roles: string[], interval = 2800) {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIndex((i) => (i + 1) % roles.length), interval);
+    return () => clearInterval(t);
+  }, [roles.length, interval]);
+  return index;
+}
+
 export default function Hero() {
-  const [phase, setPhase] = useState<"typing" | "loading" | "done">("typing");
-  const [currentStep, setCurrentStep] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const prompt = useTypewriter("./init.sh", 70, 200);
+  const roleIndex = useRoleCycle(ROLES);
+  const [roleVisible, setRoleVisible] = useState(true);
 
-  // After ./init.sh types out, start loading phase
+  // Fade out / fade in on role change
   useEffect(() => {
-    const t = setTimeout(() => setPhase("loading"), 1200);
+    setRoleVisible(false);
+    const t = setTimeout(() => setRoleVisible(true), 200);
     return () => clearTimeout(t);
-  }, []);
-
-  // Step through loading steps sequentially
-  useEffect(() => {
-    if (phase !== "loading") return;
-
-    let step = 0;
-    let totalElapsed = 0;
-    const totalDuration = loadingSteps.reduce((a, s) => a + s.duration, 0);
-
-    const runStep = () => {
-      if (step >= loadingSteps.length) {
-        setTimeout(() => setPhase("done"), 300);
-        return;
-      }
-      setCurrentStep(step);
-      const stepDuration = loadingSteps[step].duration;
-
-      // Animate progress bar for this step's share
-      const startProgress = (totalElapsed / totalDuration) * 100;
-      totalElapsed += stepDuration;
-      const endProgress = (totalElapsed / totalDuration) * 100;
-
-      const startTime = performance.now();
-      const tick = (now: number) => {
-        const elapsed = now - startTime;
-        const t = Math.min(elapsed / stepDuration, 1);
-        setProgress(startProgress + (endProgress - startProgress) * t);
-        if (t < 1) requestAnimationFrame(tick);
-        else {
-          step++;
-          setTimeout(runStep, 80);
-        }
-      };
-      requestAnimationFrame(tick);
-    };
-
-    runStep();
-  }, [phase]);
+  }, [roleIndex]);
 
   return (
-    <section id="home" className="min-h-[85vh] flex flex-col justify-center py-12 relative w-full">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 max-w-3xl h-64 bg-[#4af626]/5 rounded-[100%] blur-[100px] pointer-events-none" />
-
-      <div className="w-full flex flex-col z-10 font-mono text-base md:text-lg">
-
-        {/* Prompt line — always visible */}
-        <div className="mb-10 text-xl font-medium tracking-wide">
-          <span className="text-[#27c93f]">sreedev</span>@<span className="text-white">portfolio</span>:<span className="text-[#8ab4f8]">~</span>$&nbsp;
-          <motion.span
-            initial={{ clipPath: "polygon(0 0, 0 100%, 0 100%, 0 0)" }}
-            animate={{ clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" }}
-            transition={{ duration: 1, ease: "linear" }}
-            className="inline-block text-[#ffbd2e]"
-          >
-            ./init.sh
-          </motion.span>
-        </div>
-
-        {/* Loading phase */}
-        <AnimatePresence>
-          {phase === "loading" && (
-            <motion.div
-              key="loading"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col gap-5"
-            >
-              {/* Steps list */}
-              <div className="flex flex-col gap-2">
-                {loadingSteps.map((step, i) => {
-                  const done = i < currentStep;
-                  const active = i === currentStep;
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: i <= currentStep ? 1 : 0.25, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0 }}
-                      className="flex items-center gap-3 text-sm md:text-base"
-                    >
-                      {/* Status icon */}
-                      <span className="w-5 text-center">
-                        {done ? (
-                          <span className="text-[#27c93f]">✓</span>
-                        ) : active ? (
-                          <motion.span
-                            animate={{ opacity: [1, 0, 1] }}
-                            transition={{ repeat: Infinity, duration: 0.8 }}
-                            className="inline-block w-2 h-2 rounded-full bg-[#ffbd2e]"
-                          />
-                        ) : (
-                          <span className="text-[#333]">○</span>
-                        )}
-                      </span>
-                      <span className={done ? "text-[#555]" : active ? "text-white" : "text-[#333]"}>
-                        {step.label}
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Progress bar */}
-              <div className="mt-4 relative">
-                <div className="h-[2px] w-full bg-[#1a1a1a] rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-[#4af626] to-[#8ab4f8] rounded-full"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <div className="flex justify-between mt-2 text-[10px] text-[#444]">
-                  <span>initializing</span>
-                  <span>{Math.round(progress)}%</span>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Done phase — name reveal */}
-        <AnimatePresence>
-          {phase === "done" && (
-            <motion.div
-              key="done"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col gap-4"
-            >
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
-                className="mt-4 py-8 relative"
-              >
-                <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#4af626] via-[#8ab4f8] to-transparent rounded-full shadow-[0_0_10px_#4af626]" />
-                <div className="pl-8">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tighter">
-                    Sreedev Rajendran
-                  </h1>
-                  <p className="text-[#ffbd2e] text-xl md:text-2xl font-bold tracking-wide">Computer Science & AI Engineer</p>
-                  <p className="text-[#888] text-lg mt-2">Developer | Visual Creator</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-12 text-[#8ab4f8] flex items-center gap-3 text-lg font-bold"
-              >
-                <span className="text-white">$</span> Scroll down to explore workspace{" "}
-                <span className="animate-blink inline-block w-4 h-6 bg-[#4af626] align-middle -translate-y-0.5" />
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+    <section
+      id="home"
+      className="min-h-[100vh] flex flex-col justify-center relative w-full overflow-hidden"
+    >
+      {/* ── Background: radial glow orbs ── */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+      >
+        {/* Primary green glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: "30%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "60vw",
+            maxWidth: "700px",
+            height: "340px",
+            background: "radial-gradient(ellipse, rgba(74,246,38,0.07) 0%, transparent 70%)",
+            filter: "blur(40px)",
+          }}
+        />
+        {/* Blue accent glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: "60%",
+            right: "10%",
+            width: "300px",
+            height: "200px",
+            background: "radial-gradient(ellipse, rgba(138,180,248,0.06) 0%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+        />
+        {/* Grid overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(74,246,38,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(74,246,38,0.03) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
       </div>
+
+      {/* ── Main content ── */}
+      <motion.div
+        className="relative z-10 w-full flex flex-col font-mono"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Prompt line */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-8 text-base md:text-lg font-medium tracking-wide flex items-center gap-1"
+        >
+          <span style={{ color: "#27c93f" }}>sreedev</span>
+          <span style={{ color: "#888" }}>@</span>
+          <span style={{ color: "#fff" }}>portfolio</span>
+          <span style={{ color: "#8ab4f8" }}>:~$&nbsp;</span>
+          <span style={{ color: "#ffbd2e" }}>{prompt}</span>
+          <motion.span
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ repeat: Infinity, duration: 0.9, ease: "steps(1)" }}
+            style={{
+              display: "inline-block",
+              width: "9px",
+              height: "1.1em",
+              background: "#4af626",
+              verticalAlign: "middle",
+              marginLeft: "2px",
+            }}
+          />
+        </motion.div>
+
+        {/* ── Name block ── */}
+        <motion.div variants={itemVariants} className="relative pl-0 mb-2">
+          {/* Left accent line */}
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: "3px",
+              borderRadius: "4px",
+              background:
+                "linear-gradient(180deg, #4af626 0%, #8ab4f8 60%, transparent 100%)",
+              boxShadow: "0 0 14px #4af626",
+            }}
+          />
+          <div style={{ paddingLeft: "28px" }}>
+            <h1
+              style={{
+                fontSize: "clamp(2.6rem, 8vw, 5.5rem)",
+                fontWeight: 800,
+                color: "#fff",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                margin: 0,
+                textShadow: "0 2px 40px rgba(74,246,38,0.08)",
+              }}
+            >
+              Sreedev
+              <br />
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #4af626 0%, #8ab4f8 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Rajendran
+              </span>
+            </h1>
+          </div>
+        </motion.div>
+
+        {/* ── Cycling role tag ── */}
+        <motion.div variants={itemVariants} style={{ paddingLeft: "28px", marginBottom: "20px" }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "6px 16px",
+              border: "1px solid rgba(74,246,38,0.25)",
+              borderRadius: "4px",
+              background: "rgba(74,246,38,0.04)",
+            }}
+          >
+            <span style={{ color: "#27c93f", fontSize: "0.8rem" }}>▶</span>
+            <span
+              style={{
+                color: "#ffbd2e",
+                fontSize: "clamp(0.9rem, 2.5vw, 1.15rem)",
+                fontWeight: 700,
+                letterSpacing: "0.04em",
+                opacity: roleVisible ? 1 : 0,
+                transform: roleVisible ? "translateY(0)" : "translateY(6px)",
+                transition: "opacity 0.25s ease, transform 0.25s ease",
+                minWidth: "220px",
+              }}
+            >
+              {ROLES[roleIndex]}
+            </span>
+          </div>
+        </motion.div>
+
+        {/* ── Subtitle line ── */}
+        <motion.div variants={itemVariants} style={{ paddingLeft: "28px", marginBottom: "36px" }}>
+          <p
+            style={{
+              color: "#888",
+              fontSize: "clamp(0.85rem, 2vw, 1.05rem)",
+              margin: 0,
+              lineHeight: 1.7,
+              maxWidth: "540px",
+            }}
+          >
+            CS & AI student building AI-native apps with{" "}
+            <span style={{ color: "#fff" }}>Next.js</span>,{" "}
+            <span style={{ color: "#fff" }}>Python</span> &{" "}
+            <span style={{ color: "#fff" }}>Gemini</span>.
+            <br />
+            Founder of{" "}
+            <a
+              href="https://topviewframes.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#8ab4f8",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(138,180,248,0.4)",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#4af626")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#8ab4f8")}
+            >
+              @topviewframes
+            </a>{" "}
+            — where logic meets creativity.
+          </p>
+        </motion.div>
+
+        {/* ── CTA Buttons ── */}
+        <motion.div
+          variants={itemVariants}
+          style={{
+            paddingLeft: "28px",
+            display: "flex",
+            gap: "14px",
+            flexWrap: "wrap",
+            marginBottom: "52px",
+          }}
+        >
+          <a
+            href="#projects"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "10px 22px",
+              background: "#4af626",
+              color: "#000",
+              fontFamily: "inherit",
+              fontSize: "0.85rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textDecoration: "none",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#39cc1c";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+              (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(74,246,38,0.3)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#4af626";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+              (e.currentTarget as HTMLElement).style.boxShadow = "none";
+            }}
+          >
+            <span>ls ./projects</span>
+            <span>→</span>
+          </a>
+          <a
+            href="#contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "10px 22px",
+              background: "transparent",
+              color: "#4af626",
+              fontFamily: "inherit",
+              fontSize: "0.85rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textDecoration: "none",
+              border: "1px solid rgba(74,246,38,0.4)",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "#4af626";
+              (e.currentTarget as HTMLElement).style.background = "rgba(74,246,38,0.06)";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(74,246,38,0.4)";
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+            }}
+          >
+            <span>ping me</span>
+            <span style={{ color: "#8ab4f8" }}>_</span>
+          </a>
+        </motion.div>
+
+        {/* ── Status bar ── */}
+        <motion.div
+          variants={itemVariants}
+          style={{
+            paddingLeft: "28px",
+            display: "flex",
+            alignItems: "center",
+            gap: "20px",
+            flexWrap: "wrap",
+          }}
+        >
+          {[
+            { dot: "#27c93f", text: "Available for work" },
+            { dot: "#8ab4f8", text: "Kerala, India" },
+            { dot: "#ffbd2e", text: "B.Tech CS & AI" },
+          ].map(({ dot, text }) => (
+            <span
+              key={text}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "7px",
+                fontSize: "0.78rem",
+                color: "#666",
+                letterSpacing: "0.04em",
+              }}
+            >
+              <motion.span
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  background: dot,
+                  display: "inline-block",
+                  boxShadow: `0 0 6px ${dot}`,
+                }}
+              />
+              {text}
+            </span>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* ── Scroll indicator ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+        style={{
+          position: "absolute",
+          bottom: "36px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+          zIndex: 10,
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        <span
+          style={{
+            fontSize: "0.65rem",
+            letterSpacing: "0.18em",
+            color: "#444",
+            fontFamily: "inherit",
+            textTransform: "uppercase",
+          }}
+        >
+          scroll
+        </span>
+        {/* Animated track + dot */}
+        <div
+          style={{
+            position: "relative",
+            width: "1px",
+            height: "48px",
+            background: "rgba(74,246,38,0.12)",
+            overflow: "visible",
+          }}
+        >
+          <motion.div
+            animate={{ y: [0, 36, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "5px",
+              height: "5px",
+              borderRadius: "50%",
+              background: "#4af626",
+              boxShadow: "0 0 8px #4af626",
+            }}
+          />
+        </div>
+        {/* Double chevron */}
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut", delay: 0.2 }}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "2px" }}
+        >
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+            <path d="M1 1L6 6L11 1" stroke="#4af626" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="none" style={{ opacity: 0.4 }}>
+            <path d="M1 1L6 6L11 1" stroke="#4af626" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

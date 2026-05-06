@@ -1,5 +1,6 @@
 "use client";
 import { Eye } from 'lucide-react';
+import ScrollReveal from "./ScrollReveal";
 
 const featuredProjects = [
   {
@@ -55,93 +56,96 @@ export default function ProjectsPreview() {
   return (
     <section id="projects" className="py-12 flex flex-col font-mono">
       {/* Section header */}
-      <div className="flex items-center justify-between mb-10 px-2">
-        <h2 className="text-3xl md:text-4xl font-bold text-white flex items-center gap-4">
-          <span className="text-[#8ab4f8]">~/</span>Projects
-          <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4 hidden md:block" />
-        </h2>
-        <a
-          href="/projects"
-          className="text-sm text-[#4af626] border border-[#4af626]/30 px-4 py-2 rounded-lg hover:bg-[#4af626]/10 transition-all duration-200 font-bold shrink-0"
-        >
-          View All →
-        </a>
-      </div>
+      <ScrollReveal>
+        <div className="flex items-center justify-between mb-10 px-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-white flex items-center gap-4">
+            <span className="text-[#8ab4f8]">~/</span>Projects
+            <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4 hidden md:block" />
+          </h2>
+          <a
+            href="/projects"
+            className="text-sm text-[#4af626] border border-[#4af626]/30 px-4 py-2 rounded-lg hover:bg-[#4af626]/10 transition-all duration-200 font-bold shrink-0"
+          >
+            View All →
+          </a>
+        </div>
+      </ScrollReveal>
 
       {/* 1-by-1 terminal window cards */}
       <div className="flex flex-col gap-6">
         {featuredProjects.map((p, i) => (
-          <div
-            key={i}
-            className="group flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden hover:border-[#4af626]/60 hover:shadow-[0_0_30px_rgba(74,246,38,0.07)] transition-all duration-300"
-          >
-            {/* Mac title bar */}
-            <div className="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+          <ScrollReveal key={i} delay={i * 0.08}>
+            <div
+              className="group flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden hover:border-[#4af626]/60 hover:shadow-[0_0_30px_rgba(74,246,38,0.07)] transition-all duration-300"
+            >
+              {/* Mac title bar */}
+              <div className="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                </div>
+                <div className="flex-1 text-center text-[#666] text-[10px] font-sans tracking-widest">
+                  bash: {p.cmd}
+                </div>
+                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${statusStyle[p.status] ?? "text-[#555] bg-[#1a1a1a] border-[#333]"}`}>
+                  {p.status === "Live" ? "● " : ""}{p.status}
+                </span>
               </div>
-              <div className="flex-1 text-center text-[#666] text-[10px] font-sans tracking-widest">
-                bash: {p.cmd}
-              </div>
-              <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${statusStyle[p.status] ?? "text-[#555] bg-[#1a1a1a] border-[#333]"}`}>
-                {p.status === "Live" ? "● " : ""}{p.status}
-              </span>
-            </div>
 
-            {/* Card body */}
-            <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
-              {/* Left: emoji */}
-              <span className="text-4xl leading-none shrink-0 mt-1">{p.emoji}</span>
+              {/* Card body */}
+              <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+                {/* Left: emoji */}
+                <span className="text-4xl leading-none shrink-0 mt-1">{p.emoji}</span>
 
-              {/* Right: content */}
-              <div className="flex-1 flex flex-col gap-3">
-                <div>
-                  <div className="text-[#4af626] font-bold text-sm mb-1">&gt; _</div>
-                  <div className="flex items-center justify-between gap-4 mb-1">
-                    <h3 className="text-white font-bold text-lg md:text-xl group-hover:text-[#4af626] transition-colors leading-snug">
-                      {p.title}
-                    </h3>
-                    <div className="flex items-center gap-1.5 text-[#555] text-[10px]">
-                      <Eye size={14} className="text-[#4af626]" />
-                      {p.views} views
+                {/* Right: content */}
+                <div className="flex-1 flex flex-col gap-3">
+                  <div>
+                    <div className="text-[#4af626] font-bold text-sm mb-1">&gt; _</div>
+                    <div className="flex items-center justify-between gap-4 mb-1">
+                      <h3 className="text-white font-bold text-lg md:text-xl group-hover:text-[#4af626] transition-colors leading-snug">
+                        {p.title}
+                      </h3>
+                      <div className="flex items-center gap-1.5 text-[#555] text-[10px]">
+                        <Eye size={14} className="text-[#4af626]" />
+                        {p.views} views
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <p className="text-[#888] text-sm leading-relaxed">{p.description}</p>
+                  <p className="text-[#888] text-sm leading-relaxed">{p.description}</p>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {p.tags.map(t => (
-                    <span key={t} className="text-[#ffbd2e] text-[10px] bg-[#ffbd2e]/10 border border-[#ffbd2e]/20 px-2 py-0.5 rounded font-mono">
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.map(t => (
+                      <span key={t} className="text-[#ffbd2e] text-[10px] bg-[#ffbd2e]/10 border border-[#ffbd2e]/20 px-2 py-0.5 rounded font-mono">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
 
-                {/* Footer links */}
-                <div className="flex items-center gap-4 pt-3 border-t border-[#1a1a1a]">
-                  {p.demo && (
-                    <a href={p.demo} target="_blank" rel="noopener noreferrer"
-                      className="text-xs text-[#4af626] font-bold hover:underline">
-                      → Live Demo
+                  {/* Footer links */}
+                  <div className="flex items-center gap-4 pt-3 border-t border-[#1a1a1a]">
+                    {p.demo && (
+                      <a href={p.demo} target="_blank" rel="noopener noreferrer"
+                        className="text-xs text-[#4af626] font-bold hover:underline">
+                        → Live Demo
+                      </a>
+                    )}
+                    {p.repo && (
+                      <a href={p.repo} target="_blank" rel="noopener noreferrer"
+                        className="text-xs text-[#8ab4f8] font-bold hover:underline">
+                        ↗ Source
+                      </a>
+                    )}
+                    <a href="/projects" className="text-xs text-[#555] hover:text-[#888] font-bold ml-auto">
+                      Details →
                     </a>
-                  )}
-                  {p.repo && (
-                    <a href={p.repo} target="_blank" rel="noopener noreferrer"
-                      className="text-xs text-[#8ab4f8] font-bold hover:underline">
-                      ↗ Source
-                    </a>
-                  )}
-                  <a href="/projects" className="text-xs text-[#555] hover:text-[#888] font-bold ml-auto">
-                    Details →
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </section>

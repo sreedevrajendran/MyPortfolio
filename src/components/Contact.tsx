@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Terminal, Send, Mail, Github, Linkedin, Instagram, Twitter } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,11 +43,14 @@ export default function Contact() {
 
     return (
         <section id="contact" className="py-12 flex flex-col font-mono text-sm md:text-base mb-24">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white flex items-center gap-4 px-2">
-                <span className="text-[#8ab4f8]">~/</span>Contact
-                <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4"></div>
-            </h2>
+            <ScrollReveal>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white flex items-center gap-4 px-2">
+                  <span className="text-[#8ab4f8]">~/</span>Contact
+                  <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4"></div>
+              </h2>
+            </ScrollReveal>
 
+            <ScrollReveal delay={0.1}>
             <div className="flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-2xl w-full overflow-hidden">
                 {/* Mac Title Bar */}
                 <div className="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
@@ -162,6 +166,7 @@ export default function Contact() {
                 </div>
             </div>
             </div>
+            </ScrollReveal>
         </section>
     );
 }

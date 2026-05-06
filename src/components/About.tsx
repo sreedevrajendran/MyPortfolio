@@ -1,3 +1,4 @@
+import ScrollReveal from "./ScrollReveal";
 
 export default function About() {
   const socials = [
@@ -9,12 +10,15 @@ export default function About() {
 
   return (
     <section id="about" className="py-8 flex flex-col font-mono text-sm md:text-base">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white flex items-center gap-4">
-          <span className="text-[#8ab4f8]">~/</span>About
-          <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4"></div>
-      </h2>
+      <ScrollReveal>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white flex items-center gap-4">
+            <span className="text-[#8ab4f8]">~/</span>About
+            <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4"></div>
+        </h2>
+      </ScrollReveal>
 
-      <div className="flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden max-w-5xl mx-auto w-full group">
+      <ScrollReveal delay={0.1}>
+        <div className="flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden max-w-5xl mx-auto w-full group">
         {/* Mac Title Bar */}
         <div className="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
             <div className="flex space-x-2">
@@ -105,7 +109,8 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }
