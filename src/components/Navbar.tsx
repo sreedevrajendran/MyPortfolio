@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { Home, User, Cpu, FolderOpen, Mail, Menu, X, FileText } from "lucide-react";
 
 const navLinks = [
-  { name: "Home",     href: "/#home",     icon: Home },
-  { name: "About",    href: "/#about",    icon: User },
-  { name: "Skills",   href: "/#skills",   icon: Cpu },
-  { name: "Projects", href: "/#projects", icon: FolderOpen },
-  { name: "Blog",     href: "/blog",      icon: FileText },
-  { name: "Contact",  href: "/#contact",  icon: Mail },
+  { name: "Home",     href: "/#home",     id: "home",     icon: Home },
+  { name: "About",    href: "/#about",    id: "about",    icon: User },
+  { name: "Skills",   href: "/#skills",   id: "skills",   icon: Cpu },
+  { name: "Projects", href: "/#projects", id: "projects", icon: FolderOpen },
+  { name: "Blog",     href: "/blog",      id: "blog",     icon: FileText },
+  { name: "Contact",  href: "/#contact",  id: "contact",  icon: Mail },
 ];
 
 export default function Navbar() {
@@ -21,7 +21,7 @@ export default function Navbar() {
   useEffect(() => {
     setMounted(true);
     if (window.location.pathname.startsWith("/blog")) {
-      setActive("/blog");
+      setActive("blog");
     } else {
       const hash = window.location.hash.replace("#", "");
       if (hash) setActive(hash);
@@ -33,8 +33,7 @@ export default function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 10);
 
-      const offsets = navLinks.map(({ href }) => {
-        const id = href.replace("#", "");
+      const offsets = navLinks.map(({ id }) => {
         const el = document.getElementById(id);
         return { id, top: el ? el.getBoundingClientRect().top : Infinity };
       });
@@ -88,8 +87,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map(({ name, href, icon: Icon }) => {
-            const id = href.replace("#", "");
+          {navLinks.map(({ name, href, id, icon: Icon }) => {
             const isActive = active === id;
             return (
               <a
@@ -126,8 +124,7 @@ export default function Navbar() {
       {/* Mobile menu dropdown */}
       {menuOpen && (
         <div className="md:hidden bg-[#0a0a0a] border-b border-[#222] px-4 pb-4 flex flex-col gap-1">
-          {navLinks.map(({ name, href, icon: Icon }) => {
-            const id = href.replace("#", "");
+          {navLinks.map(({ name, href, id, icon: Icon }) => {
             const isActive = active === id;
             return (
               <a
