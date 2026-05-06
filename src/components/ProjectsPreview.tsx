@@ -5,10 +5,9 @@ const featuredProjects = [
     title: "Kerala Emergency Response App",
     cmd: "run kerala_emergency",
     emoji: "🚨",
-    status: "Live",
-    description: "Offline-first emergency response app for Kerala. 138+ geo-seeded stations, real-time disaster alerts, and seamless local SQLite sync.",
-    tags: ["React Native", "Expo", "Supabase", "SQLite"],
-    repo: "https://github.com/sreedevrajendran",
+    status: "In Dev",
+    description: "Dual-mode emergency app for Kerala — live alerts & cloud sync when online, 138+ pre-seeded stations & cached data when offline. Built for real disaster scenarios.",
+    tags: ["React Native", "Expo", "Supabase", "SQLite", "Offline-First"],
   },
   {
     title: "Floww — AI Expense Tracker",
@@ -44,6 +43,7 @@ const featuredProjects = [
 const statusStyle: Record<string, string> = {
   Live:     "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
   Released: "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
+  "In Dev": "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
 };
 
 export default function ProjectsPreview() {

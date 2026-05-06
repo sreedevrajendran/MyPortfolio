@@ -7,20 +7,21 @@ const projects = [
   {
     title: "Kerala Emergency Response App",
     emoji: "🚨",
-    status: "Live",
-    date: "2025",
-    description: "An offline-first emergency response mobile application for Kerala, featuring real-time disaster alerts, geo-located services, and seamless local-first sync.",
-    longDescription: `Built to solve a real problem — what happens when emergency services go down during a disaster? This app stays functional even with no internet. 138+ emergency stations are seeded into a local SQLite database, live news and alerts sync when online, and the app falls back gracefully offline.`,
+    status: "In Dev",
+    date: "2025 – Ongoing",
+    description: "A dual-mode emergency response mobile app built for Kerala — fully functional even when the internet goes down. Designed for real disaster scenarios where networks fail but lives are at stake.",
+    longDescription: `Most emergency apps stop working when you need them most — during a disaster, when networks go down. Kerala Emergency Response App solves this with a smart offline-first architecture: 138+ emergency stations are pre-seeded into a local SQLite database so the core app always works, and live data syncs whenever a connection is available. The app intelligently switches between online and offline modes without the user ever noticing.`,
     features: [
-      "📡 Offline-first architecture with local SQLite sync",
-      "🗺️ 138+ geo-seeded emergency stations across Kerala",
-      "🔔 Real-time disaster alert feeds",
-      "📍 Location-aware nearest service finder",
-      "🔄 Seamless Supabase ↔ SQLite data synchronisation",
-      "📱 React Native + Expo cross-platform build",
+      "🟢 ONLINE — Live disaster alerts fetched from real-time feeds",
+      "🟢 ONLINE — Supabase cloud sync: fresh station data, news & advisories",
+      "🟢 ONLINE — Location-aware nearest service discovery (live GPS + cloud)",
+      "🟢 ONLINE — Push notifications for active disaster warnings",
+      "🔴 OFFLINE — 138+ pre-seeded emergency stations across Kerala (SQLite)",
+      "🔴 OFFLINE — Nearest station finder using cached GPS & local data",
+      "🔴 OFFLINE — Emergency contact directory available without internet",
+      "🔴 OFFLINE — Last-synced news & alerts visible from local cache",
     ],
-    tags: ["React Native", "Expo", "Supabase", "SQLite", "TypeScript"],
-    repo: "https://github.com/sreedevrajendran",
+    tags: ["React Native", "Expo", "Supabase", "SQLite", "TypeScript", "Offline-First"],
     highlight: true,
     color: "#ff5f56",
   },
@@ -126,8 +127,9 @@ const projects = [
 ];
 
 const statusColor: Record<string, string> = {
-  "Live": "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  "Live":   "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
   "Released": "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
+  "In Dev": "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
   "Archived": "text-[#555] bg-[#1a1a1a] border-[#333]",
 };
 ---
