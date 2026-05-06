@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import { Calendar, ArrowLeft } from 'lucide-react';
+import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
 ---
 
 <Layout 
@@ -34,16 +34,30 @@ import { Calendar, ArrowLeft } from 'lucide-react';
           <div class="flex gap-2">
             <span class="bg-[#1a1a1a] text-[#4af626] px-2 py-1 rounded border border-[#333]">#AI</span>
             <span class="bg-[#1a1a1a] text-[#8ab4f8] px-2 py-1 rounded border border-[#333]">#VibeCoding</span>
+            <span class="bg-[#1a1a1a] text-[#ffbd2e] px-2 py-1 rounded border border-[#333]">#Finance</span>
           </div>
         </div>
 
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight tracking-tight">
           💸 Building Floww: The AI-Native Financial Engine (A Vibe Coding Journey)
         </h1>
 
+        <!-- Author row -->
+        <div class="flex items-center gap-3 mb-8 pb-8 border-b border-[#1a1a1a]">
+          <img src="/sreedev.jpg" alt="Sreedev Rajendran" class="w-9 h-9 rounded-full object-cover border border-[#333]" />
+          <div class="text-sm">
+            <span class="text-white font-bold">
+              <a href="/" class="hover:text-[#4af626] transition-colors">Sreedev Rajendran</a>
+            </span>
+            <span class="text-[#555]"> · Developer · Visual Creator ·
+              <a href="/resume" class="text-[#8ab4f8] hover:text-[#4af626] transition-colors">View Resume</a>
+            </span>
+          </div>
+        </div>
+
         <img 
           src="/floww_blog_hero.png" 
-          alt="Floww Dashboard Hero Image" 
+          alt="Floww AI Expense Tracker Dashboard — built by Sreedev Rajendran using Gemini 2.5 and Next.js" 
           class="w-full rounded-xl border border-[#222] shadow-2xl mb-8"
         />
       </header>
@@ -51,15 +65,15 @@ import { Calendar, ArrowLeft } from 'lucide-react';
       <div class="prose prose-invert prose-p:text-[#aaa] prose-headings:text-white prose-a:text-[#8ab4f8] max-w-none prose-p:leading-relaxed prose-pre:bg-[#0a0a0a] prose-pre:border prose-pre:border-[#222] prose-img:rounded-xl">
         
         <p class="text-lg text-[#ccc] mb-8 font-semibold">
-          I was getting really frustrated with typing in my coffee expenses manually back in 2026. That was the exact moment when Floww was born.
+          I was getting really frustrated with typing in my coffee expenses manually back in 2026. That was the exact moment when <a href="https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F" target="_blank" rel="noopener noreferrer" class="text-[#4af626] hover:underline font-bold">Floww</a> was born.
         </p>
 
         <p class="mb-8">
-          Floww is not just another budgeting app; it is a financial engine that turns your messy, real-world financial data—like crumpled receipts and complex bank statements—into structured, actionable information.
+          Floww is not just another budgeting app — it is a financial engine that turns your messy, real-world financial data (crumpled receipts, complex bank statements, Gmail transactions) into structured, actionable intelligence. You can see the full project breakdown on my <a href="/projects" class="text-[#8ab4f8] hover:text-[#4af626] hover:underline transition-colors">projects page</a>.
         </p>
 
         <p class="mb-12">
-          This blog dives into how we built Floww, the unique experience of coding alongside AI, and what makes it fundamentally different from traditional finance apps.
+          This blog dives into how I built Floww, the unique experience of <strong>vibe coding</strong> alongside AI, and what makes it fundamentally different from every other finance app on the market.
         </p>
 
         <hr class="border-[#222] my-12" />
@@ -69,15 +83,15 @@ import { Calendar, ArrowLeft } from 'lucide-react';
         </h2>
         
         <p class="mb-6">
-          Most expense trackers are glorified spreadsheets. They let you create, read, update, and delete data, but you end up spending more time manually entering every little transaction than actually understanding your financial health. With Floww, we wanted to flip the script. The AI handles the tedious data entry. You make the decisions.
+          Most expense trackers are glorified spreadsheets. They let you do basic CRUD operations, but you end up spending more time entering data than understanding your financial health. With Floww, I wanted to flip the script — <strong>the AI handles the data entry, you make the decisions</strong>.
         </p>
 
         <h3 class="text-xl font-bold text-white mb-4 mt-8">What makes Floww fundamentally different?</h3>
         <ol class="list-decimal pl-6 space-y-4 mb-8 text-[#aaa]">
-          <li><strong class="text-[#ccc]">Universal Intelligence</strong>: Floww doesn't just read simple receipts. It effortlessly understands all kinds of complex documents—like itemized grocery bills, detailed salary slips, and multi-page bank statements.</li>
-          <li><strong class="text-[#ccc]">Agent Floww</strong>: You can actually talk to your finances. Just ask questions like <em>"How much did I spend on Swiggy compared to last month?"</em> and Floww will give you a clear, straight answer without making you dig through charts.</li>
-          <li><strong class="text-[#ccc]">Context-Aware Styling</strong>: Floww understands the context of your spending. It automatically suggests intuitive icons and colors based on the merchant name and note, saving you even more time.</li>
-          <li><strong class="text-[#ccc]">The "Privacy-First" Premium Feel</strong>: We built Floww with a sleek design and incorporated "Privacy Wrappers" to instantly mask sensitive currency data when you're checking it in public spaces.</li>
+          <li><strong class="text-[#ccc]">Universal Document Intelligence</strong>: Floww doesn't just read simple receipts. Using <a href="https://deepmind.google/technologies/gemini/flash/" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Google Gemini 2.5 Flash</a>'s multi-modal capabilities, it understands itemized grocery bills, detailed salary slips, and multi-page bank statements.</li>
+          <li><strong class="text-[#ccc]">Agent Floww</strong>: An <a href="https://en.wikipedia.org/wiki/Retrieval-augmented_generation" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">RAG-powered</a> in-app chatbot — ask <em>"How much did I spend on Swiggy compared to last month?"</em> and get a precise answer without digging through charts.</li>
+          <li><strong class="text-[#ccc]">Context-Aware Styling</strong>: Floww automatically suggests icons and colors based on merchant name and note context — zero manual categorization.</li>
+          <li><strong class="text-[#ccc]">Privacy-First Premium Feel</strong>: "Privacy Mode" instantly masks all currency values with one tap — built for public spaces.</li>
         </ol>
 
         <hr class="border-[#222] my-12" />
@@ -86,18 +100,20 @@ import { Calendar, ArrowLeft } from 'lucide-react';
           <span>🛠️</span> The Tech Stack (The "Vibe Coding" Way)
         </h2>
         
-        <p class="mb-6">We engineered Floww using a highly modern stack designed for speed and scale:</p>
-        <ul class="list-disc pl-6 space-y-2 mb-8 text-[#aaa]">
-          <li><strong>Framework</strong>: Next.js 15</li>
-          <li><strong>Communication</strong>: tRPC</li>
-          <li><strong>Database</strong>: PostgreSQL + Prisma</li>
-          <li><strong>AI Engine</strong>: Google Gemini 2.5 Flash</li>
-          <li><strong>Styling</strong>: Tailwind CSS + Framer Motion</li>
+        <p class="mb-6">Floww is engineered on a fully modern, type-safe stack built for speed and scale:</p>
+        <ul class="list-disc pl-6 space-y-3 mb-8 text-[#aaa]">
+          <li><strong>Framework</strong>: <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Next.js 15</a> — App Router with React Server Components</li>
+          <li><strong>API Layer</strong>: <a href="https://trpc.io" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">tRPC</a> — end-to-end type-safe APIs without REST boilerplate</li>
+          <li><strong>Database</strong>: <a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">PostgreSQL</a> + <a href="https://www.prisma.io" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Prisma ORM</a></li>
+          <li><strong>AI Engine</strong>: <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Google Gemini 2.5 Flash API</a> — multi-modal OCR + RAG agent</li>
+          <li><strong>Auth</strong>: <a href="https://firebase.google.com" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Firebase Auth</a> + Gmail API (OAuth 2.0 for transaction sync)</li>
+          <li><strong>Styling</strong>: <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Tailwind CSS</a> + <a href="https://www.framer.com/motion/" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Framer Motion</a></li>
+          <li><strong>Deployment</strong>: <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Netlify</a> — CI/CD from GitHub</li>
         </ul>
 
         <h3 class="text-xl font-bold text-white mb-4 mt-8">The "Vibe Coding" Experience</h3>
         <p class="mb-6">
-          Building Floww wasn't a traditional development process. We leaned heavily on AI agents, describing our intent and the "vibe" we wanted, rather than painstakingly writing every line of CSS.
+          Building Floww wasn't a traditional development process. I leaned heavily on <strong>AI-assisted coding</strong> — describing intent and "vibe" rather than writing boilerplate. This is what the <a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">vibe coding</a> movement is about: AI handles the scaffolding, humans handle the thinking.
         </p>
         
         <blockquote class="border-l-4 border-[#ffbd2e] pl-4 py-2 mb-6 bg-[#ffbd2e]/5 italic text-[#ccc]">
@@ -106,18 +122,18 @@ import { Calendar, ArrowLeft } from 'lucide-react';
         </blockquote>
 
         <p class="mb-12">
-          The AI handled the boilerplate code while we focused on the core logic: the <strong>Agent Floww</strong> prompt engineering and the multi-modal OCR pipeline. This approach allowed us to go from an empty folder to a production-ready financial engine in a fraction of the time.
+          The AI handled the boilerplate while I focused on the hard parts: <strong>Agent Floww's prompt engineering</strong> and the <strong>multi-modal OCR pipeline</strong>. This let me go from an empty folder to a production-ready financial engine in a fraction of the traditional time.
         </p>
 
         <hr class="border-[#222] my-12" />
 
         <h2 class="text-2xl font-bold text-[#ff5f56] mb-6 mt-12 flex items-center gap-3">
-          <span>🧠</span> Deep Dive: The Implementation
+          <span>🧠</span> Deep Dive: How the Core Features Were Built
         </h2>
 
-        <h3 class="text-xl font-bold text-white mb-4 mt-8">1. The Multi-Modal OCR Pipeline (`aiRouter`)</h3>
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">1. The Multi-Modal OCR Pipeline</h3>
         <p class="mb-6">
-          The beating heart of Floww is its multi-modal mutation pipeline. We leverage Google's Gemini 2.5 Flash to act as a dual <strong>Classifier and Extractor</strong>.
+          The core of Floww is its <strong>multi-modal document understanding pipeline</strong> built on <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Gemini 2.5 Flash</a>. The model acts as both a <strong>Classifier</strong> (what kind of document is this?) and an <strong>Extractor</strong> (pull structured data from it).
         </p>
 
         <div class="bg-[#0a0a0a] border border-[#333] rounded-xl overflow-hidden mb-8 my-6">
@@ -128,57 +144,109 @@ import { Calendar, ArrowLeft } from 'lucide-react';
               <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
             </div>
             <div class="w-full text-center text-[#777] text-xs font-sans tracking-widest">
-              prompt.ts
+              aiRouter.ts — Gemini Classifier Prompt
             </div>
           </div>
-          <pre class="p-4 overflow-x-auto text-sm text-[#8ab4f8]"><code>// A glimpse into the logic
+          <pre class="p-4 overflow-x-auto text-sm text-[#8ab4f8]"><code>// Document classifier + extractor using Gemini 2.5 Flash inlineData
 const prompt = `Analyze this document carefully. Determine if it is:
 
-1. ITEMIZED BILL (Line items)
-2. EXPENSE (receipt)
+1. ITEMIZED BILL (Line items with quantities)
+2. EXPENSE (Single receipt)
 3. INCOME (Salary slip)
 4. BANK STATEMENT (Multiple transactions)
 
-Return JSON with specific schemas for each type...`;</code></pre>
+Return JSON with specific schemas for each type...`;
+
+// Base64 image piped directly into Gemini inlineData
+const result = await model.generateContent([
+  { inlineData: { mimeType: "image/jpeg", data: base64Image } },
+  { text: prompt }
+]);</code></pre>
         </div>
 
         <p class="mb-12">
-          By utilizing the <code>inlineData</code> capability of Gemini, we pipe Base64 images directly into the model. The model doesn't just read the raw text; it understands the spatial layout, allowing it to extract line items with incredible accuracy.
+          By using Gemini's <code>inlineData</code> capability, I pipe Base64 images directly into the model. Gemini doesn't just read raw text — it understands <strong>spatial layout</strong>, letting it extract line items from complex documents with high accuracy.
         </p>
 
-        <h3 class="text-xl font-bold text-white mb-4 mt-8">2. Agent Floww: The Context-Aware Assistant</h3>
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">2. Agent Floww — The RAG-Powered Finance Assistant</h3>
         <p class="mb-6">
-          Agent Floww is far more than a simple wrapper over a chatbot. It's an <strong>In-App RAG (Retrieval-Augmented Generation)</strong> agent.
+          Agent Floww is an <strong><a href="https://en.wikipedia.org/wiki/Retrieval-augmented_generation" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">In-App RAG (Retrieval-Augmented Generation)</a></strong> chatbot, not a simple LLM wrapper. When you ask a question, the server dynamically fetches your monthly expenses, incomes, and budgets from <a href="https://www.prisma.io" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Prisma</a>/<a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">PostgreSQL</a> and injects this live data as "Financial Context" into the system prompt — guaranteeing hyper-personalized, accurate answers.
         </p>
         <p class="mb-12">
-          When you ask a question, the server dynamically fetches your monthly expenses, incomes, and budgets from the database and injects this data as "Financial Context" into the system prompt. This guarantees the AI provides accurate, hyper-personalized financial advice.
+          This is how Agent Floww knows your exact Swiggy spend from last month without you having to filter a single chart. The financial data becomes the retrieval corpus; <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Gemini</a> does the reasoning.
         </p>
 
-        <h3 class="text-xl font-bold text-white mb-4 mt-8">3. The "Premium" Dashboard</h3>
-        <p class="mb-4">We designed the UI to be a masterclass in <strong>Glassmorphism and Information Density</strong>.</p>
-        <ul class="list-disc pl-6 space-y-2 mb-12 text-[#aaa]">
-          <li><strong>Framer Motion</strong>: Every card entrance and transition is animated with buttery-smooth spring physics.</li>
-          <li><strong>Dynamic Icons</strong>: We built an intelligent icon engine that seamlessly maps merchant names to corresponding Lucide icons.</li>
-          <li><strong>Privacy Mode</strong>: A global state that beautifully blurs all currency values with a single tap, perfect for public spaces.</li>
-        </ul>
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">3. Gmail Sync — Auto-Logging Transactions</h3>
+        <p class="mb-6">
+          One of the most powerful (and underrated) features: Floww connects to your <a href="https://developers.google.com/gmail/api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Gmail via OAuth 2.0</a> and scans for transactional emails (payment confirmations, order receipts, bank alerts). It automatically extracts and logs those as expenses — zero manual entry.
+        </p>
+
+        <h3 class="text-xl font-bold text-white mb-4 mt-8">4. The Finance Health Score</h3>
+        <p class="mb-12">
+          Floww calculates a <strong>real-time Finance Health Score</strong> based on your income-to-spending ratio, budget adherence, and savings patterns. It's not a static number — it updates every time you add a transaction. Think of it as a credit score, but for daily financial habits.
+        </p>
 
         <hr class="border-[#222] my-12" />
 
         <h2 class="text-2xl font-bold text-white mb-6 mt-12 flex items-center gap-3">
-          <span>🚀</span> The Result
+          <span>🚀</span> The Result & What I Learned
         </h2>
 
         <p class="mb-6">
-          Floww represents a massive shift in how we build software today. By leveraging <strong>Vibe Coding</strong>, we didn't just build a functional tool—we built a personalized financial companion. It’s faster, smarter, and looks significantly better than many apps built by entire teams of developers.
+          <a href="https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F" target="_blank" rel="noopener noreferrer" class="text-[#4af626] font-bold hover:underline">Floww</a> represents a massive shift in how software can be built today. By combining <strong>vibe coding</strong> with a well-chosen modern stack (<a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Next.js 15</a>, <a href="https://trpc.io" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">tRPC</a>, <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Gemini API</a>), I shipped a product that a full team would normally take months to build.
         </p>
 
         <p class="mb-8">
-          Whether you're quickly scanning a coffee receipt or uploading a massive, multi-page bank statement, Floww handles it all with the same quiet elegance.
+          Whether you're scanning a coffee receipt or uploading a multi-page bank statement, Floww handles it all with quiet elegance. And this is just the beginning — the RAG agent and OCR pipeline are foundation-level tech that can power far more complex financial tools.
         </p>
 
-        <div class="bg-[#1a1a1a] border border-[#4af626]/30 p-6 rounded-xl text-center mb-8">
-          <p class="text-xl font-bold text-white mb-2">Finance is stressful. Your tools shouldn't be.</p>
-          <p class="text-[#4af626] font-bold">Welcome to Floww. 💸</p>
+        <!-- CTA card -->
+        <div class="bg-[#0a0a0a] border border-[#4af626]/30 rounded-xl overflow-hidden mb-10">
+          <div class="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3">
+            <div class="flex space-x-2">
+              <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <div class="w-full text-center text-[#666] text-[10px] font-sans tracking-widest">bash: ./try_floww</div>
+          </div>
+          <div class="p-6 md:p-8 text-center">
+            <p class="text-xl font-bold text-white mb-2">Finance is stressful. Your tools shouldn't be.</p>
+            <p class="text-[#888] text-sm mb-6">Try Floww live — no setup, no install needed.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 bg-[#4af626]/10 border border-[#4af626]/40 text-[#4af626] hover:bg-[#4af626]/20 px-6 py-2.5 rounded-lg text-sm font-bold transition-all"
+              >
+                → Try Floww Live
+              </a>
+              <a
+                href="/projects"
+                class="flex items-center gap-2 bg-transparent border border-[#333] text-[#8ab4f8] hover:border-[#8ab4f8]/50 hover:bg-[#8ab4f8]/10 px-6 py-2.5 rounded-lg text-sm font-bold transition-all"
+              >
+                ↗ All Projects
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Author card -->
+        <div class="bg-[#0a0a0a] border border-[#222] rounded-xl p-6 flex flex-col sm:flex-row gap-5 items-start">
+          <img src="/sreedev.jpg" alt="Sreedev Rajendran — Developer and AI Builder" class="w-16 h-16 rounded-xl object-cover border border-[#333] shrink-0" />
+          <div>
+            <p class="text-white font-bold text-base mb-1">
+              Written by <a href="/" class="text-[#4af626] hover:underline">Sreedev Rajendran</a>
+            </p>
+            <p class="text-[#666] text-sm leading-relaxed mb-3">
+              B.Tech CS & AI student at Providence College of Engineering. I build AI-native apps, offline-first mobile tools, and write about the craft of modern software. Check out my <a href="/resume" class="text-[#8ab4f8] hover:underline">resume</a> or <a href="/projects" class="text-[#8ab4f8] hover:underline">all projects</a>.
+            </p>
+            <div class="flex gap-3">
+              <a href="https://github.com/sreedevrajendran" target="_blank" rel="noopener noreferrer" class="text-xs text-[#555] hover:text-[#8ab4f8] transition-colors">GitHub →</a>
+              <a href="https://www.linkedin.com/in/sreedevrajendran" target="_blank" rel="noopener noreferrer" class="text-xs text-[#555] hover:text-[#8ab4f8] transition-colors">LinkedIn →</a>
+            </div>
+          </div>
         </div>
 
       </div>
