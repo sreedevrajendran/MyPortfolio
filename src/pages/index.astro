@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Skills from '../components/Skills';
 import ProjectsPreview from '../components/ProjectsPreview';
 import BlogPreview from '../components/BlogPreview';
 import Contact from '../components/Contact';
@@ -20,7 +19,6 @@ import Footer from '../components/Footer';
     <div class="max-w-6xl mx-auto px-4 md:px-8 w-full flex flex-col space-y-28 pb-16 pt-24">
       <Hero client:load />
       <About client:visible />
-      <Skills client:visible />
       <ProjectsPreview client:visible />
       <BlogPreview client:visible />
       <Contact client:visible />

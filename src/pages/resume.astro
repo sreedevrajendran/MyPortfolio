@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import ResumeProfile from '../components/ResumeProfile';
+import Footer from '../components/Footer';
+---
+
+<Layout
+  title="Resume | Sreedev Rajendran"
+  description="Resume of Sreedev Rajendran — B.Tech CS & AI student, developer, and founder of @topviewframes. View profile, education, achievements, and skills."
+  url="https://sreedevrajendran.in/resume"
+>
+  <main class="flex flex-col w-full">
+    <Navbar client:load />
+    <div class="max-w-6xl mx-auto px-4 md:px-8 w-full flex flex-col space-y-20 pb-16 pt-24">
+      <ResumeProfile client:visible />
+      <Footer />
+    </div>
+  </main>
+</Layout>

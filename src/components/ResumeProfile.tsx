@@ -1,0 +1,319 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { GraduationCap, Trophy, Cpu, User, ExternalLink, Calendar, MapPin } from "lucide-react";
+
+// ─── Skills (moved from home) ────────────────────────────────────────────────
+const skills = [
+  { name: "Python",       icon: "https://cdn.simpleicons.org/python",            category: "Language" },
+  { name: "Java",         icon: "https://cdn.simpleicons.org/openjdk/white",     category: "Language" },
+  { name: "JavaScript",   icon: "https://cdn.simpleicons.org/javascript",        category: "Language" },
+  { name: "TypeScript",   icon: "https://cdn.simpleicons.org/typescript",        category: "Language" },
+  { name: "React",        icon: "https://cdn.simpleicons.org/react",             category: "Web" },
+  { name: "Next.js",      icon: "https://cdn.simpleicons.org/nextdotjs/white",   category: "Web" },
+  { name: "Astro",        icon: "https://cdn.simpleicons.org/astro/white",       category: "Web" },
+  { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss",       category: "Web" },
+  { name: "Streamlit",    icon: "https://cdn.simpleicons.org/streamlit",         category: "Tool" },
+  { name: "Git",          icon: "https://cdn.simpleicons.org/git",               category: "Tool" },
+  { name: "GitHub",       icon: "https://cdn.simpleicons.org/github/white",      category: "Tool" },
+  { name: "Android",      icon: "https://cdn.simpleicons.org/android",           category: "Mobile" },
+  { name: "React Native", icon: "https://cdn.simpleicons.org/react",             category: "Mobile" },
+  { name: "Expo",         icon: "https://cdn.simpleicons.org/expo/white",        category: "Mobile" },
+];
+
+// ─── Education ───────────────────────────────────────────────────────────────
+const education = [
+  {
+    level: "B.Tech Computer Science & AI",
+    institution: "Providence College of Engineering, Chengannur",
+    year: "2023 – 2027",
+    detail: "Specialisation in Artificial Intelligence | 2nd Year",
+    status: "ongoing",
+  },
+  {
+    level: "Plus Two (Class XII) — CBSE",
+    institution: "Narayana E-Techno School, Trivandrum",
+    year: "2021 – 2023",
+    detail: "Science stream — Physics, Chemistry, Mathematics, Computer Science",
+    status: "completed",
+  },
+  {
+    level: "SSLC (Class X) — CBSE",
+    institution: "Narayana E-Techno School, Trivandrum",
+    year: "2020 – 2021",
+    detail: "Scored 85%",
+    status: "completed",
+  },
+];
+
+// ─── Achievements ─────────────────────────────────────────────────────────────
+const achievements = [
+  {
+    title: "AI Trainee Engineer",
+    org: "Internship",
+    year: "2025",
+    description:
+      "Hands-on engineering internship focused on building AI-native applications and integrating LLM APIs (Google Gemini) into production workflows.",
+  },
+  {
+    title: "Founder — TopViewFrames",
+    org: "topviewframes.netlify.app",
+    year: "2024 – Present",
+    description:
+      "Founded and built a visual-storytelling platform that merges aerial videography with modern web technology. Grew the platform independently from concept to deployment.",
+    link: "https://topviewframes.netlify.app",
+  },
+  {
+    title: "Kerala Emergency Response App",
+    org: "Open-Source Project",
+    year: "2025",
+    description:
+      "Built a full-stack, offline-first emergency response mobile application for Kerala, featuring real-time disaster alerts, 138+ geo-seeded emergency stations, and local SQLite sync.",
+  },
+  {
+    title: "Vibe Coding — AI-Powered Development",
+    org: "Personal Research & Blog",
+    year: "2025",
+    description:
+      "Pioneered a workflow integrating AI assistants (Gemini, Antigravity) for rapid application prototyping, documenting methodology in a detailed technical blog post.",
+  },
+  {
+    title: "Full-Stack Portfolio Migration",
+    org: "Personal Project",
+    year: "2025",
+    description:
+      "Migrated personal portfolio from Next.js to Astro, achieving significant performance improvements, SEO optimization, and custom domain deployment at sreedevrajendran.in.",
+  },
+];
+
+// ─── Section Header ───────────────────────────────────────────────────────────
+function SectionHeader({ icon: Icon, title }: { icon: React.ElementType; title: string }) {
+  return (
+    <div className="flex items-center gap-4 mb-8">
+      <div className="w-9 h-9 rounded-lg bg-[#4af626]/10 border border-[#4af626]/30 flex items-center justify-center shrink-0">
+        <Icon size={18} className="text-[#4af626]" />
+      </div>
+      <h2 className="text-2xl md:text-3xl font-bold text-white">
+        <span className="text-[#8ab4f8]">~/</span>{title}
+      </h2>
+      <div className="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent" />
+    </div>
+  );
+}
+
+// ─── Terminal Wrapper ─────────────────────────────────────────────────────────
+function TerminalCard({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden group">
+      <div className="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
+        <div className="flex space-x-2">
+          <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+          <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+        </div>
+        <div className="w-full text-center text-[#777] text-[10px] font-sans tracking-widest">{title}</div>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+export default function ResumeProfile() {
+  return (
+    <div className="flex flex-col space-y-20 font-mono">
+
+      {/* ── Profile ── */}
+      <section id="resume-profile">
+        <SectionHeader icon={User} title="Profile" />
+        <TerminalCard title="bash: cat profile.txt">
+          <div className="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center md:items-start tracking-wide">
+            {/* Photo */}
+            <div className="shrink-0">
+              <div className="w-48 h-48 md:w-60 md:h-60 rounded-xl border border-[#333] p-2 bg-[#111] overflow-hidden shadow-2xl group-hover:border-[#4af626] transition-colors duration-500">
+                <img
+                  src="/sreedev.jpg"
+                  alt="Sreedev Rajendran"
+                  className="w-full h-full object-cover rounded-lg filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                />
+              </div>
+            </div>
+
+            {/* Info */}
+            <div className="flex-1 space-y-5">
+              <div>
+                <div className="text-[#4af626] font-bold text-xl mb-1">&gt; _{"{ PROFILE }"}</div>
+                <h1 className="text-white text-3xl md:text-4xl font-bold tracking-tight">Sreedev Rajendran</h1>
+                <p className="text-[#8ab4f8] text-base mt-1">Developer · Visual Creator · Founder</p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 text-sm">
+                <span className="flex items-center gap-1.5 text-[#888]">
+                  <MapPin size={13} className="text-[#4af626]" />
+                  Kerala, India
+                </span>
+                <span className="flex items-center gap-1.5 text-[#888]">
+                  <GraduationCap size={13} className="text-[#4af626]" />
+                  Providence College of Engineering
+                </span>
+                <a
+                  href="https://topviewframes.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-[#8ab4f8] hover:text-[#4af626] transition-colors"
+                >
+                  <ExternalLink size={13} />
+                  topviewframes.netlify.app
+                </a>
+              </div>
+
+              <div className="space-y-3 text-[#bfbfbf] leading-relaxed text-sm md:text-base">
+                <p>
+                  I am a second-year <span className="text-white font-semibold">B.Tech Computer Science & AI student</span> at Providence College of Engineering with a passion for building functional, intelligent, and aesthetically pleasing digital solutions.
+                </p>
+                <p>
+                  My expertise spans <span className="text-white">Python, Web Development, and Mobile App Development</span>, where I focus on creating seamless user experiences—from AI-powered platforms to offline-first mobile applications.
+                </p>
+                <p>
+                  Beyond the code, I am the Founder of{" "}
+                  <a
+                    href="https://topviewframes.netlify.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8ab4f8] font-bold hover:text-[#4af626] hover:underline transition-colors"
+                  >
+                    @topviewframes
+                  </a>
+                  , a venture where I merge my technical background with my eye for visual storytelling. I constantly seek ways to integrate AI-driven concepts into real-world applications and thrive at the intersection of logic and creativity.
+                </p>
+              </div>
+
+              {/* Social links */}
+              <div className="flex flex-wrap gap-3 pt-2">
+                {[
+                  { label: "GitHub",    href: "https://github.com/sreedevrajendran",        icon: "https://cdn.simpleicons.org/github/white" },
+                  { label: "LinkedIn",  href: "https://www.linkedin.com/in/sreedevrajendran", icon: "https://cdn.simpleicons.org/linkedin" },
+                  { label: "Instagram", href: "https://www.instagram.com/sreedevrajendran_/", icon: "https://cdn.simpleicons.org/instagram" },
+                  { label: "X",         href: "https://x.com/sreedevv_",                     icon: "https://cdn.simpleicons.org/x/white" },
+                ].map(({ label, href, icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#111] border border-[#222] text-xs text-[#888] hover:border-[#4af626] hover:text-[#4af626] transition-all"
+                  >
+                    <img src={icon} alt={label} className="w-3.5 h-3.5 object-contain" />
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </TerminalCard>
+      </section>
+
+      {/* ── Education ── */}
+      <section id="resume-education">
+        <SectionHeader icon={GraduationCap} title="Education" />
+        <TerminalCard title="bash: cat education.log">
+          <div className="p-8 md:p-10 flex flex-col gap-6">
+            {education.map((edu, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative pl-6 border-l-2 border-[#222] hover:border-[#4af626] transition-colors duration-300"
+              >
+                <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#111] border-2 border-[#333] group-hover:border-[#4af626] transition-colors" />
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                  <h3 className="text-white font-bold text-base md:text-lg">{edu.level}</h3>
+                  <span className="flex items-center gap-1.5 text-[#555] text-xs shrink-0">
+                    <Calendar size={11} />
+                    {edu.year}
+                  </span>
+                </div>
+                <p className="text-[#8ab4f8] text-sm mb-1">{edu.institution}</p>
+                <p className="text-[#666] text-xs">{edu.detail}</p>
+                {edu.status === "ongoing" && (
+                  <span className="inline-block mt-2 px-2 py-0.5 rounded bg-[#4af626]/10 border border-[#4af626]/30 text-[#4af626] text-[10px] font-bold tracking-wider">ONGOING</span>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </TerminalCard>
+      </section>
+
+      {/* ── Achievements ── */}
+      <section id="resume-achievements">
+        <SectionHeader icon={Trophy} title="Achievements" />
+        <TerminalCard title="bash: cat achievements.log">
+          <div className="p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {achievements.map((a, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="p-5 rounded-xl bg-[#111] border border-[#222] hover:border-[#4af626] transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col gap-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 className="text-white font-bold text-sm md:text-base leading-tight">{a.title}</h3>
+                    <p className="text-[#8ab4f8] text-xs mt-0.5">{a.org}</p>
+                  </div>
+                  <span className="shrink-0 flex items-center gap-1 text-[#555] text-xs">
+                    <Calendar size={10} />
+                    {a.year}
+                  </span>
+                </div>
+                <p className="text-[#888] text-xs leading-relaxed flex-1">{a.description}</p>
+                {a.link && (
+                  <a
+                    href={a.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-[#4af626] text-xs hover:underline"
+                  >
+                    <ExternalLink size={11} />
+                    Visit
+                  </a>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </TerminalCard>
+      </section>
+
+      {/* ── Skills ── */}
+      <section id="resume-skills">
+        <SectionHeader icon={Cpu} title="Skills" />
+        <TerminalCard title="htop : system_skills">
+          <div className="p-8 md:p-10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-5">
+              {skills.map((skill, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                  className="group/skill p-4 rounded-xl bg-[#111] border border-[#222] flex flex-col items-center gap-3 hover:border-[#4af626] transition-all hover:-translate-y-1 shadow-lg"
+                >
+                  <div className="relative w-10 h-10 flex items-center justify-center opacity-70 group-hover/skill:opacity-100 group-hover/skill:scale-110 transition-all duration-300">
+                    <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain filter grayscale group-hover/skill:grayscale-0 transition-all duration-300" />
+                  </div>
+                  <span className="font-mono text-[11px] text-[#888] group-hover/skill:text-[#4af626] transition-colors text-center leading-tight">{skill.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </TerminalCard>
+      </section>
+
+    </div>
+  );
+}
