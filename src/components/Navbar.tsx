@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Home, User, FolderOpen, Mail, Menu, X, FileText, ScrollText } from "lucide-react";
+import { User, FolderOpen, Mail, Menu, X, FileText, ScrollText } from "lucide-react";
 
 const navLinks = [
-  { name: "Home",     href: "/#home",     id: "home",       icon: Home },
   { name: "About",    href: "/#about",    id: "about",      icon: User },
   { name: "Projects", href: "/projects",  id: "projects",   icon: FolderOpen },
   { name: "Resume",   href: "/resume",    id: "resume",     icon: ScrollText },

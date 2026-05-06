@@ -1,5 +1,12 @@
 
 export default function About() {
+  const socials = [
+    { label: "GitHub",    href: "https://github.com/sreedevrajendran",         icon: "https://cdn.simpleicons.org/github/white" },
+    { label: "LinkedIn",  href: "https://www.linkedin.com/in/sreedevrajendran", icon: "https://cdn.simpleicons.org/linkedin" },
+    { label: "Instagram", href: "https://www.instagram.com/sreedevrajendran_/", icon: "https://cdn.simpleicons.org/instagram" },
+    { label: "X",         href: "https://x.com/sreedevv_",                      icon: "https://cdn.simpleicons.org/x/white" },
+  ];
+
   return (
     <section id="about" className="py-8 flex flex-col font-mono text-sm md:text-base">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white flex items-center gap-4">
@@ -39,7 +46,7 @@ export default function About() {
             <ul className="space-y-2 text-sm md:text-base">
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span><span className="text-white font-semibold">B.Tech CS & AI student</span> at Providence College of Engineering</span>
+                <span><span className="text-white font-semibold">B.Tech CS &amp; AI student</span> at Providence College of Engineering</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
@@ -57,13 +64,29 @@ export default function About() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span>AI Trainee Engineer · building AI-native apps with <span className="text-white">React, Next.js, Python & Gemini</span></span>
+                <span>AI Trainee Engineer · building AI-native apps with <span className="text-white">React, Next.js, Python &amp; Gemini</span></span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
                 <span>Passionate about the intersection of <span className="text-white">logic and creativity</span></span>
               </li>
             </ul>
+
+            {/* Social links */}
+            <div className="flex flex-wrap gap-2 pt-1">
+              {socials.map(({ label, href, icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#111] border border-[#222] text-xs text-[#888] hover:border-[#4af626] hover:text-[#4af626] transition-all duration-200"
+                >
+                  <img src={icon} alt={label} className="w-3.5 h-3.5 object-contain" />
+                  {label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

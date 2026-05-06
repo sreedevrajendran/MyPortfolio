@@ -26,22 +26,22 @@ const education = [
   {
     level: "B.Tech Computer Science & AI",
     institution: "Providence College of Engineering, Chengannur",
-    year: "2023 – 2027",
+    year: "2024 – 2028",
     detail: "Specialisation in Artificial Intelligence | 2nd Year",
     status: "ongoing",
   },
   {
-    level: "Plus Two (Class XII) — CBSE",
-    institution: "Narayana E-Techno School, Trivandrum",
-    year: "2021 – 2023",
-    detail: "Science stream — Physics, Chemistry, Mathematics, Computer Science",
+    level: "Plus Two (Class XII) — State Syllabus",
+    institution: "Sree Bhuvaneshwari Higher Secondary School, Mannar",
+    year: "2022 – 2024",
+    detail: "Science stream · 76%",
     status: "completed",
   },
   {
-    level: "SSLC (Class X) — CBSE",
-    institution: "Narayana E-Techno School, Trivandrum",
-    year: "2020 – 2021",
-    detail: "Scored 85%",
+    level: "SSLC (Class X) — State Syllabus",
+    institution: "Sree Bhuvaneshwari Higher Secondary School, Mannar",
+    year: "2021 – 2022",
+    detail: "Scored 98%",
     status: "completed",
   },
 ];
@@ -49,40 +49,29 @@ const education = [
 // ─── Achievements ─────────────────────────────────────────────────────────────
 const achievements = [
   {
-    title: "AI Trainee Engineer",
-    org: "Internship",
-    year: "2025",
+    title: "Certificate of Project Completion — AccelerateX Internship in AI",
+    org: "AccelerateX & Novolo.AI",
+    year: "Jun 2025",
+    badge: "🏅",
     description:
-      "Hands-on engineering internship focused on building AI-native applications and integrating LLM APIs (Google Gemini) into production workflows.",
+      "Successfully completed the AI Project as part of the 3-week internship held from 2nd June 2025 to 20th June 2025, conducted by AccelerateX & Novolo under the Career Accelerator Initiative. Certificate ID: AX-NOVP123.",
   },
   {
-    title: "Founder — TopViewFrames",
-    org: "topviewframes.netlify.app",
-    year: "2024 – Present",
+    title: "Introduction to Python — IBM Certificate",
+    org: "IBM Career Education Program (IBMCE)",
+    year: "Mar 24, 2025",
+    badge: "🎓",
     description:
-      "Founded and built a visual-storytelling platform that merges aerial videography with modern web technology. Grew the platform independently from concept to deployment.",
-    link: "https://topviewframes.netlify.app",
+      "Successfully completed and received a passing grade in Introduction to Python (CEPYT1IN) on ibmcep.cognitiveclass.ai, powered by IBM Developer Skills Network.",
+    link: "https://courses.ibmcep.cognitiveclass.ai/certificates/9fdb3db06f66445a8944d1af47ec27e4",
   },
   {
-    title: "Kerala Emergency Response App",
-    org: "Open-Source Project",
-    year: "2025",
+    title: "KIREEDAM 2025 — Football Winner",
+    org: "Providence College of Engineering, Chengannur",
+    year: "Jan 27, 2025",
+    badge: "🏆",
     description:
-      "Built a full-stack, offline-first emergency response mobile application for Kerala, featuring real-time disaster alerts, 138+ geo-seeded emergency stations, and local SQLite sync.",
-  },
-  {
-    title: "Vibe Coding — AI-Powered Development",
-    org: "Personal Research & Blog",
-    year: "2025",
-    description:
-      "Pioneered a workflow integrating AI assistants (Gemini, Antigravity) for rapid application prototyping, documenting methodology in a detailed technical blog post.",
-  },
-  {
-    title: "Full-Stack Portfolio Migration",
-    org: "Personal Project",
-    year: "2025",
-    description:
-      "Migrated personal portfolio from Next.js to Astro, achieving significant performance improvements, SEO optimization, and custom domain deployment at sreedevrajendran.in.",
+      "Awarded Certificate of Appreciation as a WINNER representing Ruby House in Football, conducted during KIREEDAM 2025 — Annual Arts & Sports Festival at Providence College of Engineering.",
   },
 ];
 
@@ -262,7 +251,10 @@ export default function ResumeProfile() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h3 className="text-white font-bold text-sm md:text-base leading-tight">{a.title}</h3>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      {a.badge && <span className="text-base leading-none">{a.badge}</span>}
+                      <h3 className="text-white font-bold text-sm md:text-base leading-tight">{a.title}</h3>
+                    </div>
                     <p className="text-[#8ab4f8] text-xs mt-0.5">{a.org}</p>
                   </div>
                   <span className="shrink-0 flex items-center gap-1 text-[#555] text-xs">
@@ -279,7 +271,7 @@ export default function ResumeProfile() {
                     className="flex items-center gap-1.5 text-[#4af626] text-xs hover:underline"
                   >
                     <ExternalLink size={11} />
-                    Visit
+                    View Certificate
                   </a>
                 )}
               </motion.div>
