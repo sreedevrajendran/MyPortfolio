@@ -16,6 +16,10 @@ export default function Footer() {
             href: "https://www.instagram.com/sreedevrajendran_/",
             label: "See Sreedev Rajendran's Creative Work on Instagram",
         },
+        {
+            href: "https://www.youtube.com/@sreedevrajendran-n50",
+            label: "Watch Sreedev Rajendran's Videos on YouTube",
+        },
     ];
 
     return (
@@ -50,7 +54,8 @@ export default function Footer() {
                             {socialLinks.map(({ href, label }) => {
                                 const shortLabel = label.includes('LinkedIn') ? 'LinkedIn' : 
                                                  label.includes('GitHub') ? 'GitHub' :
-                                                 label.includes('X') ? 'X (Twitter)' : 'Instagram';
+                                                 label.includes('X') ? 'X (Twitter)' : 
+                                                 label.includes('YouTube') ? 'YouTube' : 'Instagram';
                                 return (
                                 <a key={href} href={href} target="_blank" rel="noopener noreferrer" title={label}
                                    className="text-[#666] hover:text-[#8ab4f8] text-sm transition-colors flex items-center gap-2">

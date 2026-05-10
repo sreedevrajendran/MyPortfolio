@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Terminal, Send, Mail, Github, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Terminal, Send, Mail, Github, Linkedin, Instagram, Twitter, Youtube } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 export default function Contact() {
@@ -92,6 +92,10 @@ export default function Contact() {
                         <a href="https://x.com/sreedevv_" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Twitter size={20} /></div>
                             <span className="font-bold">Twitter</span>
+                        </a>
+                        <a href="https://www.youtube.com/@sreedevrajendran-n50" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                            <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Youtube size={20} /></div>
+                            <span className="font-bold">YouTube</span>
                         </a>
                     </div>
                 </div>
