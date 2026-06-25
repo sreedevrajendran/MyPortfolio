@@ -13,7 +13,7 @@ export default function Footer() {
             label: "Follow Sreedev Rajendran's Thoughts on X (Twitter)",
         },
         {
-            href: "https://www.instagram.com/sreedevrajendran_/",
+            href: "https://www.instagram.com/_sreedevrajendran/",
             label: "See Sreedev Rajendran's Creative Work on Instagram",
         },
         {

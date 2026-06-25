@@ -85,7 +85,7 @@ export default function Contact() {
                            <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Linkedin size={20} /></div>
                             <span className="font-bold">LinkedIn</span>
                         </a>
-                        <a href="https://www.instagram.com/sreedevrajendran_/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
+                        <a href="https://www.instagram.com/_sreedevrajendran/" target="_blank" className="flex items-center gap-4 text-[#8ab4f8] hover:text-[#4af626] transition-colors group">
                             <div className="p-3 bg-[#1a1a1a] border border-[#333] rounded-lg group-hover:border-[#4af626] transition-colors"><Instagram size={20} /></div>
                             <span className="font-bold">Instagram</span>
                         </a>

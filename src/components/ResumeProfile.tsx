@@ -181,7 +181,7 @@ export default function ResumeProfile() {
               <div className="flex flex-wrap gap-3 pt-2">
                 {([
                   { label: "GitHub",    href: "https://github.com/sreedevrajendran",         icon: "https://cdn.simpleicons.org/github/white" },
-                  { label: "Instagram", href: "https://www.instagram.com/sreedevrajendran_/", icon: "https://cdn.simpleicons.org/instagram" },
+                  { label: "Instagram", href: "https://www.instagram.com/_sreedevrajendran/", icon: "https://cdn.simpleicons.org/instagram" },
                   { label: "X",         href: "https://x.com/sreedevv_",                      icon: "https://cdn.simpleicons.org/x/white" },
                   { label: "YouTube",   href: "https://www.youtube.com/@sreedevrajendran-n50",icon: "https://cdn.simpleicons.org/youtube/red" },
                 ] as { label: string; href: string; icon: string }[]).map(({ label, href, icon }) => (
