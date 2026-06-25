@@ -27,7 +27,7 @@ const education = [
     level: "B.Tech Computer Science & AI",
     institution: "Providence College of Engineering, Chengannur",
     year: "2024 – 2028",
-    detail: "Specialisation in Artificial Intelligence | 2nd Year",
+    detail: "Specialisation in Artificial Intelligence | 3rd Year",
     status: "ongoing",
   },
   {
@@ -158,7 +158,7 @@ export default function ResumeProfile() {
 
               <div className="space-y-3 text-[#bfbfbf] leading-relaxed text-sm md:text-base">
                 <p>
-                  I am a second-year <span className="text-white font-semibold">B.Tech Computer Science & AI student</span> at Providence College of Engineering with a passion for building functional, intelligent, and aesthetically pleasing digital solutions.
+                  I am a third-year <span className="text-white font-semibold">B.Tech Computer Science & AI student</span> at Providence College of Engineering with a passion for building functional, intelligent, and aesthetically pleasing digital solutions.
                 </p>
                 <p>
                   My expertise spans <span className="text-white">Python, Web Development, and Mobile App Development</span>, where I focus on creating seamless user experiences—from AI-powered platforms to offline-first mobile applications.
