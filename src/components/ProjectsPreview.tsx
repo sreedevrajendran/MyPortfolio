@@ -1,5 +1,4 @@
 "use client";
-import { Eye } from 'lucide-react';
 import ScrollReveal from "./ScrollReveal";
 
 const featuredProjects = [
@@ -10,7 +9,6 @@ const featuredProjects = [
     status: "In Dev",
     description: "Dual-mode emergency app for Kerala — live alerts & cloud sync when online, 138+ pre-seeded stations & cached data when offline. Built for real disaster scenarios.",
     tags: ["React Native", "Expo", "Supabase", "SQLite", "Offline-First"],
-    views: "842",
   },
   {
     title: "Floww — AI Expense Tracker",
@@ -20,7 +18,6 @@ const featuredProjects = [
     description: "AI-powered finance engine. Snap receipts, sync Gmail, chat with your money. Built with Gemini 2.5.",
     tags: ["AI", "React", "Firebase", "Gemini"],
     demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
-    views: "1,256",
   },
   {
     title: "WeatherNative",
@@ -31,7 +28,6 @@ const featuredProjects = [
     tags: ["React Native", "Android", "APK"],
     demo: "/AquWeather.apk",
     repo: "https://github.com/sreedevrajendran/WeatherNativeProject",
-    views: "634",
   },
   {
     title: "Bunk Calculator",
@@ -42,7 +38,6 @@ const featuredProjects = [
     tags: ["Python", "Streamlit"],
     demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
     repo: "https://github.com/sreedevrajendran/bunk-calculator",
-    views: "928",
   },
 ];
 
@@ -106,10 +101,6 @@ export default function ProjectsPreview() {
                       <h3 className="text-white font-bold text-lg md:text-xl group-hover:text-[#4af626] transition-colors leading-snug">
                         {p.title}
                       </h3>
-                      <div className="flex items-center gap-1.5 text-[#555] text-[10px]">
-                        <Eye size={14} className="text-[#4af626]" />
-                        {p.views} views
-                      </div>
                     </div>
                   </div>
 

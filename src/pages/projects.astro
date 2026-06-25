@@ -3,8 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import { Eye } from 'lucide-react';
-
 const projects = [
   {
     title: "Kerala Emergency Response App",
@@ -26,7 +24,7 @@ const projects = [
     tags: ["React Native", "Expo", "Supabase", "SQLite", "TypeScript", "Offline-First"],
     highlight: true,
     color: "#ff5f56",
-    views: "842",
+
   },
 
   {
@@ -195,11 +193,6 @@ const statusColor: Record<string, string> = {
                     <p class="text-[#555] text-xs mt-1">{project.date}</p>
                   </div>
                 </div>
-                <div class="flex items-center gap-1.5 text-[#555] text-xs">
-                  <Eye size={16} class="text-[#4af626]" />
-                  {project.views} views
-                </div>
-              </div>
 
 
 

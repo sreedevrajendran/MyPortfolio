@@ -1,5 +1,4 @@
 "use client";
-import { Eye } from 'lucide-react';
 import ScrollReveal from "./ScrollReveal";
 
 const blogs = [
@@ -11,7 +10,6 @@ const blogs = [
     excerpt: "How I built a financial engine that turns crumpled receipts and bank statements into structured intelligence — using Gemini 2.5, Next.js, and a vibe-coding approach.",
     tags: ["AI", "Gemini", "Finance", "Vibe Coding"],
     cmd: "cat building_floww.md",
-    views: "576",
   },
 ];
 
@@ -67,11 +65,6 @@ export default function BlogPreview() {
                         </span>
                       ))}
                     </div>
-                    <span className="text-[#333]">·</span>
-                    <span className="flex items-center gap-1.5 text-[#555] text-xs">
-                      <Eye size={12} className="text-[#4af626]" />
-                      {b.views} views
-                    </span>
                   </div>
 
                   {/* Prompt + title */}

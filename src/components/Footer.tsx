@@ -35,16 +35,6 @@ export default function Footer() {
                         <p className="text-[#666] text-sm leading-relaxed">
                             Building AI-native applications and offline-first mobile tools. Turning messy data into structured intelligence.
                         </p>
-                        {/* Monthly Views Counter */}
-                        <div className="flex items-center gap-2 text-[#666] text-xs mt-2 bg-[#111] w-fit px-3 py-1.5 rounded-md border border-[#222] shadow-sm">
-                            <div className="relative flex h-1.5 w-1.5">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4af626] opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4af626]"></span>
-                            </div>
-                            <span>
-                                <span className="text-[#888] font-bold">12,482</span> views in {new Date().toLocaleString('default', { month: 'short' })}
-                            </span>
-                        </div>
                     </div>
 
                     {/* Links Grid */}
