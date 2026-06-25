@@ -37,7 +37,7 @@ export default function About() {
           <div className="shrink-0 flex flex-col items-center">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl border border-[#333] p-1.5 bg-[#111] overflow-hidden shadow-2xl relative group-hover:border-[#4af626] transition-colors duration-500">
               <img
-                src="/sreedev.jpg"
+                src="/profile.png"
                 alt="Sreedev Rajendran"
                 className="w-full h-full object-cover rounded-lg filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
               />

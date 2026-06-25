@@ -121,7 +121,7 @@ export default function ResumeProfile() {
             <div className="shrink-0">
               <div className="w-48 h-48 md:w-60 md:h-60 rounded-xl border border-[#333] p-2 bg-[#111] overflow-hidden shadow-2xl group-hover:border-[#4af626] transition-colors duration-500">
                 <img
-                  src="/sreedev.jpg"
+                  src="/profile.png"
                   alt="Sreedev Rajendran"
                   className="w-full h-full object-cover rounded-lg filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
                 />
