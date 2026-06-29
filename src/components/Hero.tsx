@@ -352,7 +352,6 @@ export default function Hero() {
           }}
         >
           {[
-            { dot: "#27c93f", text: "Available for work" },
             { dot: "#8ab4f8", text: "Kerala, India" },
             { dot: "#ffbd2e", text: "B.Tech CS & AI" },
           ].map(({ dot, text }) => (
