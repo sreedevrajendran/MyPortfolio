@@ -51,7 +51,7 @@ export default function About() {
             <ul className="space-y-2 text-sm md:text-base">
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span><span className="text-white font-semibold">B.Tech CS &amp; AI student</span> at Providence College of Engineering</span>
+                <span><span className="text-white font-semibold">B.Tech student</span> at Providence College of Engineering</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
@@ -64,16 +64,16 @@ export default function About() {
                   >
                     @topviewframes
                   </a>
-                  {" "}— visual storytelling meets tech
+                  {" "}— Code. Create. Capture
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span>AI Trainee Engineer · building AI-native apps with <span className="text-white">React, Next.js, Python &amp; Gemini</span></span>
+                <span>B.Techian with 0 coding knowledge</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span>Passionate about the intersection of <span className="text-white">logic and creativity</span></span>
+                <span>Developer &nbsp;&nbsp;&nbsp; Visual Creator</span>
               </li>
             </ul>
 
