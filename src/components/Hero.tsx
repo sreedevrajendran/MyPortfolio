@@ -241,6 +241,8 @@ export default function Hero() {
             <span style={{ color: "#fff" }}>Python</span> &{" "}
             <span style={{ color: "#fff" }}>Gemini</span>.
             <br />
+            B.Techian with 0 coding knowledge | Developer | Visual Creator
+            <br />
             Founder of{" "}
             <a
               href="https://topviewframes.netlify.app"
