@@ -236,11 +236,6 @@ export default function Hero() {
               maxWidth: "540px",
             }}
           >
-            CS & AI student building AI-native apps with{" "}
-            <span style={{ color: "#fff" }}>Next.js</span>,{" "}
-            <span style={{ color: "#fff" }}>Python</span> &{" "}
-            <span style={{ color: "#fff" }}>Gemini</span>.
-            <br />
             B.Techian with 0 coding knowledge | Developer | Visual Creator
             <br />
             Founder of{" "}
