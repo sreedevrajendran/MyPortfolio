@@ -259,7 +259,7 @@ export default function Hero() {
             >
               @topviewframes
             </a>{" "}
-            — where logic meets creativity.
+            — Code. Create. Capture
           </p>
         </motion.div>
 
