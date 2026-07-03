@@ -33,7 +33,7 @@ export default function Footer() {
                             <span className="text-[#8ab4f8]">~/</span>sreedev
                         </div>
                         <p className="text-[#666] text-sm leading-relaxed">
-                            Building AI-native applications and offline-first mobile tools. Turning messy data into structured intelligence.
+                            B.Tech CS & AI Student and Founder of Topviewframes. Crafting innovative digital solutions, from robust software systems to engaging visual media.
                         </p>
                     </div>
 

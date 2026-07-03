@@ -173,7 +173,7 @@ export default function ResumeProfile() {
                   >
                     Topviewframes
                   </a>
-                  , a professional photography and videography company where I merge my technical background with visual storytelling. Outside of work and academics, I am like-minded toward traveling and exploring new places to gather fresh perspectives.
+                  , a professional photography and videography company where I merge my technical background with visual storytelling. Outside of work and academics, I am like-minded toward travelling and exploring new places to gather fresh perspectives.
                 </p>
               </div>
 

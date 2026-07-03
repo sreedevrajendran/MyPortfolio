@@ -71,7 +71,7 @@ export default function About() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span><span className="text-white font-semibold">Lifestyle:</span> Like-minded toward traveling and exploring new places.</span>
+                <span><span className="text-white font-semibold">Lifestyle:</span> Like-minded toward travelling and exploring new places.</span>
               </li>
             </ul>
 
