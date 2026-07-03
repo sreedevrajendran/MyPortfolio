@@ -169,11 +169,11 @@ export default function Hero() {
           <div style={{ paddingLeft: "28px" }}>
             <h1
               style={{
-                fontFamily: '"Pinyon Script", cursive',
-                fontSize: "clamp(3.2rem, 10vw, 6.5rem)",
-                fontWeight: 400,
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontSize: "clamp(2.6rem, 8vw, 5.5rem)",
+                fontWeight: 700,
                 color: "#fff",
-                letterSpacing: "0.02em",
+                letterSpacing: "-0.04em",
                 lineHeight: 1.05,
                 margin: 0,
                 textShadow: "0 2px 40px rgba(74,246,38,0.08)",
