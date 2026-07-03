@@ -15,28 +15,28 @@ interface Project {
 const projects: Project[] = [
     {
         title: "Floww \u2014 AI Expense Tracker",
-        description: "Floww is a smart personal finance app that uses AI to make money management effortless. Snap a receipt and let the AI extract merchant, amount & category instantly. Sync your Gmail to auto-log transactions, get a personal Finance Health Score, set smart budgets with live tracking, and toggle Privacy Mode to hide all balances with one tap.",
+        description: "Floww is an intelligent personal finance platform that leverages AI to streamline money management. It features instant receipt data extraction (merchant, amount, category), automated transaction logging via Gmail integration, and a comprehensive Finance Health Score. Additionally, it offers real-time smart budget tracking and a one-tap Privacy Mode for enhanced data security.",
         tags: ["AI", "React", "Firebase", "Netlify", "Gmail API"],
         demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
         highlight: true,
     },
     {
         title: "Simple Banking System",
-        description: "A secure and efficient Java-based banking application for managing customer accounts, transactions, and balance inquiries.",
+        description: "A secure and highly efficient Java-based banking application engineered for comprehensive customer account management, streamlined transaction processing, and accurate balance inquiries.",
         tags: ["Java", "OOP", "Console App"],
         repo: "https://github.com/sreedevrajendran/SimpleBankingSystem-JAVA",
         highlight: false,
     },
     {
         title: "SentimentAnalysis",
-        description: "Analyze and classify dataset sentiment using basic Machine Learning and Natural Language Processing techniques.",
+        description: "An advanced data analysis project focused on classifying dataset sentiments by leveraging foundational Machine Learning algorithms and Natural Language Processing methodologies.",
         tags: ["Python", "ML", "NLP"],
         repo: "https://github.com/sreedevrajendran/SentimentAnalysis",
         highlight: false,
     },
     {
         title: "bunk-calculator",
-        description: "A mini project to calculate class attendance and bunk eligibility using Python and Streamlit.",
+        description: "An analytical tool built with Python and Streamlit, designed to strategically calculate class attendance and determine absence eligibility while maintaining academic compliance.",
         tags: ["Python", "Streamlit"],
         demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
         repo: "https://github.com/sreedevrajendran/bunk-calculator",
@@ -44,7 +44,7 @@ const projects: Project[] = [
     },
     {
         title: "WeatherNativeProject",
-        description: "A native Android application for real-time weather tracking. Download the APK directly.",
+        description: "A robust native Android application built for precise, real-time weather tracking and forecasting. Direct APK download available for immediate deployment.",
         tags: ["Android", "React Native", "APK"],
         demo: "/AquWeather.apk",
         repo: "https://github.com/sreedevrajendran/WeatherNativeProject",

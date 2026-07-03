@@ -51,29 +51,27 @@ export default function About() {
             <ul className="space-y-2 text-sm md:text-base">
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span><span className="text-white font-semibold">B.Tech student</span> at Providence College of Engineering</span>
+                <span><span className="text-white font-semibold">Role:</span> Founder of <a href="https://topviewframes.netlify.app" target="_blank" rel="noopener noreferrer" className="text-[#8ab4f8] font-bold hover:text-[#4af626] hover:underline transition-colors">Topviewframes</a>, a professional photography and videography company.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span>Founder at{" "}
-                  <a
-                    href="https://topviewframes.netlify.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#8ab4f8] font-bold hover:text-[#4af626] hover:underline transition-colors"
-                  >
-                    @topviewframes
-                  </a>
-                  {" "}— Code. Create. Capture
-                </span>
+                <span><span className="text-white font-semibold">Education:</span> Ongoing B.Tech student in Computer Science Engineering, specializing in Artificial Intelligence.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span>B.Techian with 0 coding knowledge</span>
+                <span><span className="text-white font-semibold">Location:</span> Based in Kerala, India.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
-                <span>Developer &nbsp;&nbsp;&nbsp; Visual Creator</span>
+                <span><span className="text-white font-semibold">Primary Goal:</span> Driven to become an entrepreneur.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
+                <span><span className="text-white font-semibold">Focus:</span> Actively interested in Software Development, Cyber Security, Photography, and Videography.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#4af626] shrink-0 mt-0.5">▸</span>
+                <span><span className="text-white font-semibold">Lifestyle:</span> Like-minded toward traveling and exploring new places.</span>
               </li>
             </ul>
 

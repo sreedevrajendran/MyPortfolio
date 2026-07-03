@@ -158,22 +158,22 @@ export default function ResumeProfile() {
 
               <div className="space-y-3 text-[#bfbfbf] leading-relaxed text-sm md:text-base">
                 <p>
-                  I am a third-year <span className="text-white font-semibold">B.Tech Computer Science & AI student</span> at Providence College of Engineering with a passion for building functional, intelligent, and aesthetically pleasing digital solutions.
+                  I am an ongoing <span className="text-white font-semibold">B.Tech student in Computer Science Engineering</span>, specializing in Artificial Intelligence, based in Kerala, India. Driven by a primary goal to become a successful entrepreneur, I am passionate about crafting innovative digital solutions.
                 </p>
                 <p>
-                  My expertise spans <span className="text-white">Python, Web Development, and Mobile App Development</span>, where I focus on creating seamless user experiences—from AI-powered platforms to offline-first mobile applications.
+                  My technical and creative focus spans <span className="text-white">Software Development, Cyber Security, Photography, and Videography</span>. I constantly seek to build seamless user experiences, from robust software systems to engaging visual media.
                 </p>
                 <p>
-                  Beyond the code, I am the Founder of{" "}
+                  I am the Founder of{" "}
                   <a
                     href="https://topviewframes.netlify.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#8ab4f8] font-bold hover:text-[#4af626] hover:underline transition-colors"
                   >
-                    @topviewframes
+                    Topviewframes
                   </a>
-                  , a venture where I merge my technical background with my eye for visual storytelling. I constantly seek ways to integrate AI-driven concepts into real-world applications and thrive at the intersection of logic and creativity.
+                  , a professional photography and videography company where I merge my technical background with visual storytelling. Outside of work and academics, I am like-minded toward traveling and exploring new places to gather fresh perspectives.
                 </p>
               </div>
 

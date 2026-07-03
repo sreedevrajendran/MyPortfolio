@@ -236,7 +236,7 @@ export default function Hero() {
               maxWidth: "540px",
             }}
           >
-            B.Techian with 0 coding knowledge | Developer | Visual Creator
+            B.Tech CS & AI Student | Aspiring Entrepreneur | Developer & Visual Creator
             <br />
             Founder of{" "}
             <a
