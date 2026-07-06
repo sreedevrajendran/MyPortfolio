@@ -9,7 +9,10 @@ const project = {
   problemSolved: "Analyzing large text datasets for emotional tone is difficult and time-consuming when done manually. This project provides an automated machine learning pipeline to preprocess raw text (cleaning, tokenization, stemming) and classify sentiments rapidly using models like Naive Bayes, Logistic Regression, and SVM.",
   techStack: ["Python", "ML", "NLP", "scikit-learn", "TF-IDF"],
   github: "https://github.com/sreedevrajendran/SentimentAnalysis",
-  screenshots: [],
+  screenshots: [
+    "https://placehold.co/800x450/1a1a1a/4af626?text=App+Screenshot+1",
+    "https://placehold.co/800x450/1a1a1a/8ab4f8?text=App+Screenshot+2"
+  ],
 };
 ---
 
@@ -55,7 +58,7 @@ const project = {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               {project.screenshots.map(screenshot => (
                 <div class="aspect-video bg-[#1a1a1a] border border-[#333] rounded-xl overflow-hidden flex items-center justify-center">
-                   <p class="text-[#666]">Screenshot placeholder</p>
+                   <img src={screenshot} alt="Project Screenshot" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                 </div>
               ))}
             </div>

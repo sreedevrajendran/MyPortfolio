@@ -10,7 +10,10 @@ const project = {
   techStack: ["Python", "Streamlit", "Education"],
   demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
   github: "https://github.com/sreedevrajendran/bunk-calculator",
-  screenshots: [],
+  screenshots: [
+    "https://placehold.co/800x450/1a1a1a/4af626?text=App+Screenshot+1",
+    "https://placehold.co/800x450/1a1a1a/8ab4f8?text=App+Screenshot+2"
+  ],
 };
 ---
 
@@ -61,7 +64,7 @@ const project = {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               {project.screenshots.map(screenshot => (
                 <div class="aspect-video bg-[#1a1a1a] border border-[#333] rounded-xl overflow-hidden flex items-center justify-center">
-                   <p class="text-[#666]">Screenshot placeholder</p>
+                   <img src={screenshot} alt="Project Screenshot" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                 </div>
               ))}
             </div>
