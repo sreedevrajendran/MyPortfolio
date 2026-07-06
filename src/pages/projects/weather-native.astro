@@ -10,9 +10,6 @@ const project = {
   techStack: ["React Native", "Android", "APK", "Weather API"],
   github: "https://github.com/sreedevrajendran/WeatherNativeProject",
   demo: "/AquWeather.apk",
-  screenshots: [
-    "/projects/weather-native.png"
-  ],
 };
 ---
 
@@ -55,23 +52,6 @@ const project = {
               <span class="px-4 py-2 bg-[#1a1a1a] border border-[#333] rounded-lg text-sm text-white">{tech}</span>
             ))}
           </div>
-        </section>
-        
-        <section class="bg-[#0a0a0a] border border-[#333] p-8 rounded-xl">
-          <h2 class="text-2xl font-bold mb-6 text-[#4af626]">Screenshots</h2>
-          {project.screenshots && project.screenshots.length > 0 ? (
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.screenshots.map(screenshot => (
-                <div class="aspect-video bg-[#1a1a1a] border border-[#333] rounded-xl overflow-hidden flex items-center justify-center">
-                   <img src={screenshot} alt="Project Screenshot" class="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div class="aspect-video bg-[#1a1a1a] border border-[#333] rounded-xl flex items-center justify-center">
-              <p class="text-[#666]">Screenshots coming soon.</p>
-            </div>
-          )}
         </section>
       </div>
     </div>

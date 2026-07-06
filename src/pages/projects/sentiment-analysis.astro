@@ -9,9 +9,6 @@ const project = {
   problemSolved: "Analyzing large text datasets for emotional tone is difficult and time-consuming when done manually. This project provides an automated machine learning pipeline to preprocess raw text (cleaning, tokenization, stemming) and classify sentiments rapidly using models like Naive Bayes, Logistic Regression, and SVM.",
   techStack: ["Python", "ML", "NLP", "scikit-learn", "TF-IDF"],
   github: "https://github.com/sreedevrajendran/SentimentAnalysis",
-  screenshots: [
-    "/projects/sentiment-analysis.png"
-  ],
 };
 ---
 
@@ -49,23 +46,6 @@ const project = {
               <span class="px-4 py-2 bg-[#1a1a1a] border border-[#333] rounded-lg text-sm text-white">{tech}</span>
             ))}
           </div>
-        </section>
-        
-        <section class="bg-[#0a0a0a] border border-[#333] p-8 rounded-xl">
-          <h2 class="text-2xl font-bold mb-6 text-[#4af626]">Screenshots</h2>
-          {project.screenshots && project.screenshots.length > 0 ? (
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.screenshots.map(screenshot => (
-                <div class="aspect-video bg-[#1a1a1a] border border-[#333] rounded-xl overflow-hidden flex items-center justify-center">
-                   <img src={screenshot} alt="Project Screenshot" class="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div class="aspect-video bg-[#1a1a1a] border border-[#333] rounded-xl flex items-center justify-center">
-              <p class="text-[#666]">Screenshots coming soon.</p>
-            </div>
-          )}
         </section>
       </div>
     </div>
