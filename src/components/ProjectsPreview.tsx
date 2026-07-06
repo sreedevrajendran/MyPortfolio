@@ -3,14 +3,6 @@ import ScrollReveal from "./ScrollReveal";
 
 const featuredProjects = [
   {
-    title: "Kerala Emergency Response App",
-    cmd: "run kerala_emergency",
-    emoji: "🚨",
-    status: "In Dev",
-    description: "A robust, dual-mode emergency response application designed for Kerala. Features real-time alerts and cloud synchronization during active connectivity, while ensuring uninterrupted access via 138+ pre-seeded offline stations and intelligent data caching during network outages. Engineered specifically for critical disaster management scenarios.",
-    tags: ["React Native", "Expo", "Supabase", "SQLite", "Offline-First"],
-  },
-  {
     title: "Floww — AI Expense Tracker",
     cmd: "run floww",
     emoji: "💸",
@@ -18,6 +10,7 @@ const featuredProjects = [
     description: "An intelligent personal finance engine powered by AI. Features automated receipt scanning, seamless Gmail synchronization for transaction logging, and an interactive financial chat interface. Built leveraging the advanced capabilities of Gemini 2.5.",
     tags: ["AI", "React", "Firebase", "Gemini"],
     demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
+    slug: "floww",
   },
   {
     title: "WeatherNative",
@@ -28,6 +21,7 @@ const featuredProjects = [
     tags: ["React Native", "Android", "APK"],
     demo: "/AquWeather.apk",
     repo: "https://github.com/sreedevrajendran/WeatherNativeProject",
+    slug: "weather-native",
   },
   {
     title: "Bunk Calculator",
@@ -38,6 +32,7 @@ const featuredProjects = [
     tags: ["Python", "Streamlit"],
     demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
     repo: "https://github.com/sreedevrajendran/bunk-calculator",
+    slug: "bunk-calculator",
   },
 ];
 
@@ -123,13 +118,13 @@ export default function ProjectsPreview() {
                         → Live Demo
                       </a>
                     )}
-                    {p.repo && (
+                    {p.repo && !p.slug && (
                       <a href={p.repo} target="_blank" rel="noopener noreferrer"
                         className="text-xs text-[#8ab4f8] font-bold hover:underline">
                         ↗ Source
                       </a>
                     )}
-                    <a href="/projects" className="text-xs text-[#555] hover:text-[#888] font-bold ml-auto">
+                    <a href={p.slug ? `/projects/${p.slug}` : "/projects"} className="text-xs text-[#555] hover:text-[#888] font-bold ml-auto">
                       Details →
                     </a>
                   </div>

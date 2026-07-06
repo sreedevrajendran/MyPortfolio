@@ -5,29 +5,6 @@ import Footer from '../components/Footer';
 
 const projects = [
   {
-    title: "Kerala Emergency Response App",
-    emoji: "🚨",
-    status: "In Dev",
-    date: "2025 – Ongoing",
-    description: "A dual-mode emergency response mobile app built for Kerala — fully functional even when the internet goes down. Designed for real disaster scenarios where networks fail but lives are at stake.",
-    longDescription: `Most emergency apps stop working when you need them most — during a disaster, when networks go down. Kerala Emergency Response App solves this with a smart offline-first architecture: 138+ emergency stations are pre-seeded into a local SQLite database so the core app always works, and live data syncs whenever a connection is available. The app intelligently switches between online and offline modes without the user ever noticing.`,
-    features: [
-      "🟢 ONLINE — Live disaster alerts fetched from real-time feeds",
-      "🟢 ONLINE — Supabase cloud sync: fresh station data, news & advisories",
-      "🟢 ONLINE — Location-aware nearest service discovery (live GPS + cloud)",
-      "🟢 ONLINE — Push notifications for active disaster warnings",
-      "🔴 OFFLINE — 138+ pre-seeded emergency stations across Kerala (SQLite)",
-      "🔴 OFFLINE — Nearest station finder using cached GPS & local data",
-      "🔴 OFFLINE — Emergency contact directory available without internet",
-      "🔴 OFFLINE — Last-synced news & alerts visible from local cache",
-    ],
-    tags: ["React Native", "Expo", "Supabase", "SQLite", "TypeScript", "Offline-First"],
-    highlight: true,
-    color: "#ff5f56",
-
-  },
-
-  {
     title: "Floww — AI Expense Tracker",
     emoji: "💸",
     status: "Live",
@@ -47,6 +24,7 @@ const projects = [
     highlight: false,
     color: "#4af626",
     views: "1,256",
+    slug: "floww"
   },
   {
     title: "WeatherNative",
@@ -69,6 +47,7 @@ const projects = [
     highlight: false,
     color: "#8ab4f8",
     views: "634",
+    slug: "weather-native"
   },
   {
     title: "Bunk Calculator",
@@ -89,6 +68,7 @@ const projects = [
     highlight: false,
     color: "#ffbd2e",
     views: "928",
+    slug: "bunk-calculator"
   },
   {
     title: "Sentiment Analysis",
@@ -109,6 +89,7 @@ const projects = [
     highlight: false,
     color: "#ff5f56",
     views: "541",
+    slug: "sentiment-analysis"
   },
   {
     title: "Simple Banking System",
@@ -129,6 +110,7 @@ const projects = [
     highlight: false,
     color: "#555",
     views: "512",
+    slug: "simple-banking-system"
   },
 ];
 
@@ -230,7 +212,15 @@ const statusColor: Record<string, string> = {
                       {project.isDownload ? "⬇ Download APK" : "→ Live Demo"}
                     </a>
                   )}
-                  {project.repo && (
+                  {project.slug && (
+                    <a
+                      href={`/projects/${project.slug}`}
+                      class="flex items-center gap-2 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 text-[#8ab4f8] hover:bg-[#8ab4f8]/20 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                    >
+                      Read Case Study
+                    </a>
+                  )}
+                  {project.repo && !project.slug && (
                     <a
                       href={project.repo}
                       target="_blank"
