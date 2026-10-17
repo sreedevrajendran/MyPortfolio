@@ -14,7 +14,7 @@ interface Message {
 const STARTER_PROMPTS = [
   "Tell me about yourself",
   "What is Floww and how does it work?",
-  "Why Frontend Deployed Engineer (FDE)?",
+  "Why Forward Deployed Engineer (FDE)?",
   "Tell me about Topviewframes",
   "What is your tech stack?",
   "How can we collaborate?",
@@ -113,8 +113,8 @@ export default function ChatWithSreedev() {
       role: "assistant",
       content:
         `Hello, I am **Sreedev Rajendran**.\n\n` +
-        `I am a B.Tech CS & AI student, **Frontend Deployed Engineer (FDE)**, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
-        `Feel free to ask about my flagship project **[Floww](https://flowwexpensetracker.netlify.app)**, why I specialize in FDE, technical architecture, or how we can collaborate.`,
+        `I am a B.Tech CS & AI student, **Forward Deployed Engineer (FDE)**, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
+        `Feel free to ask about my flagship project **[Floww](https://flowwexpensetracker.netlify.app)**, why I specialize as an FDE, technical architecture, or how we can collaborate.`,
       timestamp: formatTime(),
     },
   ]);
@@ -243,7 +243,7 @@ export default function ChatWithSreedev() {
         id: `welcome-${Date.now()}`,
         role: "assistant",
         content:
-          `Conversation reset. Feel free to ask about **Floww**, **Frontend Deployed Engineering (FDE)**, **Topviewframes**, or my background.`,
+          `Conversation reset. Feel free to ask about **Floww**, **Forward Deployed Engineering (FDE)**, **Topviewframes**, or my background.`,
         timestamp: formatTime(),
       },
     ]);
@@ -340,7 +340,7 @@ export default function ChatWithSreedev() {
                     </span>
                   </div>
                   <p className="text-[#8ab4f8] text-[11px] truncate">
-                    Frontend Deployed Engineer (FDE) · Founder
+                    Forward Deployed Engineer (FDE) · Founder
                   </p>
                 </div>
               </div>

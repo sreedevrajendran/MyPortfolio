@@ -134,7 +134,7 @@ export default function ResumeProfile() {
               <div>
                 <div className="text-[#4af626] font-bold text-xl mb-1">&gt; _{"{ PROFILE }"}</div>
                 <h1 className="text-white text-3xl md:text-4xl font-bold tracking-tight">Sreedev Rajendran</h1>
-                <p className="text-[#8ab4f8] text-base mt-1">Frontend Deployed Engineer (FDE) · Visual Creator · Founder</p>
+                <p className="text-[#8ab4f8] text-base mt-1">Forward Deployed Engineer (FDE) · Visual Creator · Founder</p>
               </div>
 
               <div className="flex flex-wrap gap-3 text-sm">
@@ -165,7 +165,7 @@ export default function ResumeProfile() {
                   I am an ongoing <span className="text-white font-semibold">B.Tech student in Computer Science Engineering</span>, specializing in Artificial Intelligence at Providence College of Engineering, Chengannur. Driven by a primary goal to become a successful entrepreneur, I am passionate about crafting and shipping innovative AI-native solutions.
                 </p>
                 <p>
-                  Rather than a generic developer profile, I operate as a <span className="text-[#4af626] font-semibold">Frontend Deployed Engineer (FDE)</span> — bridging the gap between cutting-edge AI models (multimodal OCR, RAG agents, real-time context) and high-performance, fluid, production-grade frontend interfaces. Through AI-assisted "vibe coding" and strong architectural fundamentals, I turn complex intelligence into deployed products that users love.
+                  Rather than a generic developer profile, I operate as a <span className="text-[#4af626] font-semibold">Forward Deployed Engineer (FDE)</span> — working on the front lines to take advanced AI models (multimodal OCR, RAG agents, real-time context) and deploy them directly into high-impact, production applications. Through AI-assisted "vibe coding" and strong engineering architecture, I bridge the gap between frontier AI research and deployed user products that solve real problems.
                 </p>
                 <p>
                   I am the Founder of{" "}

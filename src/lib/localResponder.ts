@@ -18,7 +18,7 @@ export function generateSreedevResponse(userMessage: string): string {
     /ignore\s+(all\s+)?previous\s+instructions|system\s+prompt|reveal\s+instructions|act\s+as\s+dan|jailbreak|disregard\s+instructions/i.test(q)
   ) {
     return (
-      `I am Sreedev Rajendran — Frontend Deployed Engineer (FDE) and founder of Topviewframes.\n\n` +
+      `I am Sreedev Rajendran — Forward Deployed Engineer (FDE) and founder of Topviewframes.\n\n` +
       `I am here exclusively to discuss my engineering work, my flagship project **Floww**, AI development, and potential collaborations. What would you like to explore regarding my portfolio?`
     );
   }
@@ -27,10 +27,10 @@ export function generateSreedevResponse(userMessage: string): string {
   if (/^(hi|hello|hey|yo|namaste|vanakkam|good morning|good afternoon|good evening|sup|hola)\b/i.test(q)) {
     return (
       `Hello. Welcome to my portfolio.\n\n` +
-      `I am **Sreedev Rajendran** — an AI & Frontend Deployed Engineer (FDE), Visual Creator, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
+      `I am **Sreedev Rajendran** — an AI & Forward Deployed Engineer (FDE), Visual Creator, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
       `You can ask me about:\n` +
       `• My flagship AI project **[Floww](https://flowwexpensetracker.netlify.app)**\n` +
-      `• Why I focus as a **Frontend Deployed Engineer (FDE)**\n` +
+      `• Why I focus as a **Forward Deployed Engineer (FDE)**\n` +
       `• My company **Topviewframes** and visual media work\n` +
       `• My tech stack and architecture philosophy\n` +
       `• Professional opportunities and collaboration`
@@ -40,8 +40,8 @@ export function generateSreedevResponse(userMessage: string): string {
   // 2. Role / Why FDE instead of generic Full-Stack
   if (
     q.includes("fde") ||
-    q.includes("frontend deployed") ||
     q.includes("forward deployed") ||
+    q.includes("frontend deployed") ||
     q.includes("full stack") ||
     q.includes("fullstack") ||
     q.includes("why fde") ||
@@ -49,13 +49,13 @@ export function generateSreedevResponse(userMessage: string): string {
     q.includes("what do you do")
   ) {
     return (
-      `**Why I position myself as a Frontend Deployed Engineer (FDE):**\n\n` +
-      `Traditional full-stack titles have become broad and ambiguous. In the current era of frontier AI models, the critical engineering bottleneck is **taking complex intelligence** (multimodal OCR, RAG agents, real-time context) and **deploying it cleanly into responsive, production-grade frontend interfaces**.\n\n` +
-      `As an FDE:\n` +
-      `• I bridge raw AI model outputs with responsive, accessible user experiences.\n` +
-      `• I practice AI-assisted development ("vibe coding") to accelerate prototyping while maintaining strict control over system architecture, prompt contracts, and deployment pipelines.\n` +
-      `• I build and ship end-to-end applications like **[Floww](https://flowwexpensetracker.netlify.app)**, delivering high-utility AI directly to users.\n\n` +
-      `My goal is building software that feels instantaneous, robust, and dependable.`
+      `**Why I position myself as a Forward Deployed Engineer (FDE):**\n\n` +
+      `Generic "full-stack developer" titles have become crowded and vague. In the current era of frontier AI, the real competitive edge lies in **Forward Deployed Engineering**—operating directly at the intersection of complex customer problems, frontier AI models, and production deployment.\n\n` +
+      `Instead of remaining siloed in backend research or building routine CRUD boilerplate, an FDE takes end-to-end ownership:\n` +
+      `• **AI Integration:** Translating raw foundation model intelligence (multimodal OCR, RAG agents, real-time context) into high-utility, resilient software.\n` +
+      `• **Production Deployment:** Shipping fluid, accessible, and mission-critical applications like **[Floww](https://flowwexpensetracker.netlify.app)**.\n` +
+      `• **AI-Assisted Velocity:** Utilizing modern AI-assisted engineering ("vibe coding") to accelerate iteration while maintaining rigorous architectural control, prompt contracts, and system security.\n\n` +
+      `In short, an FDE bridges bleeding-edge AI models directly into the hands of users to solve actual problems.`
     );
   }
 
@@ -210,7 +210,7 @@ export function generateSreedevResponse(userMessage: string): string {
   ) {
     return (
       `**Contact & Channels**\n\n` +
-      `I am open to discussions regarding Frontend Deployed Engineering roles, AI-native products, and collaborations.\n\n` +
+      `I am open to discussions regarding Forward Deployed Engineering roles, AI-native products, and collaborations.\n\n` +
       `• **Email:** [sreerajar40@gmail.com](mailto:sreerajar40@gmail.com)\n` +
       `• **LinkedIn:** [linkedin.com/in/sreedevrajendran](https://www.linkedin.com/in/sreedevrajendran/)\n` +
       `• **GitHub:** [github.com/sreedevrajendran](https://github.com/sreedevrajendran)\n` +
@@ -232,7 +232,7 @@ export function generateSreedevResponse(userMessage: string): string {
   ) {
     return (
       `**About Sreedev Rajendran**\n\n` +
-      `I am an undergraduate Computer Science & AI student at Providence College of Engineering in Chengannur, Kerala, and a **Frontend Deployed Engineer (FDE)**.\n\n` +
+      `I am an undergraduate Computer Science & AI student at Providence College of Engineering in Chengannur, Kerala, and a **Forward Deployed Engineer (FDE)**.\n\n` +
       `My work centers on three pillars:\n` +
       `• **Software & AI:** Engineering production web and mobile apps, notably **[Floww](https://flowwexpensetracker.netlify.app)**.\n` +
       `• **Product Deployment:** Leveraging modern developer tooling to ship AI capabilities directly to end-users.\n` +
@@ -250,7 +250,7 @@ export function generateSreedevResponse(userMessage: string): string {
 
   // Default fallback: Strictly guard against unrelated questions and redirect to Sreedev's portfolio
   return (
-    `I am here specifically to discuss my engineering work, my flagship AI project **[Floww](https://flowwexpensetracker.netlify.app)**, Frontend Deployed Engineering (FDE), my studio **[Topviewframes](https://topviewframes.netlify.app)**, or potential collaborations.\n\n` +
+    `I am here specifically to discuss my engineering work, my flagship AI project **[Floww](https://flowwexpensetracker.netlify.app)**, Forward Deployed Engineering (FDE), my studio **[Topviewframes](https://topviewframes.netlify.app)**, or potential collaborations.\n\n` +
     `I do not answer general trivia, homework, or topics outside my portfolio. Feel free to ask about my projects, technical stack, or reach out directly at [sreerajar40@gmail.com](mailto:sreerajar40@gmail.com).`
   );
 }

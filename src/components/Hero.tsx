@@ -44,7 +44,7 @@ function useTypewriter(text: string, speed = 60, startDelay = 400) {
 }
 
 const ROLES = [
-  "Frontend Deployed Engineer (FDE)",
+  "Forward Deployed Engineer (FDE)",
   "AI Engineer",
   "Visual Creator",
   "Founder @topviewframes",
@@ -237,7 +237,7 @@ export default function Hero() {
               maxWidth: "540px",
             }}
           >
-            B.Tech CS & AI Student | Aspiring Entrepreneur | Frontend Deployed Engineer & Visual Creator
+            B.Tech CS & AI Student | Aspiring Entrepreneur | Forward Deployed Engineer & Visual Creator
             <br />
             Founder of{" "}
             <a
