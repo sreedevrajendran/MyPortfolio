@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { X, Minus, Send, RotateCcw, ExternalLink, Sparkles } from "lucide-react";
+import { X, Minus, Send, RotateCcw, ExternalLink, Terminal } from "lucide-react";
 import { generateSreedevResponse } from "../lib/localResponder";
 
 interface Message {
@@ -12,12 +12,12 @@ interface Message {
 }
 
 const STARTER_PROMPTS = [
-  "⚡ Tell me about yourself",
-  "🚀 What is Floww & how does it work?",
-  "💡 Why Frontend Deployed Engineer (FDE)?",
-  "📸 Tell me about Topviewframes",
-  "🛠️ What is your tech stack?",
-  "📬 How can we collaborate or get in touch?",
+  "Tell me about yourself",
+  "What is Floww and how does it work?",
+  "Why Frontend Deployed Engineer (FDE)?",
+  "Tell me about Topviewframes",
+  "What is your tech stack?",
+  "How can we collaborate?",
 ];
 
 function formatTime() {
@@ -112,9 +112,9 @@ export default function ChatWithSreedev() {
       id: "welcome",
       role: "assistant",
       content:
-        `Hey there! I'm **Sreedev Rajendran** 👋\n\n` +
-        `I'm a B.Tech CS & AI student, **Frontend Deployed Engineer (FDE)**, and Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
-        `Feel free to ask me anything about my flagship AI project **[Floww](https://flowwexpensetracker.netlify.app)**, why I specialize in FDE, my vibe-coding philosophy, or how we can collaborate!`,
+        `Hello, I am **Sreedev Rajendran**.\n\n` +
+        `I am a B.Tech CS & AI student, **Frontend Deployed Engineer (FDE)**, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
+        `Feel free to ask about my flagship project **[Floww](https://flowwexpensetracker.netlify.app)**, why I specialize in FDE, technical architecture, or how we can collaborate.`,
       timestamp: formatTime(),
     },
   ]);
@@ -243,7 +243,7 @@ export default function ChatWithSreedev() {
         id: `welcome-${Date.now()}`,
         role: "assistant",
         content:
-          `Chat reset! Ask me anything about **Floww**, **Frontend Deployed Engineering (FDE)**, **Topviewframes**, or my background.`,
+          `Conversation reset. Feel free to ask about **Floww**, **Frontend Deployed Engineering (FDE)**, **Topviewframes**, or my background.`,
         timestamp: formatTime(),
       },
     ]);
@@ -486,7 +486,7 @@ export default function ChatWithSreedev() {
 
         {/* Text */}
         <div className="flex items-center gap-1.5">
-          <Sparkles size={13} className="text-[#4af626] animate-pulse" />
+          <Terminal size={13} className="text-[#4af626]" />
           <span className="text-white text-xs font-bold tracking-tight">
             Chat with Sreedev
           </span>
