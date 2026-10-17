@@ -13,6 +13,7 @@ const skills = [
   { name: "Next.js",      icon: "https://cdn.simpleicons.org/nextdotjs/white",   category: "Web" },
   { name: "Astro",        icon: "https://cdn.simpleicons.org/astro/white",       category: "Web" },
   { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss",       category: "Web" },
+  { name: "Google Gemini",icon: "https://cdn.simpleicons.org/googlegemini",      category: "AI" },
   { name: "Streamlit",    icon: "https://cdn.simpleicons.org/streamlit",         category: "Tool" },
   { name: "Git",          icon: "https://cdn.simpleicons.org/git",               category: "Tool" },
   { name: "GitHub",       icon: "https://cdn.simpleicons.org/github/white",      category: "Tool" },
@@ -133,7 +134,7 @@ export default function ResumeProfile() {
               <div>
                 <div className="text-[#4af626] font-bold text-xl mb-1">&gt; _{"{ PROFILE }"}</div>
                 <h1 className="text-white text-3xl md:text-4xl font-bold tracking-tight">Sreedev Rajendran</h1>
-                <p className="text-[#8ab4f8] text-base mt-1">Developer · Visual Creator · Founder</p>
+                <p className="text-[#8ab4f8] text-base mt-1">Frontend Deployed Engineer (FDE) · Visual Creator · Founder</p>
               </div>
 
               <div className="flex flex-wrap gap-3 text-sm">
@@ -144,6 +145,9 @@ export default function ResumeProfile() {
                 <span className="flex items-center gap-1.5 text-[#888]">
                   <GraduationCap size={13} className="text-[#4af626]" />
                   Providence College of Engineering
+                </span>
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#4af626]/10 border border-[#4af626]/30 text-[#4af626] text-xs font-semibold">
+                  FDE Focus
                 </span>
                 <a
                   href="https://topviewframes.netlify.app"
@@ -158,10 +162,10 @@ export default function ResumeProfile() {
 
               <div className="space-y-3 text-[#bfbfbf] leading-relaxed text-sm md:text-base">
                 <p>
-                  I am an ongoing <span className="text-white font-semibold">B.Tech student in Computer Science Engineering</span>, specializing in Artificial Intelligence, based in Kerala, India. Driven by a primary goal to become a successful entrepreneur, I am passionate about crafting innovative digital solutions.
+                  I am an ongoing <span className="text-white font-semibold">B.Tech student in Computer Science Engineering</span>, specializing in Artificial Intelligence at Providence College of Engineering, Chengannur. Driven by a primary goal to become a successful entrepreneur, I am passionate about crafting and shipping innovative AI-native solutions.
                 </p>
                 <p>
-                  My technical and creative focus spans <span className="text-white">Software Development, Cyber Security, Photography, and Videography</span>. I constantly seek to build seamless user experiences, from robust software systems to engaging visual media.
+                  Rather than a generic developer profile, I operate as a <span className="text-[#4af626] font-semibold">Frontend Deployed Engineer (FDE)</span> — bridging the gap between cutting-edge AI models (multimodal OCR, RAG agents, real-time context) and high-performance, fluid, production-grade frontend interfaces. Through AI-assisted "vibe coding" and strong architectural fundamentals, I turn complex intelligence into deployed products that users love.
                 </p>
                 <p>
                   I am the Founder of{" "}

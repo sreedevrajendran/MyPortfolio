@@ -5,6 +5,15 @@
 [build.environment]
   NETLIFY_SKIP_NEXTJS_RUNTIME = "true"
 
+[functions]
+  directory = "netlify/functions"
+
+# API Chat Redirect to Netlify serverless function
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
 # 301 Redirects: Enforce canonical URL (https://sreedevrajendran.in)
 # Redirect www (HTTPS) → non-www (HTTPS)
 [[redirects]]
