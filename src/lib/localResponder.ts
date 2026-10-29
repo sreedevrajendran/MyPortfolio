@@ -68,17 +68,23 @@ export function generateSreedevResponse(userMessage: string): string {
     q.includes("receipt") ||
     q.includes("ocr") ||
     q.includes("agent floww") ||
-    q.includes("bank statement")
+    q.includes("bank statement") ||
+    q.includes("open source") ||
+    q.includes("opensource") ||
+    (q.includes("android") && (q.includes("app") || q.includes("floww") || q.includes("roll")))
   ) {
     return (
-      `**Floww — AI-Native Financial Engine & Flagship Project**\n\n` +
-      `I built Floww to eliminate the manual friction of expense logging, allowing AI to handle data ingestion while users retain decision control.\n\n` +
+      `**Floww — Open-Source AI Financial Engine & Flagship Project**\n\n` +
+      `I built Floww to eliminate the manual friction of expense logging. It is **100% open-source on GitHub**, features native **Model Context Protocol (MCP)** integration, and has rolled out across both **Web and Android**.\n\n` +
       `**Core Architecture & Features:**\n` +
-      `• **Universal Document Intelligence:** Extracts structured transactions from receipts, invoices, pay slips, and multi-page bank statements using Google Gemini multimodal OCR.\n` +
-      `• **Agent Floww:** In-app RAG assistant that queries PostgreSQL via Prisma to answer natural language questions about spending and budgets.\n` +
-      `• **Gmail Sync:** OAuth 2.0 pipeline to automatically ingest transactional emails and digital receipts.\n` +
-      `• **Technology Stack:** Next.js 15 (App Router), tRPC, PostgreSQL, Prisma, Gemini 2.5/3.8 Flash, Firebase Auth, Tailwind CSS, Framer Motion on Netlify.\n\n` +
-      `[Launch Live App](https://flowwexpensetracker.netlify.app) | [View GitHub Repo](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Read Case Study](https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine)`
+      `• **Open-Source & Self-Hostable:** Full codebase publicly hosted on GitHub for community extensibility and privacy.\n` +
+      `• **Model Context Protocol (MCP) Server:** Allows developer agents in Claude Desktop, Cursor, and Antigravity to query expenses, monitor burn rates, and check budgets via tool calls.\n` +
+      `• **Android Rollout:** Physical-world expense tracking with mobile camera OCR, offline transaction caching, and biometric Privacy Mode.\n` +
+      `• **Universal Document Intelligence:** Extracts structured transactions from receipts, invoices, pay slips, and multi-page statements via Google Gemini multimodal OCR.\n` +
+      `• **Agent Floww:** In-app RAG assistant querying PostgreSQL via Prisma to answer natural language spending questions.\n` +
+      `• **Gmail Sync:** OAuth 2.0 automated pipeline importing digital receipts and transactional emails.\n` +
+      `• **Technology Stack:** Next.js 15 (App Router), tRPC, PostgreSQL, Prisma, Gemini 2.5/3.8 Flash, Firebase Auth, Tailwind CSS, Framer Motion.\n\n` +
+      `[Launch Live App](https://flowwexpensetracker.netlify.app) | [View GitHub Repo (Open Source)](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Read Case Study](https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine)`
     );
   }
 
@@ -154,11 +160,21 @@ export function generateSreedevResponse(userMessage: string): string {
     );
   }
 
-  // 7. Other Projects (WeatherNative, Bunk Calculator, MCP, etc.)
+  // 7. MCP (Model Context Protocol)
+  if (q.includes("mcp") || q.includes("model context protocol")) {
+    return (
+      `**Model Context Protocol (MCP) Integration**\n\n` +
+      `I actively develop Model Context Protocol (MCP) servers to bridge generative AI agents with production data:\n\n` +
+      `• **Floww MCP Server:** Built directly into **[Floww](https://flowwexpensetracker.netlify.app)** ([GitHub](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER)). Exposes financial context tools (such as \`get_monthly_burn_rate\`, \`query_financial_health\`, and \`categorize_transaction\`) to Claude Desktop, Cursor, and Antigravity so developer agents can query spending and budgets without leaving their IDE.\n` +
+      `• **[Antigravity GitHub Bridge](https://github.com/sreedevrajendran/mcp_integration):** Custom MCP server linking local project workspaces and Claude with GitHub repositories for automated PRs, branch management, and git sync.\n\n` +
+      `As an FDE, MCP is fundamental to creating truly agentic workflows where models interact directly with live tools and data.`
+    );
+  }
+
+  // 8. Projects and Codebases
   if (
     q.includes("weather") ||
     q.includes("bunk") ||
-    q.includes("mcp") ||
     q.includes("antigravity") ||
     q.includes("project") ||
     q.includes("projects") ||
@@ -166,10 +182,10 @@ export function generateSreedevResponse(userMessage: string): string {
   ) {
     return (
       `**Selected Projects**\n\n` +
-      `1. **[Floww](https://flowwexpensetracker.netlify.app)** — Flagship AI expense tracker with Gemini OCR, Agent Floww RAG chatbot, and Gmail synchronization.\n` +
+      `1. **[Floww](https://flowwexpensetracker.netlify.app)** — Open-source AI financial engine with Gemini OCR, native Model Context Protocol (MCP) server, and Android rollout. ([GitHub](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Case Study](/projects/floww))\n` +
       `2. **[WeatherNative](https://github.com/sreedevrajendran/WeatherNativeProject)** — Native Android weather application in React Native with location-aware forecasts. (Download: [AquWeather.apk](https://sreedevrajendran.in/AquWeather.apk))\n` +
-      `3. **[Bunk Calculator](https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/)** — Python and Streamlit tool for college students to calculate attendance margins.\n` +
-      `4. **[mcp_integration](https://github.com/sreedevrajendran/mcp_integration)** — Model Context Protocol server connecting Claude and Antigravity workspaces with GitHub.\n` +
+      `3. **[Antigravity GitHub Bridge (MCP Server)](https://github.com/sreedevrajendran/mcp_integration)** — Model Context Protocol server connecting Claude and Antigravity workspaces with GitHub.\n` +
+      `4. **[Bunk Calculator](https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/)** — Python and Streamlit tool for college students to calculate attendance margins.\n` +
       `5. **Machine Learning:** Used-Car-Price-Prediction (linear regression) and SentimentAnalysis (NLP).\n\n` +
       `You can review these in detail on my [Projects Page](/projects) or on [GitHub](https://github.com/sreedevrajendran).`
     );

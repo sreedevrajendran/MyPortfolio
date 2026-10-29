@@ -182,8 +182,26 @@ const result = await model.generateContent([
         </p>
 
         <h3 class="text-xl font-bold text-white mb-4 mt-8">4. The Finance Health Score</h3>
-        <p class="mb-12">
+        <p class="mb-8">
           Floww calculates a <strong>real-time Finance Health Score</strong> based on your income-to-spending ratio, budget adherence, and savings patterns. It's not a static number — it updates every time you add a transaction. Think of it as a credit score, but for daily financial habits.
+        </p>
+
+        <h3 class="text-xl font-bold text-[#4af626] mb-4 mt-8">5. 100% Open-Sourced on GitHub</h3>
+        <p class="mb-6">
+          I firmly believe that financial tools should be transparent, verifiable, and free from vendor lock-in. Floww is now <a href="https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER" target="_blank" rel="noopener noreferrer" class="text-[#4af626] font-bold hover:underline">100% open-source on GitHub</a>. Developers can inspect every line of the OCR prompts, self-host their own database with Docker and Prisma, or extend the engine with custom banking APIs.
+        </p>
+
+        <h3 class="text-xl font-bold text-[#ffbd2e] mb-4 mt-8">6. Native Model Context Protocol (MCP) Integration</h3>
+        <p class="mb-6">
+          Personal finance tools usually live in an isolated browser tab. With the rise of agentic coding, I engineered an official <strong>Model Context Protocol (MCP) server</strong> for Floww. Developers using Claude Desktop, Cursor, or Antigravity can link Floww directly into their AI workflows.
+        </p>
+        <p class="mb-6">
+          By exposing tools like <code class="text-[#4af626] bg-[#161616] px-1.5 py-0.5 rounded">get_monthly_burn_rate</code> and <code class="text-[#4af626] bg-[#161616] px-1.5 py-0.5 rounded">query_financial_health</code>, your desktop AI agent can analyze your active burn rate, check if you're over budget on hardware purchases, or extract transaction data without you ever leaving your code editor.
+        </p>
+
+        <h3 class="text-xl font-bold text-[#8ab4f8] mb-4 mt-8">7. The Android Rollout: Native Mobile Experience</h3>
+        <p class="mb-12">
+          Receipts happen in the physical world — at checkout counters, gas stations, and restaurants. To remove friction completely, Floww has rolled out on <strong>Android</strong>. The mobile rollout pairs instant camera receipt scanning directly with Gemini Flash's vision API, includes offline transaction caching for spotty network coverage, and introduces one-tap biometric Privacy Mode so balances are blurred in public.
         </p>
 
         <hr class="border-[#222] my-12" />
@@ -223,10 +241,18 @@ const result = await model.generateContent([
                 → Try Floww Live
               </a>
               <a
-                href="/projects"
+                href="https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 bg-[#161616] border border-[#333] text-white hover:border-[#4af626] hover:text-[#4af626] px-6 py-2.5 rounded-lg text-sm font-bold transition-all"
+              >
+                ↗ GitHub (Open Source)
+              </a>
+              <a
+                href="/projects/floww"
                 class="flex items-center gap-2 bg-transparent border border-[#333] text-[#8ab4f8] hover:border-[#8ab4f8]/50 hover:bg-[#8ab4f8]/10 px-6 py-2.5 rounded-lg text-sm font-bold transition-all"
               >
-                ↗ All Projects
+                Case Study
               </a>
             </div>
           </div>

@@ -16,13 +16,16 @@ export const SREEDEV_KNOWLEDGE = {
   },
   flagshipProject: {
     name: "Floww",
-    subtitle: "AI-Native Financial Engine & Expense Tracker",
+    subtitle: "Open-Source AI Financial Engine & Expense Tracker",
     liveUrl: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
     repoUrl: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
     blogUrl: "https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine",
     problem: "Manual expense tracking is tedious and prone to friction, leading people to abandon budgeting apps.",
     solution: "AI does the tedious data entry through multimodal intelligence, while the user stays in full control of their decisions.",
     features: [
+      "100% Open-Source on GitHub: Public codebase welcoming developer contributions and self-hosting.",
+      "Model Context Protocol (MCP) Integration: Built-in Floww MCP server enabling Claude Desktop, Cursor, and Antigravity agents to query balances, budgets, and burn-rates via tool calling.",
+      "Android Rollout: Shipped on Android with camera receipt scanning, offline-first transaction staging, and biometric Privacy Mode.",
       "Universal Document Intelligence: Extracts itemized bills, receipts, salary slips, and multi-page bank statements using Google Gemini Multimodal OCR (base64 image extraction).",
       "Agent Floww: An in-app RAG chatbot that retrieves expenses, incomes, and budgets from PostgreSQL via Prisma and injects financial context into Gemini.",
       "Gmail Sync via OAuth 2.0 to automatically log transactional emails and e-receipts.",
@@ -120,10 +123,13 @@ IMPORTANT: You are NOT an AI assistant talking about Sreedev in the third person
 - Explain what FDE means: An FDE operates on the front lines to take advanced AI systems, foundational models, and data pipelines, and deploy them directly into production applications that solve real-world problems. Rather than writing generic CRUD boilerplate, an FDE bridges the gap between frontier AI capabilities (multimodal document intelligence, RAG agents) and deployed user-facing software.
 - Working style: You practice "vibe coding" — leveraging AI as a superpower to accelerate prototyping, while you steer the architecture, prompts, product logic, and deployment.
 
-# Flagship Project: Floww (AI Expense Tracker)
+# Flagship Project: Floww (Open-Source AI Financial Engine)
 - Live app: https://flowwexpensetracker.netlify.app
-- GitHub: https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER
-- Blog post: https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine
+- GitHub (Open Source): https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER
+- Case study / Blog: https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine or /projects/floww
+- Open Source: Fully open-sourced on GitHub with self-hosting support.
+- Model Context Protocol (MCP) Server: Exposes an MCP server interface allowing Claude Desktop, Cursor, and Antigravity agents to query balances, budgets, and burn-rates directly from developer environments.
+- Android Rollout: Deployed on Android with camera receipt scanning, offline-first sync, and biometric privacy mode.
 - Universal Document Intelligence: parses receipts, bills, salary slips, and multi-page bank statements using Google Gemini Multimodal OCR.
 - Agent Floww: in-app RAG chatbot that pulls context from PostgreSQL via Prisma to answer user finance queries.
 - Gmail Sync via OAuth 2.0 to auto-log transactions from emails.

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { X, Minus, Send, RotateCcw, ExternalLink, Terminal } from "lucide-react";
+import { X, Minus, Send, RotateCcw, ExternalLink, Terminal, ChevronUp } from "lucide-react";
 import { generateSreedevResponse } from "../lib/localResponder";
 
 interface Message {
@@ -14,9 +14,10 @@ interface Message {
 const STARTER_PROMPTS = [
   "Tell me about yourself",
   "What is Floww and how does it work?",
+  "Tell me about Floww's MCP integration",
+  "Is Floww open-source and on Android?",
   "Why Forward Deployed Engineer (FDE)?",
   "Tell me about Topviewframes",
-  "What is your tech stack?",
   "How can we collaborate?",
 ];
 
@@ -114,7 +115,7 @@ export default function ChatWithSreedev() {
       content:
         `Hello, I am **Sreedev Rajendran**.\n\n` +
         `I am a B.Tech CS & AI student, **Forward Deployed Engineer (FDE)**, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
-        `Feel free to ask about my flagship project **[Floww](https://flowwexpensetracker.netlify.app)**, why I specialize as an FDE, technical architecture, or how we can collaborate.`,
+        `Feel free to ask about my flagship project **[Floww](https://flowwexpensetracker.netlify.app)** (now **open-sourced on GitHub**, featuring **Model Context Protocol (MCP)** integration and rolled out on **Android**!), why I specialize as an FDE, or how we can collaborate.`,
       timestamp: formatTime(),
     },
   ]);
@@ -202,6 +203,46 @@ export default function ChatWithSreedev() {
     }
   }, [isOpen, isMinimized]);
 
+  // Global keyboard shortcuts (Cmd+K / Ctrl+K to toggle, Esc to close)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+        setIsMinimized(false);
+        setHasUnread(false);
+      } else if (e.key === "Escape" && isOpen) {
+        e.preventDefault();
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // Global event listener so any page button/link can trigger ChatWithSreedev
+  useEffect(() => {
+    const handleOpenChat = (e: Event) => {
+      const customEvent = e as CustomEvent<{ prompt?: string }>;
+      setIsOpen(true);
+      setIsMinimized(false);
+      setHasUnread(false);
+      if (customEvent.detail?.prompt) {
+        handleSend(customEvent.detail.prompt);
+      }
+    };
+
+    window.addEventListener("open-chat", handleOpenChat);
+    (window as unknown as { openSreedevChat?: (prompt?: string) => void }).openSreedevChat = (prompt?: string) => {
+      window.dispatchEvent(new CustomEvent("open-chat", { detail: { prompt } }));
+    };
+
+    return () => {
+      window.removeEventListener("open-chat", handleOpenChat);
+      delete (window as unknown as { openSreedevChat?: unknown }).openSreedevChat;
+    };
+  }, [messages, isTyping]);
+
   const handleSend = async (messageText?: string) => {
     const textToSend = (messageText || input).trim();
     if (!textToSend || isTyping) return;
@@ -287,7 +328,7 @@ export default function ChatWithSreedev() {
         />
       )}
 
-      <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-50 font-mono select-none">
+      <div className="fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] right-3 sm:bottom-5 sm:right-5 z-50 font-mono select-none flex flex-col items-end">
         {/* ── Chat Modal / Window ── */}
         {isOpen && (
           <div
@@ -505,46 +546,81 @@ export default function ChatWithSreedev() {
           </div>
         )}
 
-        {/* ── Floating Launcher Button ── */}
-        <button
-          type="button"
-          aria-label="Chat with Sreedev"
-          onClick={() => {
-            setIsOpen(!isOpen);
-            setIsMinimized(false);
-            setHasUnread(false);
-          }}
-          className="group relative flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full bg-[#0a0a0a] border border-[#333] hover:border-[#4af626] shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_20px_rgba(74,246,38,0.15)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_28px_rgba(74,246,38,0.35)] transition-all duration-300 cursor-pointer active:scale-95"
-        >
-          {/* Pulsing beacon indicator */}
-          <span className="relative flex h-2.5 w-2.5 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4af626] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#4af626]" />
-          </span>
-
-          {/* Avatar */}
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border border-[#4af626]/50 shrink-0">
-            <img
-              src="/profile.png"
-              alt="Sreedev"
-              className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
-            />
-          </div>
-
-          {/* Text */}
-          <div className="flex items-center gap-1.5">
-            <Terminal size={13} className="text-[#4af626]" />
-            <span className="text-white text-xs font-bold tracking-tight">
-              Chat with Sreedev
+        {/* ── State-Aware Floating Launcher / Close Button ── */}
+        {isOpen && !isMinimized ? (
+          <button
+            type="button"
+            aria-label="Close Chat"
+            onClick={() => setIsOpen(false)}
+            className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111]/90 backdrop-blur-md border border-[#333] hover:border-[#ff5f56] text-[#888] hover:text-[#ff5f56] shadow-lg transition-all duration-200 cursor-pointer active:scale-95 text-xs font-mono"
+            title="Close chat window (Esc)"
+          >
+            <X size={13} className="text-[#888] group-hover:text-[#ff5f56] transition-colors" />
+            <span>Close Chat</span>
+            <kbd className="hidden sm:inline-block px-1 py-0.2 text-[9px] bg-[#1f1f1f] border border-[#333] rounded text-[#666]">
+              Esc
+            </kbd>
+          </button>
+        ) : isOpen && isMinimized ? (
+          <button
+            type="button"
+            aria-label="Restore Chat"
+            onClick={() => setIsMinimized(false)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#0a0a0a] border border-[#4af626]/40 hover:border-[#4af626] text-white text-xs shadow-lg transition-all cursor-pointer active:scale-95"
+          >
+            <ChevronUp size={14} className="text-[#4af626]" />
+            <span>Restore Terminal</span>
+          </button>
+        ) : (
+          <button
+            type="button"
+            aria-label="Chat with Sreedev (Press ⌘K or Ctrl+K)"
+            onClick={() => {
+              setIsOpen(true);
+              setIsMinimized(false);
+              setHasUnread(false);
+            }}
+            className="group relative flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full bg-[#0a0a0a] border border-[#333] hover:border-[#4af626] shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_20px_rgba(74,246,38,0.15)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_28px_rgba(74,246,38,0.35)] transition-all duration-300 cursor-pointer active:scale-95"
+            title="Chat with Sreedev (Press ⌘K or Ctrl+K)"
+          >
+            {/* Pulsing beacon indicator */}
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4af626] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#4af626]" />
             </span>
-            <span className="text-[#4af626] text-xs font-bold animate-pulse">_</span>
-          </div>
 
-          {/* Unread badge */}
-          {hasUnread && !isOpen && (
-            <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#ff5f56] border-2 border-[#0a0a0a]" />
-          )}
-        </button>
+            {/* Avatar */}
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border border-[#4af626]/50 shrink-0">
+              <img
+                src="/profile.png"
+                alt="Sreedev"
+                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+
+            {/* Text & AI indicator */}
+            <div className="flex items-center gap-1.5">
+              <Terminal size={13} className="text-[#4af626]" />
+              <span className="text-white text-xs font-bold tracking-tight">
+                Chat with Sreedev
+              </span>
+              <span className="text-[#4af626] text-xs font-bold animate-pulse">_</span>
+              <span className="ml-0.5 px-1.5 py-0.2 rounded bg-[#4af626]/10 border border-[#4af626]/30 text-[#4af626] text-[9px] font-bold">
+                AI
+              </span>
+            </div>
+
+            {/* Desktop Keyboard hint */}
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 ml-0.5 px-1.5 py-0.5 rounded bg-[#161616] border border-[#2a2a2a] text-[10px] text-[#777] font-sans">
+              ⌘K
+            </kbd>
+
+            {/* Unread badge */}
+            {hasUnread && !isOpen && (
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#ff5f56] border-2 border-[#0a0a0a]" />
+            )}
+          </button>
+        )}
       </div>
     </>
   );

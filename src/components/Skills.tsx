@@ -4,16 +4,17 @@ import { motion } from "framer-motion";
 
 const skills = [
   { name: "Python", icon: "https://cdn.simpleicons.org/python", category: "Language" },
-  { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/white", category: "Language" },
-  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript", category: "Language" },
   { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript", category: "Language" },
-  { name: "React", icon: "https://cdn.simpleicons.org/react", category: "Web" },
+  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript", category: "Language" },
+  { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/white", category: "Language" },
+  { name: "Google Gemini", icon: "https://cdn.simpleicons.org/googlegemini", category: "AI" },
+  { name: "MCP (Protocols)", icon: "https://cdn.simpleicons.org/anthropic/white", category: "AI" },
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white", category: "Web" },
+  { name: "React", icon: "https://cdn.simpleicons.org/react", category: "Web" },
+  { name: "Android", icon: "https://cdn.simpleicons.org/android", category: "Mobile" },
   { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss", category: "Web" },
-  { name: "Streamlit", icon: "https://cdn.simpleicons.org/streamlit", category: "Tool" },
   { name: "Git", icon: "https://cdn.simpleicons.org/git", category: "Tool" },
   { name: "GitHub", icon: "https://cdn.simpleicons.org/github/white", category: "Tool" },
-  { name: "Android", icon: "https://cdn.simpleicons.org/android", category: "Mobile" },
 ];
 
 export default function Skills() {

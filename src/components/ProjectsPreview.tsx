@@ -3,13 +3,14 @@ import ScrollReveal from "./ScrollReveal";
 
 const featuredProjects = [
   {
-    title: "Floww — AI Expense Tracker",
-    cmd: "run floww",
+    title: "Floww — Open-Source AI Financial Engine",
+    cmd: "run floww --open-source --mcp --android",
     emoji: "💸",
-    status: "Live",
-    description: "An intelligent personal finance engine powered by AI. Features automated receipt scanning, seamless Gmail synchronization for transaction logging, and an interactive financial chat interface. Built leveraging the advanced capabilities of Gemini 2.5.",
-    tags: ["AI", "React", "Firebase", "Gemini"],
+    status: "Open Source",
+    description: "An open-source AI financial engine with Google Gemini OCR, Model Context Protocol (MCP) server integration for AI developer agents, and full rollout on Web & Android.",
+    tags: ["Open Source", "AI", "MCP", "Android", "Gemini 2.5", "Next.js 15"],
     demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
+    repo: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
     slug: "floww",
   },
   {
@@ -37,9 +38,10 @@ const featuredProjects = [
 ];
 
 const statusStyle: Record<string, string> = {
-  Live:     "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
-  Released: "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
-  "In Dev": "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
+  "Open Source": "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  Live:          "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  Released:      "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
+  "In Dev":      "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
 };
 
 export default function ProjectsPreview() {
@@ -118,14 +120,14 @@ export default function ProjectsPreview() {
                         → Live Demo
                       </a>
                     )}
-                    {p.repo && !p.slug && (
+                    {p.repo && (
                       <a href={p.repo} target="_blank" rel="noopener noreferrer"
                         className="text-xs text-[#8ab4f8] font-bold hover:underline">
-                        ↗ Source
+                        ↗ GitHub
                       </a>
                     )}
                     <a href={p.slug ? `/projects/${p.slug}` : "/projects"} className="text-xs text-[#555] hover:text-[#888] font-bold ml-auto">
-                      Details →
+                      Case Study →
                     </a>
                   </div>
                 </div>

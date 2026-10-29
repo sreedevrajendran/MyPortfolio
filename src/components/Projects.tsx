@@ -14,11 +14,19 @@ interface Project {
 
 const projects: Project[] = [
     {
-        title: "Floww \u2014 AI Expense Tracker",
-        description: "Floww is an intelligent personal finance platform that leverages AI to streamline money management. It features instant receipt data extraction (merchant, amount, category), automated transaction logging via Gmail integration, and a comprehensive Finance Health Score. Additionally, it offers real-time smart budget tracking and a one-tap Privacy Mode for enhanced data security.",
-        tags: ["AI", "React", "Firebase", "Netlify", "Gmail API"],
+        title: "Floww \u2014 Open-Source AI Financial Engine",
+        description: "An open-source personal finance engine featuring Google Gemini OCR, native Model Context Protocol (MCP) integration for AI agent workflows, and full Web + Android rollout. Automates receipt parsing, Gmail transaction sync, and natural-language financial intelligence.",
+        tags: ["Open Source", "AI", "MCP", "Android", "Gemini 2.5", "Next.js 15"],
         demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
+        repo: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
         highlight: true,
+    },
+    {
+        title: "Antigravity GitHub Bridge (MCP Server)",
+        description: "A specialized Model Context Protocol (MCP) server engineered to connect autonomous AI agents and Claude Desktop directly to local project workspaces and GitHub repositories.",
+        tags: ["MCP", "TypeScript", "AI Agents", "GitHub API"],
+        repo: "https://github.com/sreedevrajendran/mcp_integration",
+        highlight: false,
     },
     {
         title: "Simple Banking System",

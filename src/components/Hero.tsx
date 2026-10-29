@@ -302,8 +302,13 @@ export default function Hero() {
             <span>ls ./projects</span>
             <span>→</span>
           </a>
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("open-chat", { detail: { prompt: "Hey Sreedev, let's connect!" } }));
+              }
+            }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -315,7 +320,6 @@ export default function Hero() {
               fontSize: "0.85rem",
               fontWeight: 700,
               letterSpacing: "0.06em",
-              textDecoration: "none",
               border: "1px solid rgba(74,246,38,0.4)",
               cursor: "pointer",
               transition: "all 0.2s ease",
@@ -333,7 +337,7 @@ export default function Hero() {
           >
             <span>ping me</span>
             <span style={{ color: "#8ab4f8" }}>_</span>
-          </a>
+          </button>
         </motion.div>
 
         {/* ── Status bar ── */}

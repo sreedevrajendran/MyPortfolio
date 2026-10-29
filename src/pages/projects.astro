@@ -5,25 +5,28 @@ import Footer from '../components/Footer';
 
 const projects = [
   {
-    title: "Floww — AI Expense Tracker",
+    title: "Floww — Open-Source AI Financial Engine",
     emoji: "💸",
-    status: "Live",
+    status: "Open Source",
     date: "2026",
-    description: "Floww is a smart personal finance app that uses AI to make money management completely effortless. It's not just another budgeting tool — it's a full financial engine.",
-    longDescription: `Built from scratch with a vibe-coding approach, Floww turns messy real-world financial data into structured, actionable intelligence. Snap a receipt and Gemini instantly extracts the merchant, amount, and category. Connect your Gmail to auto-log every transaction without lifting a finger.`,
+    description: "Floww is an open-source personal finance engine that makes money management effortless with Gemini OCR, Model Context Protocol (MCP) tool calling, and full Web + Android rollout.",
+    longDescription: `Floww turns messy real-world financial data (crumpled receipts, invoices, pay slips, multi-page statements) into structured intelligence. Engineered with Next.js 15, PostgreSQL, and Google Gemini, Floww is 100% open-sourced on GitHub. It features a custom Model Context Protocol (MCP) server so developer AI agents (Claude, Cursor, Antigravity) can query finances and automate budgeting directly from IDEs, and is rolled out across Web and Android with instant camera scanning.`,
     features: [
-      "📸 Multi-modal OCR — snap receipts and let Gemini parse every line item instantly",
-      "📬 Gmail Sync — automatically imports and categorizes email-based transactions",
-      "🤖 Agent Floww — an in-app RAG chatbot that answers questions like \"how much did I spend on Swiggy last month?\"",
-      "📊 Finance Health Score — a real-time score based on income vs spending patterns",
-      "💰 Smart Budgets — set budgets per category with live burn-rate tracking",
-      "🔒 Privacy Mode — one tap to blur all balances in public spaces",
+      "🌐 100% Open-Source — public codebase on GitHub, self-hostable and community extensible",
+      "🔌 Model Context Protocol (MCP) — connects AI assistants (Claude, Cursor) directly to your expense stream",
+      "📱 Android Rollout — native mobile experience with camera receipt scan, biometric lock, and offline sync",
+      "📸 Multi-modal OCR — snap receipts and let Gemini parse every line item into structured JSON",
+      "📬 Gmail Sync — automatically imports and categorizes email-based transactions via OAuth 2.0",
+      "🤖 Agent Floww — an in-app RAG chatbot that answers natural-language financial queries",
+      "📊 Finance Health Score — real-time rating calculated from income, burn-rate, and budget adherence",
+      "🔒 Privacy Mode — one-tap masking of currency figures in public spaces",
     ],
-    tags: ["AI", "React", "Firebase", "Netlify", "Gmail API", "Gemini 2.5"],
+    tags: ["Open Source", "AI", "MCP", "Android", "Gemini 2.5/3.8", "Next.js 15", "PostgreSQL", "tRPC"],
     demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
-    highlight: false,
+    repo: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
+    highlight: true,
     color: "#4af626",
-    views: "1,256",
+    views: "2,480",
     slug: "floww"
   },
   {
@@ -48,6 +51,25 @@ const projects = [
     color: "#8ab4f8",
     views: "634",
     slug: "weather-native"
+  },
+  {
+    title: "Antigravity GitHub Bridge (MCP Server)",
+    emoji: "⚡",
+    status: "Open Source",
+    date: "2026",
+    description: "A custom Model Context Protocol (MCP) server linking AI agents, Claude Desktop, and Antigravity workspaces directly with local files and GitHub.",
+    longDescription: `Bridging the gap between agentic developer environments and GitHub repositories. Built adhering to the Model Context Protocol (MCP) standard, this server allows autonomous agents to safely inspect repositories, edit branches, manage PRs, and synchronize local codebases with remote git state.`,
+    features: [
+      "🔌 Model Context Protocol (MCP) compliant tool calling interface",
+      "🐙 Direct GitHub API bridge for PRs, issues, branches, and commits",
+      "💻 Local project workspace synchronization and context retrieval",
+      "⚡ High-speed agentic execution designed for Antigravity and Claude",
+    ],
+    tags: ["MCP", "TypeScript", "Node.js", "AI Agents", "GitHub API"],
+    repo: "https://github.com/sreedevrajendran/mcp_integration",
+    highlight: false,
+    color: "#8ab4f8",
+    views: "812",
   },
   {
     title: "Bunk Calculator",
@@ -115,10 +137,11 @@ const projects = [
 ];
 
 const statusColor: Record<string, string> = {
-  "Live":   "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
-  "Released": "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
-  "In Dev": "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
-  "Archived": "text-[#555] bg-[#1a1a1a] border-[#333]",
+  "Open Source": "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  "Live":        "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  "Released":    "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
+  "In Dev":      "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
+  "Archived":    "text-[#555] bg-[#1a1a1a] border-[#333]",
 };
 ---
 
@@ -220,13 +243,14 @@ const statusColor: Record<string, string> = {
                       Read Case Study
                     </a>
                   )}
-                  {project.repo && !project.slug && (
+                  {project.repo && (
                     <a
                       href={project.repo}
                       target="_blank"
-                      class="flex items-center gap-2 bg-transparent border border-[#333] text-[#8ab4f8] hover:border-[#8ab4f8]/50 hover:bg-[#8ab4f8]/10 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 bg-[#161616] border border-[#333] text-[#8ab4f8] hover:border-[#8ab4f8]/50 hover:bg-[#8ab4f8]/10 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200"
                     >
-                      ↗ Source Code
+                      ↗ GitHub
                     </a>
                   )}
                 </div>

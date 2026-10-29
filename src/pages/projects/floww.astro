@@ -4,12 +4,51 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const project = {
-  title: "Floww — AI Expense Tracker",
-  description: "Floww is a smart personal finance app that uses AI to make money management completely effortless.",
-  problemSolved: "Manual expense tracking is tedious and most users abandon budgeting apps after a few weeks. Floww eliminates this friction by leveraging OCR and Gemini 2.5 to instantly parse receipts, and automatically syncing with Gmail to categorize email-based transactions. It acts as an intelligent financial engine rather than just a logging tool.",
-  techStack: ["AI", "React", "Firebase", "Netlify", "Gmail API", "Gemini 2.5"],
+  title: "Floww — Open-Source AI Financial Engine",
+  tagline: "An open-source personal finance engine featuring Google Gemini OCR, native Model Context Protocol (MCP) integration, and full rollout on Web & Android.",
+  description: "Floww eliminates the tedious friction of manual expense tracking by converting messy receipts, invoices, and bank statements into structured intelligence. Engineered with Next.js 15, PostgreSQL, and Google Gemini, Floww is now 100% open-sourced, integrates a custom Model Context Protocol (MCP) server for AI agent workflows, and is rolled out across both Web and Android platforms.",
   demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
   github: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
+  blogUrl: "/blog/building-floww-ai-native-financial-engine",
+  highlights: [
+    { label: "License", value: "Open Source (GitHub)", color: "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30" },
+    { label: "Platforms", value: "Web & Android Rolled Out", color: "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30" },
+    { label: "Protocol", value: "Model Context Protocol (MCP)", color: "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30" },
+    { label: "AI Engine", value: "Gemini 2.5 / 3.8 Flash OCR", color: "text-[#27c93f] bg-[#27c93f]/10 border-[#27c93f]/30" },
+  ],
+  pillars: [
+    {
+      title: "Model Context Protocol (MCP) Integration",
+      icon: "🔌",
+      desc: "Floww exposes an MCP server interface that connects AI coding environments (Claude Desktop, Cursor, Antigravity, Cline) directly to your financial engine. Agents can securely query your expense stream, run category analytics, check budgets against real-time spending, and automate logging without context switching.",
+    },
+    {
+      title: "Android Rollout & Cross-Platform Mobility",
+      icon: "📱",
+      desc: "Floww has expanded beyond the browser with a dedicated rollout on Android. Users get instant camera receipt parsing on the go, biometric security, offline caching, and real-time synchronization between desktop and mobile devices.",
+    },
+    {
+      title: "100% Open-Source Architecture",
+      icon: "🌐",
+      desc: "The entire Floww codebase is public on GitHub. Developers can self-host their own financial engine, customize categorization prompts, spin up private database instances, and contribute new integrations.",
+    },
+    {
+      title: "Universal Document Intelligence & Agent Floww",
+      icon: "🤖",
+      desc: "Using Google Gemini's multimodal vision, Floww parses crumpled paper receipts, salary slips, and multi-page PDFs in seconds. Coupled with Agent Floww, an in-app RAG assistant, users can query their finances in natural language.",
+    },
+  ],
+  techStack: [
+    "Next.js 15 (App Router)",
+    "Model Context Protocol (MCP)",
+    "Android Rollout",
+    "Google Gemini Multimodal API",
+    "PostgreSQL & Prisma",
+    "tRPC (Type-safe APIs)",
+    "Firebase Authentication",
+    "Tailwind CSS & Framer Motion",
+    "Netlify CI/CD",
+  ],
 };
 ---
 
@@ -20,40 +59,164 @@ const project = {
 >
   <main class="flex flex-col w-full">
     <Navbar client:load />
-    <div class="max-w-4xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-32 font-mono">
-      <div class="mb-12">
-        <a href="/projects" class="text-[#4af626] hover:underline mb-6 inline-block font-bold">&larr; Back to Projects</a>
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white">{project.title}</h1>
-        <p class="text-xl text-[#888] leading-relaxed mb-8">{project.description}</p>
-        
-        <div class="flex flex-wrap gap-4">
-          <a href={project.github} target="_blank" class="px-6 py-3 bg-[#1a1a1a] border border-[#333] hover:border-[#8ab4f8] hover:text-[#8ab4f8] rounded-lg transition-colors flex items-center gap-2 text-white font-bold text-sm">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
-            GitHub Repository
+    
+    <div class="max-w-5xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-32 font-mono">
+      {/* Back button */}
+      <div class="mb-10">
+        <a href="/projects" class="text-[#4af626] hover:underline inline-flex items-center gap-2 font-bold text-sm mb-6">
+          <span>&larr;</span> Back to Projects
+        </a>
+
+        {/* Status badges */}
+        <div class="flex flex-wrap gap-2.5 mb-5">
+          {project.highlights.map(h => (
+            <span class={`px-3 py-1 rounded-full text-xs font-semibold border ${h.color}`}>
+              {h.label}: {h.value}
+            </span>
+          ))}
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white leading-tight">
+          {project.title}
+        </h1>
+        <p class="text-lg md:text-xl text-[#8ab4f8] mb-6 leading-relaxed">
+          {project.tagline}
+        </p>
+        <p class="text-sm md:text-base text-[#999] leading-relaxed mb-8 max-w-3xl">
+          {project.description}
+        </p>
+
+        {/* Action Buttons */}
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-[#161616] border border-[#333] hover:border-[#4af626] hover:text-[#4af626] rounded-xl transition-all flex items-center gap-2.5 text-white font-bold text-sm shadow-lg group cursor-pointer active:scale-95"
+          >
+            <svg class="w-5 h-5 fill-current text-white group-hover:text-[#4af626] transition-colors" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+            GitHub (Open Source)
           </a>
-          {project.demo && (
-            <a href={project.demo} target="_blank" class="px-6 py-3 bg-[#4af626]/10 border border-[#4af626]/40 hover:bg-[#4af626]/20 rounded-lg transition-colors flex items-center gap-2 text-[#4af626] font-bold text-sm">
-              &rarr; Live Demo
-            </a>
-          )}
+
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-[#4af626]/10 border border-[#4af626]/40 hover:bg-[#4af626]/20 text-[#4af626] rounded-xl transition-all flex items-center gap-2 font-bold text-sm shadow-[0_0_20px_rgba(74,246,38,0.15)] cursor-pointer active:scale-95"
+          >
+            &rarr; Launch Live App
+          </a>
+
+          <a
+            href={project.blogUrl}
+            class="px-6 py-3 bg-transparent border border-[#333] hover:border-[#8ab4f8] text-[#8ab4f8] rounded-xl transition-all flex items-center gap-2 font-bold text-sm cursor-pointer"
+          >
+            Read Case Study &rarr;
+          </a>
         </div>
       </div>
 
-      <div class="space-y-8">
-        <section class="bg-[#0a0a0a] border border-[#333] p-8 rounded-xl">
-          <h2 class="text-2xl font-bold mb-4 text-[#8ab4f8]">Problem Solved</h2>
-          <p class="text-[#999] leading-relaxed text-sm md:text-base">{project.problemSolved}</p>
+      {/* Featured Architecture Pillars */}
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+          <span class="text-[#4af626]">&gt;</span> Key Architectural Breakthroughs
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {project.pillars.map(p => (
+            <div class="p-6 md:p-8 rounded-xl bg-[#0a0a0a] border border-[#262626] hover:border-[#4af626]/50 transition-all duration-300 flex flex-col gap-3 shadow-lg group">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl">{p.icon}</span>
+                <h3 class="text-white font-bold text-lg group-hover:text-[#4af626] transition-colors">
+                  {p.title}
+                </h3>
+              </div>
+              <p class="text-[#888] text-sm leading-relaxed">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Deep-Dive Sections */}
+      <div class="space-y-8 mb-12">
+        {/* MCP Section */}
+        <section class="bg-[#0a0a0a] border border-[#333] p-6 md:p-8 rounded-xl">
+          <div class="flex items-center gap-2 text-[#ffbd2e] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>●</span> Protocol Deep-Dive
+          </div>
+          <h2 class="text-2xl font-bold mb-4 text-white">Model Context Protocol (MCP) in Floww</h2>
+          <p class="text-[#999] leading-relaxed text-sm md:text-base mb-4">
+            Floww integrates a dedicated <strong class="text-white">Model Context Protocol (MCP) server</strong>. Instead of finance tools living in a silo, developer agents and coding assistants can interact with Floww programmatically:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-[#bbb] text-sm">
+            <li><span class="text-white font-semibold">get_monthly_burn_rate</span>: Ingests recent transactions and outputs burn-rate against target budgets.</li>
+            <li><span class="text-white font-semibold">query_financial_health</span>: Computes health score from income-to-spend ratios.</li>
+            <li><span class="text-white font-semibold">categorize_transaction</span>: Uses Gemini reasoning to normalize messy merchant names and assign context-aware tags.</li>
+            <li><span class="text-white font-semibold">export_context_to_ide</span>: Injects user financial summaries straight into Claude Desktop or Cursor for real-time lifestyle-budget alignment.</li>
+          </ul>
         </section>
 
-        <section class="bg-[#0a0a0a] border border-[#333] p-8 rounded-xl">
-          <h2 class="text-2xl font-bold mb-4 text-[#ffbd2e]">Tech Stack</h2>
-          <div class="flex flex-wrap gap-3">
+        {/* Android Rollout Section */}
+        <section class="bg-[#0a0a0a] border border-[#333] p-6 md:p-8 rounded-xl">
+          <div class="flex items-center gap-2 text-[#8ab4f8] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>●</span> Cross-Platform Engineering
+          </div>
+          <h2 class="text-2xl font-bold mb-4 text-white">Android Rollout & Mobile Engineering</h2>
+          <p class="text-[#999] leading-relaxed text-sm md:text-base mb-4">
+            While Floww originated as an ultra-fast Next.js web application, expense logging is inherently physical. The Android rollout delivers:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-[#bbb] text-sm">
+            <li><span class="text-white font-semibold">Instant Camera-to-OCR:</span> Snap receipts directly on Android and stream the image bytes to Gemini API within 800ms.</li>
+            <li><span class="text-white font-semibold">Offline-First Transaction Staging:</span> Queue receipt scans locally when network is spotty; background workers sync with PostgreSQL when reconnected.</li>
+            <li><span class="text-white font-semibold">Privacy Mode on Mobile:</span> Seamless biometric unlock and tap-to-mask currency figures for security in public spaces.</li>
+          </ul>
+        </section>
+
+        {/* Tech Stack */}
+        <section class="bg-[#0a0a0a] border border-[#333] p-6 md:p-8 rounded-xl">
+          <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+            <span class="text-[#27c93f]">&gt;</span> Full Technology Stack
+          </h2>
+          <div class="flex flex-wrap gap-2.5">
             {project.techStack.map(tech => (
-              <span class="px-4 py-2 bg-[#1a1a1a] border border-[#333] rounded-lg text-sm text-white">{tech}</span>
+              <span class="px-3.5 py-2 bg-[#141414] border border-[#2a2a2a] rounded-lg text-xs md:text-sm text-[#e0e0e0] font-mono hover:border-[#4af626]/50 transition-colors">
+                {tech}
+              </span>
             ))}
           </div>
         </section>
       </div>
+
+      {/* Bottom CTA */}
+      <div class="p-8 rounded-2xl bg-[#0d140e] border border-[#4af626]/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_0_30px_rgba(74,246,38,0.08)]">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-1">Explore Floww Codebase & Live App</h3>
+          <p class="text-xs sm:text-sm text-[#888]">Contribute to the open-source repository or start managing your expenses with AI today.</p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 bg-[#161616] border border-[#333] hover:border-[#4af626] text-white rounded-lg text-xs font-bold transition-all"
+          >
+            GitHub
+          </a>
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 bg-[#4af626] text-black font-bold rounded-lg text-xs hover:bg-[#39cc1c] transition-all shadow-md"
+          >
+            Launch Floww
+          </a>
+        </div>
+      </div>
+
     </div>
     <Footer />
   </main>
