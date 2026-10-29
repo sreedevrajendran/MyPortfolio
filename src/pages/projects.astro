@@ -9,20 +9,20 @@ const projects = [
     emoji: "💸",
     status: "Open Source",
     date: "2026",
-    description: "Floww is an open-source personal finance engine that makes money management effortless with Gemini OCR, Model Context Protocol (MCP) tool calling, and full Web + Android rollout.",
-    longDescription: `Floww turns messy real-world financial data (crumpled receipts, invoices, pay slips, multi-page statements) into structured intelligence. Engineered with Next.js 15, PostgreSQL, and Google Gemini, Floww is 100% open-sourced on GitHub. It features a custom Model Context Protocol (MCP) server so developer AI agents (Claude, Cursor, Antigravity) can query finances and automate budgeting directly from IDEs, and is rolled out across Web and Android with instant camera scanning.`,
+    description: "Floww is an open-source personal finance engine that makes money management effortless with Gemini OCR, Gmail sync, and full Web + Android rollout.",
+    longDescription: `Floww turns messy real-world financial data (crumpled receipts, invoices, pay slips, multi-page statements) into structured intelligence. Engineered with Next.js 15, PostgreSQL, and Google Gemini, Floww is 100% open-sourced on GitHub. Deployed live at floww.vercel.app and rolled out on Android with a standalone APK, it brings frictionless camera receipt scanning and real-time expense tracking to all devices.`,
     features: [
       "🌐 100% Open-Source — public codebase on GitHub, self-hostable and community extensible",
-      "🔌 Model Context Protocol (MCP) — connects AI assistants (Claude, Cursor) directly to your expense stream",
-      "📱 Android Rollout — native mobile experience with camera receipt scan, biometric lock, and offline sync",
+      "📱 Android Rollout — native mobile experience with camera receipt scan, biometric lock, and offline sync (APK v2.0.1)",
       "📸 Multi-modal OCR — snap receipts and let Gemini parse every line item into structured JSON",
       "📬 Gmail Sync — automatically imports and categorizes email-based transactions via OAuth 2.0",
       "🤖 Agent Floww — an in-app RAG chatbot that answers natural-language financial queries",
       "📊 Finance Health Score — real-time rating calculated from income, burn-rate, and budget adherence",
       "🔒 Privacy Mode — one-tap masking of currency figures in public spaces",
     ],
-    tags: ["Open Source", "AI", "MCP", "Android", "Gemini 2.5/3.8", "Next.js 15", "PostgreSQL", "tRPC"],
-    demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
+    tags: ["Open Source", "AI", "Android", "APK Available", "Gemini 2.5", "Next.js 15", "PostgreSQL", "tRPC"],
+    demo: "https://floww.vercel.app",
+    apk: "/Floww.apk",
     repo: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
     highlight: true,
     color: "#4af626",
@@ -51,25 +51,6 @@ const projects = [
     color: "#8ab4f8",
     views: "634",
     slug: "weather-native"
-  },
-  {
-    title: "Antigravity GitHub Bridge (MCP Server)",
-    emoji: "⚡",
-    status: "Open Source",
-    date: "2026",
-    description: "A custom Model Context Protocol (MCP) server linking AI agents, Claude Desktop, and Antigravity workspaces directly with local files and GitHub.",
-    longDescription: `Bridging the gap between agentic developer environments and GitHub repositories. Built adhering to the Model Context Protocol (MCP) standard, this server allows autonomous agents to safely inspect repositories, edit branches, manage PRs, and synchronize local codebases with remote git state.`,
-    features: [
-      "🔌 Model Context Protocol (MCP) compliant tool calling interface",
-      "🐙 Direct GitHub API bridge for PRs, issues, branches, and commits",
-      "💻 Local project workspace synchronization and context retrieval",
-      "⚡ High-speed agentic execution designed for Antigravity and Claude",
-    ],
-    tags: ["MCP", "TypeScript", "Node.js", "AI Agents", "GitHub API"],
-    repo: "https://github.com/sreedevrajendran/mcp_integration",
-    highlight: false,
-    color: "#8ab4f8",
-    views: "812",
   },
   {
     title: "Bunk Calculator",
@@ -224,13 +205,22 @@ const statusColor: Record<string, string> = {
                     <span class="text-[#ffbd2e] text-[10px] bg-[#ffbd2e]/10 border border-[#ffbd2e]/20 px-2.5 py-1 rounded font-mono">{tag}</span>
                   ))}
                 </div>
-                <div class="flex gap-3 shrink-0">
+                <div class="flex flex-wrap gap-2.5 shrink-0">
+                  {project.apk && (
+                    <a
+                      href={project.apk}
+                      download="Floww-v2.0.1.apk"
+                      class="flex items-center gap-2 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 text-[#8ab4f8] hover:bg-[#8ab4f8]/20 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                    >
+                      ⬇ APK
+                    </a>
+                  )}
                   {project.demo && (
                     <a
                       href={project.demo}
                       target={project.isDownload ? "_self" : "_blank"}
                       download={project.isDownload || undefined}
-                      class="flex items-center gap-2 bg-[#4af626]/10 border border-[#4af626]/40 text-[#4af626] hover:bg-[#4af626]/20 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                      class="flex items-center gap-2 bg-[#4af626]/10 border border-[#4af626]/40 text-[#4af626] hover:bg-[#4af626]/20 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200"
                     >
                       {project.isDownload ? "⬇ Download APK" : "→ Live Demo"}
                     </a>

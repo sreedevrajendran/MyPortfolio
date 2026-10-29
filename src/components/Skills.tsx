@@ -8,7 +8,7 @@ const skills = [
   { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript", category: "Language" },
   { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/white", category: "Language" },
   { name: "Google Gemini", icon: "https://cdn.simpleicons.org/googlegemini", category: "AI" },
-  { name: "MCP (Protocols)", icon: "https://cdn.simpleicons.org/anthropic/white", category: "AI" },
+  { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql", category: "Backend" },
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white", category: "Web" },
   { name: "React", icon: "https://cdn.simpleicons.org/react", category: "Web" },
   { name: "Android", icon: "https://cdn.simpleicons.org/android", category: "Mobile" },

@@ -14,7 +14,7 @@ const skills = [
   { name: "Astro",        icon: "https://cdn.simpleicons.org/astro/white",       category: "Web" },
   { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss",       category: "Web" },
   { name: "Google Gemini",icon: "https://cdn.simpleicons.org/googlegemini",      category: "AI" },
-  { name: "MCP (Protocols)",icon: "https://cdn.simpleicons.org/anthropic/white", category: "AI" },
+  { name: "PostgreSQL",   icon: "https://cdn.simpleicons.org/postgresql",        category: "Backend" },
   { name: "Streamlit",    icon: "https://cdn.simpleicons.org/streamlit",         category: "Tool" },
   { name: "Git",          icon: "https://cdn.simpleicons.org/git",               category: "Tool" },
   { name: "GitHub",       icon: "https://cdn.simpleicons.org/github/white",      category: "Tool" },
@@ -166,7 +166,7 @@ export default function ResumeProfile() {
                   I am an ongoing <span className="text-white font-semibold">B.Tech student in Computer Science Engineering</span>, specializing in Artificial Intelligence at Providence College of Engineering, Chengannur. Driven by a primary goal to become a successful entrepreneur, I am passionate about crafting and shipping innovative AI-native solutions.
                 </p>
                 <p>
-                  Rather than a generic developer profile, I operate as a <span className="text-[#4af626] font-semibold">Forward Deployed Engineer (FDE)</span> — working on the front lines to take advanced AI models (multimodal OCR, RAG agents, real-time context, Model Context Protocol) and deploy them directly into production applications like <a href="/projects/floww" class="text-white font-semibold underline decoration-[#4af626] hover:text-[#4af626]">Floww</a> (100% open-sourced, MCP-integrated, and rolled out on Android). Through AI-assisted "vibe coding" and strong engineering architecture, I bridge the gap between frontier AI research and deployed user products that solve real problems.
+                  Rather than a generic developer profile, I operate as a <span className="text-[#4af626] font-semibold">Forward Deployed Engineer (FDE)</span> — working on the front lines to take advanced AI models (multimodal OCR, RAG agents, real-time context) and deploy them directly into production applications like <a href="/projects/floww" class="text-white font-semibold underline decoration-[#4af626] hover:text-[#4af626]">Floww</a> (100% open-sourced and rolled out on Android with native APK). Through AI-assisted "vibe coding" and strong engineering architecture, I bridge the gap between frontier AI research and deployed user products that solve real problems.
                 </p>
                 <p>
                   I am the Founder of{" "}

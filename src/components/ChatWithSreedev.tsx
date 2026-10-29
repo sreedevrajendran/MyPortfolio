@@ -14,7 +14,7 @@ interface Message {
 const STARTER_PROMPTS = [
   "Tell me about yourself",
   "What is Floww and how does it work?",
-  "Tell me about Floww's MCP integration",
+  "How can I get the Floww Android APK?",
   "Is Floww open-source and on Android?",
   "Why Forward Deployed Engineer (FDE)?",
   "Tell me about Topviewframes",
@@ -115,7 +115,7 @@ export default function ChatWithSreedev() {
       content:
         `Hello, I am **Sreedev Rajendran**.\n\n` +
         `I am a B.Tech CS & AI student, **Forward Deployed Engineer (FDE)**, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
-        `Feel free to ask about my flagship project **[Floww](https://flowwexpensetracker.netlify.app)** (now **open-sourced on GitHub**, featuring **Model Context Protocol (MCP)** integration and rolled out on **Android**!), why I specialize as an FDE, or how we can collaborate.`,
+        `Feel free to ask about my flagship project **[Floww](https://floww.vercel.app)** (now **open-sourced on GitHub** and rolled out on **Android** with downloadable APK!), why I specialize as an FDE, or how we can collaborate.`,
       timestamp: formatTime(),
     },
   ]);

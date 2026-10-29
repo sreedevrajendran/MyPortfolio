@@ -65,7 +65,7 @@ import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
       <div class="prose prose-invert prose-p:text-[#aaa] prose-headings:text-white prose-a:text-[#8ab4f8] max-w-none prose-p:leading-relaxed prose-pre:bg-[#0a0a0a] prose-pre:border prose-pre:border-[#222] prose-img:rounded-xl">
         
         <p class="text-lg text-[#ccc] mb-8 font-semibold">
-          I was getting really frustrated with typing in my coffee expenses manually back in 2026. That was the exact moment when <a href="https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F" target="_blank" rel="noopener noreferrer" class="text-[#4af626] hover:underline font-bold">Floww</a> was born.
+          I was getting really frustrated with typing in my coffee expenses manually back in 2026. That was the exact moment when <a href="https://floww.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[#4af626] hover:underline font-bold">Floww</a> was born.
         </p>
 
         <p class="mb-8">
@@ -191,17 +191,12 @@ const result = await model.generateContent([
           I firmly believe that financial tools should be transparent, verifiable, and free from vendor lock-in. Floww is now <a href="https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER" target="_blank" rel="noopener noreferrer" class="text-[#4af626] font-bold hover:underline">100% open-source on GitHub</a>. Developers can inspect every line of the OCR prompts, self-host their own database with Docker and Prisma, or extend the engine with custom banking APIs.
         </p>
 
-        <h3 class="text-xl font-bold text-[#ffbd2e] mb-4 mt-8">6. Native Model Context Protocol (MCP) Integration</h3>
+        <h3 class="text-xl font-bold text-[#8ab4f8] mb-4 mt-8">6. The Android Rollout: Native Mobile Experience & APK Release</h3>
         <p class="mb-6">
-          Personal finance tools usually live in an isolated browser tab. With the rise of agentic coding, I engineered an official <strong>Model Context Protocol (MCP) server</strong> for Floww. Developers using Claude Desktop, Cursor, or Antigravity can link Floww directly into their AI workflows.
+          Receipts happen in the physical world — at checkout counters, gas stations, and restaurants. To remove friction completely, Floww has rolled out on <strong>Android</strong> with a standalone APK (<a href="/Floww.apk" download="Floww-v2.0.1.apk" class="text-[#8ab4f8] hover:underline font-bold">Floww v2.0.1</a>).
         </p>
-        <p class="mb-6">
-          By exposing tools like <code class="text-[#4af626] bg-[#161616] px-1.5 py-0.5 rounded">get_monthly_burn_rate</code> and <code class="text-[#4af626] bg-[#161616] px-1.5 py-0.5 rounded">query_financial_health</code>, your desktop AI agent can analyze your active burn rate, check if you're over budget on hardware purchases, or extract transaction data without you ever leaving your code editor.
-        </p>
-
-        <h3 class="text-xl font-bold text-[#8ab4f8] mb-4 mt-8">7. The Android Rollout: Native Mobile Experience</h3>
         <p class="mb-12">
-          Receipts happen in the physical world — at checkout counters, gas stations, and restaurants. To remove friction completely, Floww has rolled out on <strong>Android</strong>. The mobile rollout pairs instant camera receipt scanning directly with Gemini Flash's vision API, includes offline transaction caching for spotty network coverage, and introduces one-tap biometric Privacy Mode so balances are blurred in public.
+          The mobile rollout pairs instant camera receipt scanning directly with Gemini Flash's vision API, includes offline transaction caching for spotty network coverage, and introduces one-tap biometric Privacy Mode so balances are blurred in public spaces.
         </p>
 
         <hr class="border-[#222] my-12" />
@@ -211,7 +206,7 @@ const result = await model.generateContent([
         </h2>
 
         <p class="mb-6">
-          <a href="https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F" target="_blank" rel="noopener noreferrer" class="text-[#4af626] font-bold hover:underline">Floww</a> represents a massive shift in how software can be built today. By combining <strong>vibe coding</strong> with a well-chosen modern stack (<a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Next.js 15</a>, <a href="https://trpc.io" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">tRPC</a>, <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Gemini API</a>), I shipped a product that a full team would normally take months to build.
+          <a href="https://floww.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[#4af626] font-bold hover:underline">Floww</a> represents a massive shift in how software can be built today. By combining <strong>vibe coding</strong> with a well-chosen modern stack (<a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Next.js 15</a>, <a href="https://trpc.io" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">tRPC</a>, <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer" class="text-[#8ab4f8] hover:underline">Gemini API</a>), I shipped a product that a full team would normally take months to build.
         </p>
 
         <p class="mb-8">
@@ -230,15 +225,22 @@ const result = await model.generateContent([
           </div>
           <div class="p-6 md:p-8 text-center">
             <p class="text-xl font-bold text-white mb-2">Finance is stressful. Your tools shouldn't be.</p>
-            <p class="text-[#888] text-sm mb-6">Try Floww live — no setup, no install needed.</p>
+            <p class="text-[#888] text-sm mb-6">Try Floww live on the web or download the Android APK.</p>
             <div class="flex flex-wrap justify-center gap-4">
               <a
-                href="https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F"
+                href="https://floww.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-center gap-2 bg-[#4af626]/10 border border-[#4af626]/40 text-[#4af626] hover:bg-[#4af626]/20 px-6 py-2.5 rounded-lg text-sm font-bold transition-all"
               >
-                → Try Floww Live
+                → Try Floww Live (Web)
+              </a>
+              <a
+                href="/Floww.apk"
+                download="Floww-v2.0.1.apk"
+                class="flex items-center gap-2 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 text-[#8ab4f8] hover:bg-[#8ab4f8]/20 px-6 py-2.5 rounded-lg text-sm font-bold transition-all"
+              >
+                ⬇ Download APK (v2.0.1)
               </a>
               <a
                 href="https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER"

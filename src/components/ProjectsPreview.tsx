@@ -4,12 +4,13 @@ import ScrollReveal from "./ScrollReveal";
 const featuredProjects = [
   {
     title: "Floww — Open-Source AI Financial Engine",
-    cmd: "run floww --open-source --mcp --android",
+    cmd: "run floww --open-source --android",
     emoji: "💸",
     status: "Open Source",
-    description: "An open-source AI financial engine with Google Gemini OCR, Model Context Protocol (MCP) server integration for AI developer agents, and full rollout on Web & Android.",
-    tags: ["Open Source", "AI", "MCP", "Android", "Gemini 2.5", "Next.js 15"],
-    demo: "https://flowwexpensetracker.netlify.app/login?callbackUrl=%2F",
+    description: "An open-source personal finance engine powered by AI. Features automated receipt scanning with Gemini OCR, seamless Gmail synchronization, and full release on Web & Android.",
+    tags: ["Open Source", "AI", "Android", "APK Available", "Gemini 2.5", "Next.js 15"],
+    demo: "https://floww.vercel.app",
+    apk: "/Floww.apk",
     repo: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
     slug: "floww",
   },
@@ -113,7 +114,13 @@ export default function ProjectsPreview() {
                   </div>
 
                   {/* Footer links */}
-                  <div className="flex items-center gap-4 pt-3 border-t border-[#1a1a1a]">
+                  <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[#1a1a1a]">
+                    {p.apk && (
+                      <a href={p.apk} download="Floww-v2.0.1.apk"
+                        className="text-xs text-[#8ab4f8] font-bold hover:underline">
+                        ⬇ APK
+                      </a>
+                    )}
                     {p.demo && (
                       <a href={p.demo} target="_blank" rel="noopener noreferrer"
                         className="text-xs text-[#4af626] font-bold hover:underline">

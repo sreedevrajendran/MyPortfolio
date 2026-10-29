@@ -9,7 +9,7 @@ export function generateSreedevResponse(userMessage: string): string {
     return (
       `**Security Notice:**\n\n` +
       `I do not disclose private API keys, passwords, database connection strings, or production credentials.\n\n` +
-      `While my project codebases and system architectures (such as **[Floww](https://flowwexpensetracker.netlify.app)**) are open-source on [GitHub](https://github.com/sreedevrajendran), all sensitive environment variables and production secrets are strictly secured and separated.`
+      `While my project codebases and system architectures (such as **[Floww](https://floww.vercel.app)**) are open-source on [GitHub](https://github.com/sreedevrajendran), all sensitive environment variables and production secrets are strictly secured and separated.`
     );
   }
 
@@ -29,7 +29,7 @@ export function generateSreedevResponse(userMessage: string): string {
       `Hello. Welcome to my portfolio.\n\n` +
       `I am **Sreedev Rajendran** — an AI & Forward Deployed Engineer (FDE), Visual Creator, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
       `You can ask me about:\n` +
-      `• My flagship AI project **[Floww](https://flowwexpensetracker.netlify.app)**\n` +
+      `• My flagship AI project **[Floww](https://floww.vercel.app)**\n` +
       `• Why I focus as a **Forward Deployed Engineer (FDE)**\n` +
       `• My company **Topviewframes** and visual media work\n` +
       `• My tech stack and architecture philosophy\n` +
@@ -53,7 +53,7 @@ export function generateSreedevResponse(userMessage: string): string {
       `Generic "full-stack developer" titles have become crowded and vague. In the current era of frontier AI, the real competitive edge lies in **Forward Deployed Engineering**—operating directly at the intersection of complex customer problems, frontier AI models, and production deployment.\n\n` +
       `Instead of remaining siloed in backend research or building routine CRUD boilerplate, an FDE takes end-to-end ownership:\n` +
       `• **AI Integration:** Translating raw foundation model intelligence (multimodal OCR, RAG agents, real-time context) into high-utility, resilient software.\n` +
-      `• **Production Deployment:** Shipping fluid, accessible, and mission-critical applications like **[Floww](https://flowwexpensetracker.netlify.app)**.\n` +
+      `• **Production Deployment:** Shipping fluid, accessible, and mission-critical applications like **[Floww](https://floww.vercel.app)**.\n` +
       `• **AI-Assisted Velocity:** Utilizing modern AI-assisted engineering ("vibe coding") to accelerate iteration while maintaining rigorous architectural control, prompt contracts, and system security.\n\n` +
       `In short, an FDE bridges bleeding-edge AI models directly into the hands of users to solve actual problems.`
     );
@@ -75,16 +75,15 @@ export function generateSreedevResponse(userMessage: string): string {
   ) {
     return (
       `**Floww — Open-Source AI Financial Engine & Flagship Project**\n\n` +
-      `I built Floww to eliminate the manual friction of expense logging. It is **100% open-source on GitHub**, features native **Model Context Protocol (MCP)** integration, and has rolled out across both **Web and Android**.\n\n` +
+      `I built Floww to eliminate the manual friction of expense logging. It is **100% open-source on GitHub** and has rolled out across both **Web and Android with downloadable APK**.\n\n` +
       `**Core Architecture & Features:**\n` +
       `• **Open-Source & Self-Hostable:** Full codebase publicly hosted on GitHub for community extensibility and privacy.\n` +
-      `• **Model Context Protocol (MCP) Server:** Allows developer agents in Claude Desktop, Cursor, and Antigravity to query expenses, monitor burn rates, and check budgets via tool calls.\n` +
-      `• **Android Rollout:** Physical-world expense tracking with mobile camera OCR, offline transaction caching, and biometric Privacy Mode.\n` +
+      `• **Android Rollout & APK:** Physical-world expense tracking with camera receipt scanning, offline transaction caching, biometric Privacy Mode, and direct APK download ([Download Floww.apk](/Floww.apk)).\n` +
       `• **Universal Document Intelligence:** Extracts structured transactions from receipts, invoices, pay slips, and multi-page statements via Google Gemini multimodal OCR.\n` +
       `• **Agent Floww:** In-app RAG assistant querying PostgreSQL via Prisma to answer natural language spending questions.\n` +
       `• **Gmail Sync:** OAuth 2.0 automated pipeline importing digital receipts and transactional emails.\n` +
       `• **Technology Stack:** Next.js 15 (App Router), tRPC, PostgreSQL, Prisma, Gemini 2.5/3.8 Flash, Firebase Auth, Tailwind CSS, Framer Motion.\n\n` +
-      `[Launch Live App](https://flowwexpensetracker.netlify.app) | [View GitHub Repo (Open Source)](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Read Case Study](https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine)`
+      `[Launch Live App](https://floww.vercel.app) | [Download Android APK](/Floww.apk) | [View GitHub Repo (Open Source)](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Read Case Study](https://sreedevrajendran.in/blog/building-floww-ai-native-financial-engine)`
     );
   }
 
@@ -153,21 +152,26 @@ export function generateSreedevResponse(userMessage: string): string {
       `• **Frontend & Web:** React, Next.js 15, Astro, Tailwind CSS, Framer Motion\n` +
       `• **Mobile:** React Native, Expo, Native Android\n` +
       `• **Backend & Databases:** Node.js, Express, PostgreSQL, Prisma, tRPC, Firebase, MongoDB\n` +
-      `• **AI & LLMs:** Google Gemini API (multimodal OCR, RAG agents), Prompt Engineering, MCP Servers, scikit-learn\n` +
+      `• **AI & LLMs:** Google Gemini API (multimodal OCR, RAG agents), Prompt Engineering, scikit-learn\n` +
       `• **Tools & Platforms:** Git, GitHub, Netlify, Vercel, Streamlit\n\n` +
       `**Development Approach:**\n` +
       `I leverage AI tools to rapidly scaffold boilerplate and focus core attention on system architecture, data models, prompt reliability, and user-facing performance.`
     );
   }
 
-  // 7. MCP (Model Context Protocol)
-  if (q.includes("mcp") || q.includes("model context protocol")) {
+  // 7. Android Rollout & Direct APK Downloads
+  if (
+    q.includes("apk") ||
+    q.includes("download") ||
+    q.includes("install") ||
+    q.includes("mobile")
+  ) {
     return (
-      `**Model Context Protocol (MCP) Integration**\n\n` +
-      `I actively develop Model Context Protocol (MCP) servers to bridge generative AI agents with production data:\n\n` +
-      `• **Floww MCP Server:** Built directly into **[Floww](https://flowwexpensetracker.netlify.app)** ([GitHub](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER)). Exposes financial context tools (such as \`get_monthly_burn_rate\`, \`query_financial_health\`, and \`categorize_transaction\`) to Claude Desktop, Cursor, and Antigravity so developer agents can query spending and budgets without leaving their IDE.\n` +
-      `• **[Antigravity GitHub Bridge](https://github.com/sreedevrajendran/mcp_integration):** Custom MCP server linking local project workspaces and Claude with GitHub repositories for automated PRs, branch management, and git sync.\n\n` +
-      `As an FDE, MCP is fundamental to creating truly agentic workflows where models interact directly with live tools and data.`
+      `**Android Applications & Direct APK Downloads**\n\n` +
+      `You can download and install native Android builds for my applications directly:\n\n` +
+      `• **[Floww APK (v2.0.1)](/Floww.apk):** AI-native financial engine with mobile camera receipt scanning and biometric Privacy Mode.\n` +
+      `• **[WeatherNative APK](https://sreedevrajendran.in/AquWeather.apk):** Minimalist, ad-free real-time weather application in React Native.\n\n` +
+      `Both APKs are signed, production-ready, and available for direct installation.`
     );
   }
 
@@ -175,18 +179,16 @@ export function generateSreedevResponse(userMessage: string): string {
   if (
     q.includes("weather") ||
     q.includes("bunk") ||
-    q.includes("antigravity") ||
     q.includes("project") ||
     q.includes("projects") ||
     q.includes("repo")
   ) {
     return (
       `**Selected Projects**\n\n` +
-      `1. **[Floww](https://flowwexpensetracker.netlify.app)** — Open-source AI financial engine with Gemini OCR, native Model Context Protocol (MCP) server, and Android rollout. ([GitHub](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Case Study](/projects/floww))\n` +
+      `1. **[Floww](https://floww.vercel.app)** — Open-source AI financial engine with Gemini OCR, camera receipt scanning, and Android rollout. ([Launch App](https://floww.vercel.app) | [Download APK](/Floww.apk) | [GitHub](https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER) | [Case Study](/projects/floww))\n` +
       `2. **[WeatherNative](https://github.com/sreedevrajendran/WeatherNativeProject)** — Native Android weather application in React Native with location-aware forecasts. (Download: [AquWeather.apk](https://sreedevrajendran.in/AquWeather.apk))\n` +
-      `3. **[Antigravity GitHub Bridge (MCP Server)](https://github.com/sreedevrajendran/mcp_integration)** — Model Context Protocol server connecting Claude and Antigravity workspaces with GitHub.\n` +
-      `4. **[Bunk Calculator](https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/)** — Python and Streamlit tool for college students to calculate attendance margins.\n` +
-      `5. **Machine Learning:** Used-Car-Price-Prediction (linear regression) and SentimentAnalysis (NLP).\n\n` +
+      `3. **[Bunk Calculator](https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/)** — Python and Streamlit tool for college students to calculate attendance margins.\n` +
+      `4. **Machine Learning:** Used-Car-Price-Prediction (linear regression) and SentimentAnalysis (NLP).\n\n` +
       `You can review these in detail on my [Projects Page](/projects) or on [GitHub](https://github.com/sreedevrajendran).`
     );
   }
@@ -250,7 +252,7 @@ export function generateSreedevResponse(userMessage: string): string {
       `**About Sreedev Rajendran**\n\n` +
       `I am an undergraduate Computer Science & AI student at Providence College of Engineering in Chengannur, Kerala, and a **Forward Deployed Engineer (FDE)**.\n\n` +
       `My work centers on three pillars:\n` +
-      `• **Software & AI:** Engineering production web and mobile apps, notably **[Floww](https://flowwexpensetracker.netlify.app)**.\n` +
+      `• **Software & AI:** Engineering production web and mobile apps, notably **[Floww](https://floww.vercel.app)**.\n` +
       `• **Product Deployment:** Leveraging modern developer tooling to ship AI capabilities directly to end-users.\n` +
       `• **Visual Media:** Operating **[Topviewframes](https://topviewframes.netlify.app)**, my commercial photography and videography studio.\n\n` +
       `Let me know what area you would like to explore.`
@@ -266,7 +268,7 @@ export function generateSreedevResponse(userMessage: string): string {
 
   // Default fallback: Strictly guard against unrelated questions and redirect to Sreedev's portfolio
   return (
-    `I am here specifically to discuss my engineering work, my flagship AI project **[Floww](https://flowwexpensetracker.netlify.app)**, Forward Deployed Engineering (FDE), my studio **[Topviewframes](https://topviewframes.netlify.app)**, or potential collaborations.\n\n` +
+    `I am here specifically to discuss my engineering work, my flagship AI project **[Floww](https://floww.vercel.app)**, Forward Deployed Engineering (FDE), my studio **[Topviewframes](https://topviewframes.netlify.app)**, or potential collaborations.\n\n` +
     `I do not answer general trivia, homework, or topics outside my portfolio. Feel free to ask about my projects, technical stack, or reach out directly at [sreerajar40@gmail.com](mailto:sreerajar40@gmail.com).`
   );
 }
