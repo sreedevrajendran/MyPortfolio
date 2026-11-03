@@ -1,5 +1,23 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../globals.css';
+import ChatWithSreedev from '../components/ChatWithSreedev';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+}
+
+const { 
+  title = "Sreedev Rajendran | Forward Deployed Engineer | Visual Creator",
+  description = "Portfolio of Sreedev Rajendran — B.Tech CS & AI student, Forward Deployed Engineer (FDE), and founder of Topviewframes. Building and deploying AI-native applications.",
+  image = "/profile.png",
+  url = "https://sreedevrajendran.in/",
+  type = "website"
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -7,32 +25,36 @@ import '../globals.css';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/jpeg" href="/sreedev.jpg" />
+    <link rel="icon" type="image/png" href="/profile.png" />
     <meta name="generator" content={Astro.generator} />
     
-    <title>Sreedev Rajendran | AI Engineer & Visual Creator</title>
-    <meta name="description" content="Terminal-inspired portfolio of Sreedev Rajendran, a B.Tech Computer Science and AI student. Exploring Web Development, Python, and AI." />
-    <meta name="keywords" content="sreedev, sreedevrajendran, Sreedev, Sreedev Rajendran, Portfolio, Web Developer, AI Student" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="sreedev, sreedevrajendran, Sreedev, Sreedev Rajendran, Portfolio, Forward Deployed Engineer, FDE, AI Engineer, Topviewframes, Floww, Android, Gemini" />
     <meta name="author" content="Sreedev Rajendran" />
     
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://sreedevrajendran.in" />
-    <meta property="og:title" content="Sreedev Rajendran | AI Engineer & Visual Creator" />
-    <meta property="og:description" content="Personal portfolio of Sreedev Rajendran, showcasing projects in Web Dev and AI." />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Sreedev Rajendran Portfolio" />
-    <meta property="og:image" content="/sreedev.jpg" />
+    <meta property="og:image" content={image} />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sreedev Rajendran | AI Engineer & Visual Creator" />
-    <meta name="twitter:description" content="Personal portfolio of Sreedev Rajendran, showcasing projects in Web Dev and AI." />
-    <meta name="twitter:image" content="/sreedev.jpg" />
-    <meta name="twitter:creator" content="@HeyItsSreedev" />
-    <meta name="twitter:site" content="@HeyItsSreedev" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:creator" content="@sreedevv_" />
+    <meta name="twitter:site" content="@sreedevv_" />
+
+    <!-- Canonical URL: Tells Google the single authoritative version of this page -->
+    <link rel="canonical" href={url} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- JSON-LD Profile Information -->
     <script type="application/ld+json" set:html={`{
@@ -41,21 +63,24 @@ import '../globals.css';
       "name": "Sreedev Rajendran",
       "alternateName": ["sreedev", "sreedevrajendran"],
       "url": "https://sreedevrajendran.in",
-      "image": "/sreedev.jpg",
+      "image": "/profile.png",
       "sameAs": [
-        "https://www.linkedin.com/in/sreedev-rajendran-3296b5321/",
-        "https://www.instagram.com/zrr.dev/",
+        "https://www.linkedin.com/in/sreedevrajendran",
+        "https://www.instagram.com/_sreedevrajendran/",
         "https://github.com/sreedevrajendran",
-        "https://x.com/HeyItsSreedev"
+        "https://x.com/sreedevv_",
+        "https://www.youtube.com/@sreedevrajendran-n50"
       ],
-      "jobTitle": "Web Developer & AI Student",
+      "jobTitle": "Forward Deployed Engineer & AI Student",
       "worksFor": {
         "@type": "Organization",
         "name": "Providence College of Engineering"
       }
     }`} />
+    <ClientRouter />
   </head>
   <body class="antialiased bg-[#050505] min-h-screen relative overflow-x-hidden" style="font-family: 'JetBrains Mono', monospace;">
     <slot />
+    <ChatWithSreedev client:load transition:persist />
   </body>
 </html>

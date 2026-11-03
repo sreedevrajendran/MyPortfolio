@@ -3,20 +3,24 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Skills from '../components/Skills';
-import Projects from '../components/Projects';
+import ProjectsPreview from '../components/ProjectsPreview';
+import BlogPreview from '../components/BlogPreview';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 ---
 
-<Layout>
+<Layout
+  title="Sreedev Rajendran | Forward Deployed Engineer | Visual Creator"
+  description="Portfolio of Sreedev Rajendran — B.Tech CS & AI student, Forward Deployed Engineer (FDE). Creator of Floww (open-source AI financial engine with Android rollout & downloadable APK). Building and deploying AI-native applications."
+  url="https://sreedevrajendran.in/"
+>
   <main class="flex flex-col w-full">
     <Navbar client:load />
-    <div class="max-w-6xl mx-auto px-4 md:px-8 w-full flex flex-col space-y-28 pb-16 pt-8">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 w-full flex flex-col space-y-28 pb-16 pt-24">
       <Hero client:load />
       <About client:visible />
-      <Skills client:visible />
-      <Projects client:visible />
+      <ProjectsPreview client:visible />
+      <BlogPreview client:visible />
       <Contact client:visible />
       <Footer />
     </div>

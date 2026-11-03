@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const projects = [
+  {
+    title: "Floww — Open-Source AI Financial Engine",
+    emoji: "💸",
+    status: "Open Source",
+    date: "2026",
+    description: "Floww is an open-source personal finance engine that makes money management effortless with Gemini OCR, Gmail sync, and full Web + Android rollout.",
+    longDescription: `Floww turns messy real-world financial data (crumpled receipts, invoices, pay slips, multi-page statements) into structured intelligence. Engineered with Next.js 15, PostgreSQL, and Google Gemini, Floww is 100% open-sourced on GitHub. Deployed live at floww.vercel.app and rolled out on Android with a standalone APK, it brings frictionless camera receipt scanning and real-time expense tracking to all devices.`,
+    features: [
+      "🌐 100% Open-Source — public codebase on GitHub, self-hostable and community extensible",
+      "📱 Android Rollout — native mobile experience with camera receipt scan, biometric lock, and offline sync (APK v2.0.1)",
+      "📸 Multi-modal OCR — snap receipts and let Gemini parse every line item into structured JSON",
+      "📬 Gmail Sync — automatically imports and categorizes email-based transactions via OAuth 2.0",
+      "🤖 Agent Floww — an in-app RAG chatbot that answers natural-language financial queries",
+      "📊 Finance Health Score — real-time rating calculated from income, burn-rate, and budget adherence",
+      "🔒 Privacy Mode — one-tap masking of currency figures in public spaces",
+    ],
+    tags: ["Open Source", "AI", "Android", "APK Available", "Gemini 2.5", "Next.js 15", "PostgreSQL", "tRPC"],
+    demo: "https://floww.vercel.app",
+    apk: "/Floww.apk",
+    repo: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
+    highlight: true,
+    color: "#4af626",
+    views: "2,480",
+    slug: "floww"
+  },
+  {
+    title: "WeatherNative",
+    emoji: "🌤️",
+    status: "Released",
+    date: "2025",
+    description: "A native Android weather application built with React Native featuring real-time weather tracking and a clean, modern UI.",
+    longDescription: `WeatherNative delivers accurate, location-aware weather data with a minimal and polished Android-native feel. Built using React Native, it pulls live data from a public weather API and presents it through smooth animations and an intuitive interface.`,
+    features: [
+      "📍 Live location-aware weather fetching",
+      "🌡️ Temperature, humidity, wind speed, and UV index",
+      "📅 7-day forecast view",
+      "🎨 Dynamic backgrounds that change with weather conditions",
+      "📦 Distributed as a standalone APK",
+    ],
+    tags: ["Android", "React Native", "APK", "Weather API"],
+    demo: "/AquWeather.apk",
+    repo: "https://github.com/sreedevrajendran/WeatherNativeProject",
+    isDownload: true,
+    highlight: false,
+    color: "#8ab4f8",
+    views: "634",
+    slug: "weather-native"
+  },
+  {
+    title: "Bunk Calculator",
+    emoji: "📅",
+    status: "Live",
+    date: "2024",
+    description: "A Python + Streamlit mini-app that calculates exactly how many classes you can bunk while staying above the attendance threshold.",
+    longDescription: `Every student's secret weapon. Enter your total classes, attended classes, and the minimum required attendance percentage — Bunk Calculator instantly tells you how many more classes you can safely skip. Built in a weekend with Python and Streamlit, deployed for free.`,
+    features: [
+      "⚡ Instant calculation — enter 3 numbers, get your answer",
+      "📊 Visual progress bar showing current attendance",
+      "🎯 Safe-to-bunk count with margin buffer",
+      "🌐 Fully web-based via Streamlit — no installation needed",
+    ],
+    tags: ["Python", "Streamlit", "Education"],
+    demo: "https://bunk-calculator-6d6pcmtagyrlqt2ygeehsl.streamlit.app/",
+    repo: "https://github.com/sreedevrajendran/bunk-calculator",
+    highlight: false,
+    color: "#ffbd2e",
+    views: "928",
+    slug: "bunk-calculator"
+  },
+  {
+    title: "Sentiment Analysis",
+    emoji: "🧠",
+    status: "Archived",
+    date: "2024",
+    description: "A machine learning pipeline that classifies the emotional sentiment of text datasets using NLP techniques.",
+    longDescription: `A hands-on exploration of Natural Language Processing. This project implements a full sentiment classification pipeline — from raw text preprocessing (tokenization, stopword removal, stemming) through feature extraction (TF-IDF) to model training and evaluation using scikit-learn.`,
+    features: [
+      "🔤 Full NLP preprocessing pipeline (tokenize → clean → stem)",
+      "📊 TF-IDF vectorization for feature extraction",
+      "🤖 Multiple classifiers compared: Naive Bayes, Logistic Regression, SVM",
+      "📈 Accuracy, precision, recall and F1-score reporting",
+      "📂 Works on custom CSV datasets",
+    ],
+    tags: ["Python", "ML", "NLP", "scikit-learn", "TF-IDF"],
+    repo: "https://github.com/sreedevrajendran/SentimentAnalysis",
+    highlight: false,
+    color: "#ff5f56",
+    views: "541",
+    slug: "sentiment-analysis"
+  },
+  {
+    title: "Simple Banking System",
+    emoji: "🏦",
+    status: "Archived",
+    date: "2023",
+    description: "A secure Java console application for managing bank accounts, transactions, and customer data using OOP principles.",
+    longDescription: `A foundational Java project that demonstrates core Object-Oriented Programming concepts in a real-world banking context. Supports multiple accounts, deposits, withdrawals, and balance checks — all secured with basic authentication.`,
+    features: [
+      "👤 Multi-user account management with authentication",
+      "💳 Deposit, withdraw, and transfer between accounts",
+      "📋 Full transaction history per account",
+      "🔐 PIN-based authentication for account access",
+      "🧩 Clean OOP architecture — Account, Customer, Bank classes",
+    ],
+    tags: ["Java", "OOP", "Console App", "Data Structures"],
+    repo: "https://github.com/sreedevrajendran/SimpleBankingSystem-JAVA",
+    highlight: false,
+    color: "#555",
+    views: "512",
+    slug: "simple-banking-system"
+  },
+];
+
+const statusColor: Record<string, string> = {
+  "Open Source": "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  "Live":        "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30",
+  "Released":    "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30",
+  "In Dev":      "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30",
+  "Archived":    "text-[#555] bg-[#1a1a1a] border-[#333]",
+};
+---
+
+<Layout
+  title="Projects | Sreedev Rajendran | Forward Deployed Engineer | Visual Creator"
+  description="AI-native and deployed engineering projects by Sreedev Rajendran — AI apps, Android native apps, ML pipelines, and more."
+  url="https://sreedevrajendran.in/projects"
+>
+  <main class="flex flex-col w-full">
+    <Navbar client:load />
+
+    <div class="max-w-5xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-24 min-h-screen font-mono">
+
+      <!-- Header -->
+      <div class="mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white flex items-center gap-4 mb-4">
+          <span class="text-[#8ab4f8]">~/</span>Projects
+          <div class="flex-1 h-px bg-gradient-to-r from-[#333] to-transparent ml-4 hidden md:block"></div>
+        </h1>
+        <p class="text-[#888]">Things I've shipped — from AI engines to Android apps.</p>
+      </div>
+
+      <!-- Projects — terminal window cards -->
+      <div class="flex flex-col gap-10">
+        {projects.map((project, i) => (
+          <article class="group flex flex-col bg-[#0a0a0a] rounded-xl border border-[#333] shadow-lg overflow-hidden hover:border-[#4af626]/60 hover:shadow-[0_0_40px_rgba(74,246,38,0.06)] transition-all duration-300">
+
+            <!-- Mac title bar -->
+            <div class="flex items-center bg-[#1a1a1a] border-b border-[#333] px-4 py-3 shrink-0">
+              <div class="flex space-x-2">
+                <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+              </div>
+              <div class="flex-1 text-center text-[#666] text-[10px] font-sans tracking-widest">
+                bash: cat {project.title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.md
+              </div>
+              <span class={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${statusColor[project.status] ?? statusColor["Archived"]}`}>
+                {project.status === "Live" ? "● " : ""}{project.status}
+              </span>
+            </div>
+
+            <!-- Card body -->
+            <div class="p-6 md:p-10">
+
+              <!-- Title row -->
+              <div class="flex items-center justify-between gap-4 mb-6 border-b border-[#1a1a1a] pb-4">
+                <div class="flex items-center gap-4">
+                  <span class="text-4xl">{project.emoji}</span>
+                  <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white group-hover:text-[#4af626] transition-colors duration-300">
+                      {project.title}
+                    </h2>
+                    <p class="text-[#555] text-xs mt-1">{project.date}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="text-[#999] text-sm md:text-base leading-relaxed mb-2">{project.description}</p>
+              <p class="text-[#666] text-sm leading-relaxed mb-8">{project.longDescription}</p>
+
+              <!-- Features -->
+              <div class="mb-8">
+                <h3 class="text-[10px] uppercase tracking-widest text-[#444] mb-4 font-bold border-b border-[#1a1a1a] pb-2">Key Features</h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {project.features.map(f => (
+                    <li class="flex items-start gap-3 text-sm text-[#888]">
+                      <span class="shrink-0 mt-0.5">{f.split(' ')[0]}</span>
+                      <span>{f.split(' ').slice(1).join(' ')}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Tags & Links -->
+              <div class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#1a1a1a]">
+                <div class="flex flex-wrap gap-2">
+                  {project.tags.map(tag => (
+                    <span class="text-[#ffbd2e] text-[10px] bg-[#ffbd2e]/10 border border-[#ffbd2e]/20 px-2.5 py-1 rounded font-mono">{tag}</span>
+                  ))}
+                </div>
+                <div class="flex flex-wrap gap-2.5 shrink-0">
+                  {project.apk && (
+                    <a
+                      href={project.apk}
+                      download="Floww-v2.0.1.apk"
+                      class="flex items-center gap-2 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 text-[#8ab4f8] hover:bg-[#8ab4f8]/20 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                    >
+                      ⬇ APK
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target={project.isDownload ? "_self" : "_blank"}
+                      download={project.isDownload || undefined}
+                      class="flex items-center gap-2 bg-[#4af626]/10 border border-[#4af626]/40 text-[#4af626] hover:bg-[#4af626]/20 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                    >
+                      {project.isDownload ? "⬇ Download APK" : "→ Live Demo"}
+                    </a>
+                  )}
+                  {project.slug && (
+                    <a
+                      href={`/projects/${project.slug}`}
+                      class="flex items-center gap-2 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 text-[#8ab4f8] hover:bg-[#8ab4f8]/20 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                    >
+                      Read Case Study
+                    </a>
+                  )}
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 bg-[#161616] border border-[#333] text-[#8ab4f8] hover:border-[#8ab4f8]/50 hover:bg-[#8ab4f8]/10 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200"
+                    >
+                      ↗ GitHub
+                    </a>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+
+    <Footer />
+  </main>
+</Layout>
+

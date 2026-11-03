@@ -1,0 +1,246 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+
+const project = {
+  title: "Floww — Open-Source AI Financial Engine",
+  tagline: "An open-source personal finance engine featuring Google Gemini OCR and full release on Web & Android with latest APK download.",
+  description: "Floww eliminates the tedious friction of manual expense tracking by converting messy receipts, invoices, and bank statements into structured intelligence. Engineered with Next.js 15, PostgreSQL, and Google Gemini, Floww is 100% open-sourced, deployed live at floww.vercel.app, and rolled out on Android with a direct APK download.",
+  demo: "https://floww.vercel.app",
+  apk: "/Floww.apk",
+  apkVersion: "v2.0.1",
+  github: "https://github.com/sreedevrajendran/AI_EXPENSE_TRACKER",
+  blogUrl: "/blog/building-floww-ai-native-financial-engine",
+  highlights: [
+    { label: "License", value: "Open Source (GitHub)", color: "text-[#4af626] bg-[#4af626]/10 border-[#4af626]/30" },
+    { label: "Live Web", value: "floww.vercel.app", color: "text-[#27c93f] bg-[#27c93f]/10 border-[#27c93f]/30" },
+    { label: "Android", value: "Latest APK v2.0.1", color: "text-[#8ab4f8] bg-[#8ab4f8]/10 border-[#8ab4f8]/30" },
+    { label: "AI Engine", value: "Gemini 2.5 / 3.8 Flash OCR", color: "text-[#ffbd2e] bg-[#ffbd2e]/10 border-[#ffbd2e]/30" },
+  ],
+  pillars: [
+    {
+      title: "Android Rollout & Mobile Engineering",
+      icon: "📱",
+      desc: "Floww is officially rolled out on Android with a standalone APK. Users get instant camera receipt parsing on the go, biometric lock security, offline transaction caching, and seamless background cloud synchronization.",
+    },
+    {
+      title: "100% Open-Source Architecture",
+      icon: "🌐",
+      desc: "The entire Floww codebase is public on GitHub. Developers can self-host their own financial engine, customize categorization prompts, spin up private database instances with Prisma and Docker, and contribute new features.",
+    },
+    {
+      title: "Universal Document Intelligence & Agent Floww",
+      icon: "🤖",
+      desc: "Using Google Gemini's multimodal vision, Floww parses crumpled paper receipts, salary slips, and multi-page PDFs in seconds. Coupled with Agent Floww, an in-app RAG assistant, users can query their finances in natural language.",
+    },
+    {
+      title: "Automated Gmail & E-Receipt Sync",
+      icon: "📬",
+      desc: "Floww links securely with Gmail via OAuth 2.0 to scan for order receipts, payment confirmations, and bank alerts, automatically categorizing transactions without lifting a finger.",
+    },
+  ],
+  techStack: [
+    "Next.js 15 (App Router)",
+    "Android (APK v2.0.1)",
+    "Google Gemini Multimodal API",
+    "PostgreSQL & Prisma",
+    "tRPC (Type-safe APIs)",
+    "Firebase Authentication",
+    "Tailwind CSS & Framer Motion",
+    "Vercel Deployment",
+  ],
+};
+---
+
+<Layout
+  title={`${project.title} | Projects | Sreedev Rajendran`}
+  description={project.description}
+  url="https://sreedevrajendran.in/projects/floww"
+>
+  <main class="flex flex-col w-full">
+    <Navbar client:load />
+    
+    <div class="max-w-5xl mx-auto px-4 md:px-8 w-full flex flex-col pb-24 pt-32 font-mono">
+      {/* Back button */}
+      <div class="mb-10">
+        <a href="/projects" class="text-[#4af626] hover:underline inline-flex items-center gap-2 font-bold text-sm mb-6">
+          <span>&larr;</span> Back to Projects
+        </a>
+
+        {/* Status badges */}
+        <div class="flex flex-wrap gap-2.5 mb-5">
+          {project.highlights.map(h => (
+            <span class={`px-3 py-1 rounded-full text-xs font-semibold border ${h.color}`}>
+              {h.label}: {h.value}
+            </span>
+          ))}
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white leading-tight">
+          {project.title}
+        </h1>
+        <p class="text-lg md:text-xl text-[#8ab4f8] mb-6 leading-relaxed">
+          {project.tagline}
+        </p>
+        <p class="text-sm md:text-base text-[#999] leading-relaxed mb-8 max-w-3xl">
+          {project.description}
+        </p>
+
+        {/* Action Buttons */}
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-[#4af626]/10 border border-[#4af626]/40 hover:bg-[#4af626]/20 text-[#4af626] rounded-xl transition-all flex items-center gap-2 font-bold text-sm shadow-[0_0_20px_rgba(74,246,38,0.15)] cursor-pointer active:scale-95"
+          >
+            &rarr; Launch Live Web App (floww.vercel.app)
+          </a>
+
+          <a
+            href={project.apk}
+            download="Floww-v2.0.1.apk"
+            class="px-6 py-3 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 hover:bg-[#8ab4f8]/20 text-[#8ab4f8] rounded-xl transition-all flex items-center gap-2 font-bold text-sm shadow-[0_0_20px_rgba(138,180,248,0.15)] cursor-pointer active:scale-95"
+          >
+            ⬇ Download Android APK ({project.apkVersion})
+          </a>
+
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-[#161616] border border-[#333] hover:border-[#4af626] hover:text-[#4af626] rounded-xl transition-all flex items-center gap-2.5 text-white font-bold text-sm shadow-lg group cursor-pointer active:scale-95"
+          >
+            <svg class="w-5 h-5 fill-current text-white group-hover:text-[#4af626] transition-colors" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+            GitHub (Open Source)
+          </a>
+
+          <a
+            href={project.blogUrl}
+            class="px-6 py-3 bg-transparent border border-[#333] hover:border-[#8ab4f8] text-[#8ab4f8] rounded-xl transition-all flex items-center gap-2 font-bold text-sm cursor-pointer"
+          >
+            Read Case Study &rarr;
+          </a>
+        </div>
+      </div>
+
+      {/* Featured Architecture Pillars */}
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+          <span class="text-[#4af626]">&gt;</span> Key Architectural Breakthroughs
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {project.pillars.map(p => (
+            <div class="p-6 md:p-8 rounded-xl bg-[#0a0a0a] border border-[#262626] hover:border-[#4af626]/50 transition-all duration-300 flex flex-col gap-3 shadow-lg group">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl">{p.icon}</span>
+                <h3 class="text-white font-bold text-lg group-hover:text-[#4af626] transition-colors">
+                  {p.title}
+                </h3>
+              </div>
+              <p class="text-[#888] text-sm leading-relaxed">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Deep-Dive Sections */}
+      <div class="space-y-8 mb-12">
+        {/* Android Rollout Section */}
+        <section class="bg-[#0a0a0a] border border-[#333] p-6 md:p-8 rounded-xl">
+          <div class="flex items-center gap-2 text-[#8ab4f8] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>●</span> Mobile Engineering & Release
+          </div>
+          <h2 class="text-2xl font-bold mb-4 text-white">Android Rollout & APK Deployment</h2>
+          <p class="text-[#999] leading-relaxed text-sm md:text-base mb-4">
+            While Floww originated as an ultra-fast Next.js web application, expense logging is inherently physical. The latest Android release delivers:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-[#bbb] text-sm mb-6">
+            <li><span class="text-white font-semibold">Instant Camera-to-OCR:</span> Snap physical receipts directly from the Android camera and stream image bytes to Gemini API in under a second.</li>
+            <li><span class="text-white font-semibold">Offline-First Transaction Staging:</span> Queue receipt scans locally when network connectivity is poor; background workers automatically synchronize with PostgreSQL once reconnected.</li>
+            <li><span class="text-white font-semibold">Biometric Privacy Mode:</span> Mask currency amounts with a single tap or biometric toggle for secure usage in public spaces.</li>
+            <li><span class="text-white font-semibold">Standalone APK Distribution:</span> Instantly installable on any Android device without store restrictions.</li>
+          </ul>
+          <a
+            href={project.apk}
+            download="Floww-v2.0.1.apk"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 hover:bg-[#8ab4f8]/20 text-[#8ab4f8] rounded-lg text-xs font-bold transition-all"
+          >
+            ⬇ Download Floww APK ({project.apkVersion})
+          </a>
+        </section>
+
+        {/* Universal OCR & Agent Floww Section */}
+        <section class="bg-[#0a0a0a] border border-[#333] p-6 md:p-8 rounded-xl">
+          <div class="flex items-center gap-2 text-[#4af626] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>●</span> AI Architecture
+          </div>
+          <h2 class="text-2xl font-bold mb-4 text-white">Universal Document Intelligence & Agent Floww</h2>
+          <p class="text-[#999] leading-relaxed text-sm md:text-base mb-4">
+            Most finance apps require tedious manual logging. Floww changes this paradigm:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-[#bbb] text-sm">
+            <li><span class="text-white font-semibold">Multimodal OCR:</span> Extracts merchant names, totals, line items, and tax categories from receipts, invoices, pay slips, and multi-page statements.</li>
+            <li><span class="text-white font-semibold">Agent Floww:</span> In-app conversational finance assistant powered by RAG that understands your spending patterns and gives clear answers to natural-language questions.</li>
+            <li><span class="text-white font-semibold">Dynamic Health Score:</span> Live financial health calculation derived from income-to-spend ratios, budget limits, and savings adherence.</li>
+          </ul>
+        </section>
+
+        {/* Tech Stack */}
+        <section class="bg-[#0a0a0a] border border-[#333] p-6 md:p-8 rounded-xl">
+          <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+            <span class="text-[#27c93f]">&gt;</span> Full Technology Stack
+          </h2>
+          <div class="flex flex-wrap gap-2.5">
+            {project.techStack.map(tech => (
+              <span class="px-3.5 py-2 bg-[#141414] border border-[#2a2a2a] rounded-lg text-xs md:text-sm text-[#e0e0e0] font-mono hover:border-[#4af626]/50 transition-colors">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      {/* Bottom CTA */}
+      <div class="p-8 rounded-2xl bg-[#0d140e] border border-[#4af626]/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_0_30px_rgba(74,246,38,0.08)]">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-1">Explore Floww Codebase & Live App</h3>
+          <p class="text-xs sm:text-sm text-[#888]">Contribute to the open-source repository or start managing your expenses with AI on Web & Android.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <a
+            href={project.apk}
+            download="Floww-v2.0.1.apk"
+            class="px-4 py-2 bg-[#8ab4f8]/10 border border-[#8ab4f8]/40 hover:bg-[#8ab4f8]/20 text-[#8ab4f8] rounded-lg text-xs font-bold transition-all"
+          >
+            ⬇ Download APK
+          </a>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 bg-[#161616] border border-[#333] hover:border-[#4af626] text-white rounded-lg text-xs font-bold transition-all"
+          >
+            GitHub
+          </a>
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 bg-[#4af626] text-black font-bold rounded-lg text-xs hover:bg-[#39cc1c] transition-all shadow-md"
+          >
+            Launch Web App
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <Footer />
+  </main>
+</Layout>

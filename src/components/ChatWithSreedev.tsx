@@ -1,0 +1,633 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import { X, Minus, Send, RotateCcw, ExternalLink, Terminal, ChevronUp } from "lucide-react";
+import { generateSreedevResponse } from "../lib/localResponder";
+
+interface Message {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+}
+
+const STARTER_PROMPTS = [
+  "Tell me about yourself",
+  "What is Floww and how does it work?",
+  "How can I get the Floww Android APK?",
+  "Is Floww open-source and on Android?",
+  "Why Forward Deployed Engineer (FDE)?",
+  "Tell me about Topviewframes",
+  "How can we collaborate?",
+];
+
+function formatTime() {
+  const now = new Date();
+  return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+// Simple Markdown Renderer for links, bold, code, and bullet points
+function FormattedMessageText({ text }: { text: string }) {
+  const lines = text.split("\n");
+
+  return (
+    <div className="space-y-1.5 leading-relaxed text-xs md:text-sm">
+      {lines.map((line, idx) => {
+        if (!line.trim()) {
+          return <div key={idx} className="h-1.5" />;
+        }
+
+        // Parse links [title](url) and bold **bold**
+        const formatted = renderInlineFormatting(line);
+
+        if (line.trim().startsWith("•") || line.trim().startsWith("-")) {
+          return (
+            <div key={idx} className="flex items-start gap-2 pl-1">
+              <span className="text-[#4af626] font-bold text-sm shrink-0 leading-tight">▸</span>
+              <span className="flex-1 text-[#d4d4d4]">{renderInlineFormatting(line.replace(/^[•\-]\s*/, ""))}</span>
+            </div>
+          );
+        }
+
+        return (
+          <p key={idx} className="text-[#d4d4d4]">
+            {formatted}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+function renderInlineFormatting(str: string): React.ReactNode[] {
+  // Regex pattern for bold **text** and links [text](url) and code `code`
+  const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\)|\`.*?\`)/g;
+  const parts = str.split(regex);
+
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} className="text-white font-semibold">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code key={i} className="px-1.5 py-0.5 rounded bg-[#1f1f1f] border border-[#333] text-[#8ab4f8] text-xs font-mono">
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
+      const match = part.match(/\[(.*?)\]\((.*?)\)/);
+      if (match) {
+        const [, label, rawUrl] = match;
+        const cleanUrl = rawUrl.trim();
+        // Prevent XSS: Only allow safe schemes (http, https, mailto) or relative paths
+        const isSafeProtocol = /^(https?:\/\/|mailto:|\/)/i.test(cleanUrl);
+        if (!isSafeProtocol) {
+          return label;
+        }
+        const isExternal = cleanUrl.startsWith("http");
+        return (
+          <a
+            key={i}
+            href={cleanUrl}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            className="inline-flex items-center gap-1 text-[#4af626] hover:text-[#8ab4f8] underline decoration-[#4af626]/40 underline-offset-2 transition-colors font-medium"
+          >
+            {label}
+            {isExternal && <ExternalLink size={10} className="inline opacity-80" />}
+          </a>
+        );
+      }
+    }
+    return part;
+  });
+}
+
+export default function ChatWithSreedev() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [hasUnread, setHasUnread] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: "welcome",
+      role: "assistant",
+      content:
+        `Hello, I am **Sreedev Rajendran**.\n\n` +
+        `I am a B.Tech CS & AI student, **Forward Deployed Engineer (FDE)**, and the Founder of [Topviewframes](https://topviewframes.netlify.app).\n\n` +
+        `Feel free to ask about my flagship project **[Floww](https://floww.vercel.app)** (now **open-sourced on GitHub** and rolled out on **Android** with downloadable APK!), why I specialize as an FDE, or how we can collaborate.`,
+      timestamp: formatTime(),
+    },
+  ]);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll on new messages
+  useEffect(() => {
+    if (isOpen && !isMinimized) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, isTyping, isOpen, isMinimized]);
+
+  // Trap scroll and touch within the chatbot so the background website never scrolls
+  useEffect(() => {
+    if (!isOpen || isMinimized) return;
+
+    const scrollContainer = scrollContainerRef.current;
+    const chatWindow = chatWindowRef.current;
+
+    const handleContainerWheel = (e: WheelEvent) => {
+      if (!scrollContainer) return;
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const isAtTop = scrollTop <= 0 && e.deltaY < 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1 && e.deltaY > 0;
+
+      if (isAtTop || isAtBottom) {
+        e.preventDefault();
+      }
+      e.stopPropagation();
+    };
+
+    const handleWindowWheel = (e: WheelEvent) => {
+      // If hovering outside the scrollable messages area (e.g. title bar, status bar, input)
+      if (scrollContainer && !scrollContainer.contains(e.target as Node)) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    // Mobile touch scroll containment to prevent background webpage bounce
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!scrollContainer || e.touches.length === 0) return;
+      const touchCurrentY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchCurrentY;
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const isAtTop = scrollTop <= 0 && deltaY < 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1 && deltaY > 0;
+
+      if (isAtTop || isAtBottom) {
+        if (e.cancelable) e.preventDefault();
+      }
+    };
+
+    scrollContainer?.addEventListener("wheel", handleContainerWheel, { passive: false });
+    chatWindow?.addEventListener("wheel", handleWindowWheel, { passive: false });
+    scrollContainer?.addEventListener("touchstart", handleTouchStart, { passive: true });
+    scrollContainer?.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      scrollContainer?.removeEventListener("wheel", handleContainerWheel);
+      chatWindow?.removeEventListener("wheel", handleWindowWheel);
+      scrollContainer?.removeEventListener("touchstart", handleTouchStart);
+      scrollContainer?.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [isOpen, isMinimized]);
+
+  // Focus input on open for desktop (avoid popping up mobile virtual keyboard automatically)
+  useEffect(() => {
+    if (isOpen && !isMinimized) {
+      if (typeof window !== "undefined" && window.innerWidth >= 640) {
+        setTimeout(() => inputRef.current?.focus(), 150);
+      }
+      setHasUnread(false);
+    }
+  }, [isOpen, isMinimized]);
+
+  // Global keyboard shortcuts (Cmd+K / Ctrl+K to toggle, Esc to close)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+        setIsMinimized(false);
+        setHasUnread(false);
+      } else if (e.key === "Escape" && isOpen) {
+        e.preventDefault();
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // Global event listener so any page button/link can trigger ChatWithSreedev
+  useEffect(() => {
+    const handleOpenChat = (e: Event) => {
+      const customEvent = e as CustomEvent<{ prompt?: string }>;
+      setIsOpen(true);
+      setIsMinimized(false);
+      setHasUnread(false);
+      if (customEvent.detail?.prompt) {
+        handleSend(customEvent.detail.prompt);
+      }
+    };
+
+    window.addEventListener("open-chat", handleOpenChat);
+    (window as unknown as { openSreedevChat?: (prompt?: string) => void }).openSreedevChat = (prompt?: string) => {
+      window.dispatchEvent(new CustomEvent("open-chat", { detail: { prompt } }));
+    };
+
+    return () => {
+      window.removeEventListener("open-chat", handleOpenChat);
+      delete (window as unknown as { openSreedevChat?: unknown }).openSreedevChat;
+    };
+  }, [messages, isTyping]);
+
+  const handleSend = async (messageText?: string) => {
+    const textToSend = (messageText || input).trim();
+    if (!textToSend || isTyping) return;
+
+    const userMessage: Message = {
+      id: `usr-${Date.now()}`,
+      role: "user",
+      content: textToSend,
+      timestamp: formatTime(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsTyping(true);
+
+    let replyText = "";
+
+    try {
+      // First attempt: call Netlify serverless Gemini API endpoint
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [...messages, userMessage].map((m) => ({
+            role: m.role === "assistant" ? "model" : "user",
+            content: m.content,
+          })),
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.reply && !data.fallback) {
+          replyText = data.reply;
+        }
+      }
+    } catch {
+      // Network or fetch failed, fallback immediately to local persona intelligence
+    }
+
+    // Fallback: If no API key or network error, use client-side Sreedev intelligence
+    if (!replyText) {
+      // Simulate realistic natural response delay
+      await new Promise((r) => setTimeout(r, 600));
+      replyText = generateSreedevResponse(textToSend);
+    }
+
+    const assistantMessage: Message = {
+      id: `ast-${Date.now()}`,
+      role: "assistant",
+      content: replyText,
+      timestamp: formatTime(),
+    };
+
+    setMessages((prev) => [...prev, assistantMessage]);
+    setIsTyping(false);
+
+    if (!isOpen) {
+      setHasUnread(true);
+    }
+  };
+
+  const handleReset = () => {
+    setMessages([
+      {
+        id: `welcome-${Date.now()}`,
+        role: "assistant",
+        content:
+          `Conversation reset. Feel free to ask about **Floww**, **Forward Deployed Engineering (FDE)**, **Topviewframes**, or my background.`,
+        timestamp: formatTime(),
+      },
+    ]);
+  };
+
+  return (
+    <>
+      {/* ── Mobile Backdrop (allows tap outside to close on small screens) ── */}
+      {isOpen && !isMinimized && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/65 backdrop-blur-xs sm:hidden z-40 transition-opacity duration-300"
+          aria-hidden="true"
+        />
+      )}
+
+      <div className="fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] right-3 sm:bottom-5 sm:right-5 z-50 font-mono select-none flex flex-col items-end">
+        {/* ── Chat Modal / Window ── */}
+        {isOpen && (
+          <div
+            ref={chatWindowRef}
+            style={{
+              overscrollBehavior: "contain",
+              WebkitOverflowScrolling: "touch",
+            }}
+            className={`overscroll-contain transition-all duration-300 ease-out flex flex-col bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#333] shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_24px_rgba(74,246,38,0.12)] rounded-2xl overflow-hidden mb-2.5 sm:mb-4 ${
+              isMinimized
+                ? "w-[270px] sm:w-[300px] h-[50px] sm:h-[52px]"
+                : "w-[calc(100vw-1.5rem)] sm:w-[420px] md:w-[460px] max-w-[460px] h-[78dvh] max-h-[620px] sm:h-[580px] sm:max-h-[82vh]"
+            }`}
+          >
+            {/* ── Terminal Window Bar ── */}
+            <div className="flex items-center justify-between bg-[#141414] border-b border-[#262626] px-3.5 py-2.5 shrink-0">
+              <div className="flex items-center gap-2">
+                <div className="flex space-x-1.5">
+                  <button
+                    type="button"
+                    aria-label="Close chat"
+                    onClick={() => setIsOpen(false)}
+                    className="w-3 h-3 rounded-full bg-[#ff5f56] hover:brightness-125 transition-all cursor-pointer"
+                  />
+                  <button
+                    type="button"
+                    aria-label="Minimize chat"
+                    onClick={() => setIsMinimized(!isMinimized)}
+                    className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:brightness-125 transition-all cursor-pointer"
+                  />
+                  <button
+                    type="button"
+                    aria-label="Reset chat"
+                    onClick={handleReset}
+                    className="w-3 h-3 rounded-full bg-[#27c93f] hover:brightness-125 transition-all cursor-pointer"
+                    title="Clear conversation"
+                  />
+                </div>
+                <span className="text-[#666] text-[11px] font-mono tracking-tight ml-2 truncate">
+                  ~/sreedev/chat.sh
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  aria-label="Reset chat history"
+                  onClick={handleReset}
+                  title="Restart chat"
+                  className="p-1.5 sm:p-1 rounded text-[#777] hover:text-[#4af626] hover:bg-[#222] transition-colors cursor-pointer"
+                >
+                  <RotateCcw size={14} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Minimize"
+                  onClick={() => setIsMinimized(!isMinimized)}
+                  className="p-1.5 sm:p-1 rounded text-[#777] hover:text-white hover:bg-[#222] transition-colors cursor-pointer"
+                >
+                  <Minus size={14} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 sm:p-1 rounded text-[#777] hover:text-[#ff5f56] hover:bg-[#222] transition-colors cursor-pointer"
+                >
+                  <X size={15} />
+                </button>
+              </div>
+            </div>
+
+            {!isMinimized && (
+              <>
+                {/* ── Profile Status Header ── */}
+                <div className="flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-[#0d0d0d] border-b border-[#222] shrink-0">
+                  <div className="relative shrink-0">
+                    <img
+                      src="/profile.png"
+                      alt="Sreedev Rajendran"
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-[#4af626]/40 shadow-[0_0_10px_rgba(74,246,38,0.2)]"
+                    />
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f] border-2 border-[#0a0a0a]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-white text-xs sm:text-sm font-bold truncate">Sreedev Rajendran</h3>
+                      <span className="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-[#4af626]/10 border border-[#4af626]/30 text-[#4af626] font-semibold tracking-wider">
+                        ONLINE
+                      </span>
+                    </div>
+                    <p className="text-[#8ab4f8] text-[10px] sm:text-[11px] truncate">
+                      Forward Deployed Engineer (FDE) · Founder
+                    </p>
+                  </div>
+                </div>
+
+                {/* ── Messages Container ── */}
+                <div
+                  ref={scrollContainerRef}
+                  style={{
+                    overscrollBehavior: "contain",
+                    overscrollBehaviorY: "contain",
+                    WebkitOverflowScrolling: "touch",
+                  }}
+                  className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-3 sm:space-y-3.5 scrollbar-thin scrollbar-thumb-[#222] scrollbar-track-transparent overscroll-contain"
+                >
+                  {messages.map((m) => (
+                    <div
+                      key={m.id}
+                      className={`flex flex-col ${
+                        m.role === "user" ? "items-end" : "items-start"
+                      }`}
+                    >
+                      <div className="flex items-center gap-1.5 mb-1 px-1">
+                        <span className="text-[10px] text-[#555] font-mono">
+                          {m.role === "user" ? "you" : "sreedev"}
+                        </span>
+                        <span className="text-[9px] text-[#444]">{m.timestamp}</span>
+                      </div>
+
+                      <div
+                        className={`max-w-[90%] sm:max-w-[88%] p-3 sm:p-3.5 rounded-xl border text-xs sm:text-sm select-text ${
+                          m.role === "user"
+                            ? "bg-[#161616] border-[#333] text-white rounded-tr-xs"
+                            : "bg-[#0d140e] border-[#4af626]/20 text-[#e0e0e0] rounded-tl-xs shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
+                        }`}
+                      >
+                        {m.role === "assistant" && (
+                          <div className="text-[#4af626] font-bold text-xs mb-1.5 flex items-center gap-1">
+                            <span>&gt; _</span>
+                            <span className="text-[10px] text-[#666] font-normal tracking-wide">
+                              response
+                            </span>
+                          </div>
+                        )}
+                        <FormattedMessageText text={m.content} />
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Typing Indicator */}
+                  {isTyping && (
+                    <div className="flex flex-col items-start">
+                      <div className="flex items-center gap-1.5 mb-1 px-1">
+                        <span className="text-[10px] text-[#4af626] font-mono">sreedev</span>
+                        <span className="text-[9px] text-[#444]">thinking...</span>
+                      </div>
+                      <div className="p-2.5 sm:p-3 rounded-xl bg-[#0d140e] border border-[#4af626]/20 text-xs text-[#888] flex items-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-[#4af626] animate-pulse" />
+                        <span className="inline-block w-2 h-2 rounded-full bg-[#4af626] animate-pulse delay-150" />
+                        <span className="inline-block w-2 h-2 rounded-full bg-[#4af626] animate-pulse delay-300" />
+                        <span className="text-[11px] text-[#888] ml-1">Sreedev is replying...</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* ── Suggested Questions Chips ── */}
+                {messages.length <= 2 && (
+                  <div
+                    style={{
+                      overscrollBehavior: "contain",
+                      WebkitOverflowScrolling: "touch",
+                    }}
+                    className="px-3 sm:px-4 py-2 border-t border-[#1a1a1a] bg-[#0d0d0d]/80 flex gap-1.5 overflow-x-auto scrollbar-none shrink-0 overscroll-contain touch-pan-x"
+                  >
+                    {STARTER_PROMPTS.map((prompt, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => handleSend(prompt.replace(/^[^\s]+\s*/, ""))}
+                        className="whitespace-nowrap px-2.5 py-1 rounded-md bg-[#161616] hover:bg-[#222] border border-[#262626] hover:border-[#4af626]/50 text-[11px] text-[#aaa] hover:text-[#4af626] transition-all cursor-pointer active:scale-95"
+                      >
+                        {prompt}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* ── Input Box (16px base font on mobile to prevent iOS Safari auto-zoom) ── */}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSend();
+                  }}
+                  className="p-2.5 sm:p-3 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] sm:pb-3 bg-[#111] border-t border-[#262626] flex items-center gap-2 shrink-0"
+                >
+                  <div className="flex-1 flex items-center bg-[#070707] border border-[#2a2a2a] focus-within:border-[#4af626] focus-within:ring-1 focus-within:ring-[#4af626]/40 rounded-xl px-3 py-2 transition-all">
+                    <span className="text-[#4af626] text-xs font-bold mr-1.5 shrink-0">&gt;</span>
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Ask Sreedev about Floww, FDE, AI..."
+                      className="w-full bg-transparent border-none outline-none text-white text-[16px] sm:text-xs placeholder-[#555] font-mono"
+                      disabled={isTyping}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={!input.trim() || isTyping}
+                    aria-label="Send message"
+                    className="p-2.5 rounded-xl bg-[#4af626] text-black hover:bg-[#39cc1c] disabled:opacity-30 disabled:hover:bg-[#4af626] transition-all cursor-pointer shrink-0 shadow-[0_0_12px_rgba(74,246,38,0.2)] active:scale-95"
+                  >
+                    <Send size={14} className="stroke-[2.5]" />
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* ── State-Aware Floating Launcher / Close Button ── */}
+        {isOpen && !isMinimized ? (
+          <button
+            type="button"
+            aria-label="Close Chat"
+            onClick={() => setIsOpen(false)}
+            className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111]/90 backdrop-blur-md border border-[#333] hover:border-[#ff5f56] text-[#888] hover:text-[#ff5f56] shadow-lg transition-all duration-200 cursor-pointer active:scale-95 text-xs font-mono"
+            title="Close chat window (Esc)"
+          >
+            <X size={13} className="text-[#888] group-hover:text-[#ff5f56] transition-colors" />
+            <span>Close Chat</span>
+            <kbd className="hidden sm:inline-block px-1 py-0.2 text-[9px] bg-[#1f1f1f] border border-[#333] rounded text-[#666]">
+              Esc
+            </kbd>
+          </button>
+        ) : isOpen && isMinimized ? (
+          <button
+            type="button"
+            aria-label="Restore Chat"
+            onClick={() => setIsMinimized(false)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#0a0a0a] border border-[#4af626]/40 hover:border-[#4af626] text-white text-xs shadow-lg transition-all cursor-pointer active:scale-95"
+          >
+            <ChevronUp size={14} className="text-[#4af626]" />
+            <span>Restore Terminal</span>
+          </button>
+        ) : (
+          <button
+            type="button"
+            aria-label="Chat with Sreedev (Press ⌘K or Ctrl+K)"
+            onClick={() => {
+              setIsOpen(true);
+              setIsMinimized(false);
+              setHasUnread(false);
+            }}
+            className="group relative flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full bg-[#0a0a0a] border border-[#333] hover:border-[#4af626] shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_20px_rgba(74,246,38,0.15)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_28px_rgba(74,246,38,0.35)] transition-all duration-300 cursor-pointer active:scale-95"
+            title="Chat with Sreedev (Press ⌘K or Ctrl+K)"
+          >
+            {/* Pulsing beacon indicator */}
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4af626] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#4af626]" />
+            </span>
+
+            {/* Avatar */}
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border border-[#4af626]/50 shrink-0">
+              <img
+                src="/profile.png"
+                alt="Sreedev"
+                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+
+            {/* Text & AI indicator */}
+            <div className="flex items-center gap-1.5">
+              <Terminal size={13} className="text-[#4af626]" />
+              <span className="text-white text-xs font-bold tracking-tight">
+                Chat with Sreedev
+              </span>
+              <span className="text-[#4af626] text-xs font-bold animate-pulse">_</span>
+              <span className="ml-0.5 px-1.5 py-0.2 rounded bg-[#4af626]/10 border border-[#4af626]/30 text-[#4af626] text-[9px] font-bold">
+                AI
+              </span>
+            </div>
+
+            {/* Desktop Keyboard hint */}
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 ml-0.5 px-1.5 py-0.5 rounded bg-[#161616] border border-[#2a2a2a] text-[10px] text-[#777] font-sans">
+              ⌘K
+            </kbd>
+
+            {/* Unread badge */}
+            {hasUnread && !isOpen && (
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#ff5f56] border-2 border-[#0a0a0a]" />
+            )}
+          </button>
+        )}
+      </div>
+    </>
+  );
+}
