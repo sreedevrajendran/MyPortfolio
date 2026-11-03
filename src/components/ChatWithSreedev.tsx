@@ -82,12 +82,18 @@ function renderInlineFormatting(str: string): React.ReactNode[] {
     if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
       const match = part.match(/\[(.*?)\]\((.*?)\)/);
       if (match) {
-        const [, label, url] = match;
-        const isExternal = url.startsWith("http");
+        const [, label, rawUrl] = match;
+        const cleanUrl = rawUrl.trim();
+        // Prevent XSS: Only allow safe schemes (http, https, mailto) or relative paths
+        const isSafeProtocol = /^(https?:\/\/|mailto:|\/)/i.test(cleanUrl);
+        if (!isSafeProtocol) {
+          return label;
+        }
+        const isExternal = cleanUrl.startsWith("http");
         return (
           <a
             key={i}
-            href={url}
+            href={cleanUrl}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
             className="inline-flex items-center gap-1 text-[#4af626] hover:text-[#8ab4f8] underline decoration-[#4af626]/40 underline-offset-2 transition-colors font-medium"

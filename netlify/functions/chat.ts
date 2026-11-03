@@ -73,12 +73,105 @@ IMPORTANT: You are NOT an AI assistant talking about Sreedev in the third person
 - If asked something you genuinely don't know or that isn't in your background, state that you haven't worked on that specific area yet or invite them to discuss it over email.
 `;
 
+// In-memory sliding-window rate limiter
+interface RateLimitRecord {
+  count: number;
+  resetAt: number;
+}
+const rateLimits = new Map<string, RateLimitRecord>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 20;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimits.get(ip);
+  if (!record || now > record.resetAt) {
+    rateLimits.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    if (rateLimits.size > 1000) {
+      for (const [key, value] of rateLimits.entries()) {
+        if (now > value.resetAt) rateLimits.delete(key);
+      }
+    }
+    return true;
+  }
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+  record.count += 1;
+  return true;
+}
+
+function isOriginAllowed(origin: string | null): boolean {
+  if (!origin) return true; // Allow same-origin or non-browser fetch
+  try {
+    const parsed = new URL(origin);
+    const host = parsed.hostname;
+    return (
+      host === "sreedevrajendran.in" ||
+      host === "www.sreedevrajendran.in" ||
+      host.endsWith(".netlify.app") ||
+      host === "localhost" ||
+      host === "127.0.0.1"
+    );
+  } catch {
+    return false;
+  }
+}
+
 export default async function handler(req: Request) {
+  const origin = req.headers.get("origin") || req.headers.get("referer");
+  
+  // Origin validation to prevent unauthorized third-party proxying
+  if (!isOriginAllowed(origin)) {
+    return new Response(JSON.stringify({ error: "Forbidden: Unauthorized origin" }), {
+      status: 403,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  const corsHeaders: Record<string, string> = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Vary": "Origin",
+  };
+
+  if (origin && isOriginAllowed(origin)) {
+    try {
+      const originUrl = new URL(origin);
+      corsHeaders["Access-Control-Allow-Origin"] = originUrl.origin;
+    } catch {
+      // Fallback if parsing fails
+    }
+  }
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: corsHeaders });
+  }
+
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
       status: 405,
-      headers: { "Content-Type": "application/json" },
+      headers: corsHeaders,
     });
+  }
+
+  // Rate limiting by client IP
+  const clientIp =
+    req.headers.get("x-nf-client-connection-ip") ||
+    req.headers.get("client-ip") ||
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "anonymous";
+
+  if (!checkRateLimit(clientIp)) {
+    return new Response(
+      JSON.stringify({
+        error: "RATE_LIMITED",
+        fallback: true,
+        message: "Too many requests. Please wait a moment before sending another message.",
+      }),
+      { status: 429, headers: corsHeaders }
+    );
   }
 
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
@@ -89,57 +182,82 @@ export default async function handler(req: Request) {
         fallback: true,
         message: "Gemini API key is not configured in Netlify environment variables.",
       }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200, headers: corsHeaders }
     );
   }
 
   try {
     const body = await req.json();
-    const messages = body.messages || [];
-    if (!messages.length) {
-      return new Response(JSON.stringify({ error: "No messages provided" }), {
+    const rawMessages = body.messages;
+
+    // Strict input validation
+    if (!Array.isArray(rawMessages) || rawMessages.length === 0) {
+      return new Response(JSON.stringify({ error: "Invalid payload: messages must be a non-empty array" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: corsHeaders,
+      });
+    }
+
+    // Limit conversation context length to prevent prompt runaway / memory exhaustion
+    const MAX_HISTORY = 16;
+    const trimmedMessages = rawMessages.slice(-MAX_HISTORY);
+
+    // Validate each message structure and character length
+    const contents = [];
+    for (const m of trimmedMessages) {
+      if (!m || typeof m !== "object") continue;
+      const content = typeof m.content === "string" ? m.content.trim() : "";
+      if (!content) continue;
+
+      // Restrict single message length to 1,500 characters
+      const sanitizedContent = content.slice(0, 1500);
+      const role = m.role === "assistant" || m.role === "model" ? "model" : "user";
+      contents.push({
+        role,
+        parts: [{ text: sanitizedContent }],
+      });
+    }
+
+    if (contents.length === 0) {
+      return new Response(JSON.stringify({ error: "No valid message content provided" }), {
+        status: 400,
+        headers: corsHeaders,
       });
     }
 
     const ai = new GoogleGenAI({ apiKey });
 
-    // Format chat contents for GoogleGenAI
-    const contents = messages.map((m: { role: string; content: string }) => ({
-      role: m.role === "assistant" || m.role === "model" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }));
-
-    // Call current standard model
+    // Call current standard model with token limit
     const response = await ai.models.generateContent({
       model: "gemini-3.8-flash",
       contents,
       config: {
         systemInstruction: SREEDEV_SYSTEM_PROMPT,
         temperature: 0.7,
+        maxOutputTokens: 800,
       },
     });
 
     return new Response(
       JSON.stringify({
-        reply: response.text || "Hey! I'm here. What would you like to know?",
+        reply: response.text || "I am here. Feel free to ask about my engineering work or projects.",
       }),
       {
         status: 200,
-        headers: { "Content-Type": "application/json" },
+        headers: corsHeaders,
       }
     );
   } catch (error: any) {
-    console.error("Gemini API invocation error:", error);
+    // Log server error securely without leaking stack or secret details to client
+    console.error("Gemini API invocation error:", error?.message || error);
     return new Response(
       JSON.stringify({
-        error: error.message || "Failed to generate reply",
+        error: "Failed to generate reply",
         fallback: true,
       }),
       {
         status: 200,
-        headers: { "Content-Type": "application/json" },
+        headers: corsHeaders,
       }
     );
   }
