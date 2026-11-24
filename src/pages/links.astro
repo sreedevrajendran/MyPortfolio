@@ -1,0 +1,126 @@
+---
+import "../components/personal-links/styles.css";
+import backgroundPhoto from "../components/personal-links/assets/profile-background.webp?url";
+
+const canonical = new URL("/links", Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211d1e">
+  <meta name="description" content="Sreedev Rajendran's personal links.">
+  <title>Sreedev Rajendran · Links</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href={canonical.href}>
+  <link rel="preload" href={backgroundPhoto} as="image">
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="instagram-colors" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#ffd600"/>
+        <stop offset=".27" stop-color="#ff7400"/>
+        <stop offset=".53" stop-color="#ff0012"/>
+        <stop offset=".8" stop-color="#ef006a"/>
+        <stop offset="1" stop-color="#ce00cc"/>
+      </linearGradient>
+      <clipPath id="linkedin-tile">
+        <path d="M12 0C22.9 0 24 1.1 24 12s-1.1 12-12 12S0 22.9 0 12 1.1 0 12 0Z"/>
+      </clipPath>
+    </defs>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3m-4 4 4-4 4 4m3 5v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M8 18.5 4.5 20l.9-3.6A8.2 8.2 0 1 1 8 18.5Z"/><path d="M9 8.5c.3 2.6 2 4.3 4.5 4.7l.9-1.1 1.7.9c-.2 1-.8 1.6-1.8 1.6a7 7 0 0 1-5.9-5.9c0-.8.5-1.4 1.1-1.6l.9 1.5-.7.9"/></symbol>
+    <symbol id="i-instagram-share" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.75"/><path d="M17 7.05h.01" stroke-width="2.5"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24">
+      <rect width="24" height="24" rx="6" fill="url(#instagram-colors)" stroke="none"/>
+      <g stroke="#fff" stroke-width="1.6">
+        <rect x="4.8" y="4.8" width="14.4" height="14.4" rx="4"/>
+        <circle cx="12" cy="12" r="3.35"/>
+      </g>
+      <circle cx="16.55" cy="7.45" r="1.02" fill="#fff" stroke="none"/>
+    </symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24">
+      <path fill="#ff0000" stroke="none" d="M24 12c0-2.5-.2-4.8-.7-6.1-.32-.92-1.06-1.58-1.98-1.84C19.67 3.57 12 3.5 12 3.5s-7.67.07-9.32.56C1.76 4.32 1.02 4.98.7 5.9.2 7.2 0 9.5 0 12s.2 4.8.7 6.1c.32.92 1.06 1.58 1.98 1.84 1.65.49 9.32.56 9.32.56s7.67-.07 9.32-.56c.92-.26 1.66-.92 1.98-1.84.5-1.3.7-3.6.7-6.1Z"/>
+      <path fill="#fff" stroke="none" d="M9.55 8.45v7.1L15.8 12Z"/>
+    </symbol>
+    <symbol id="i-github" viewBox="0 0 16 16">
+      <path fill="#171313" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+    </symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24">
+      <g clip-path="url(#linkedin-tile)" stroke="none">
+        <path fill="#0d64bd" d="M0 0h24v24H0z"/>
+        <path fill="#0a4d91" d="M8.03 5.06 13.2 10.2l4.4-.1 6.4 6.4V24H9.75l-4.6-4.6 2.1-9.15-2.12-2.13Z"/>
+        <circle cx="6.6" cy="6.55" r="2.05" fill="#fff"/>
+        <rect x="5" y="9.45" width="3.16" height="10.05" rx=".55" fill="#fff"/>
+        <path fill="#fff" d="M10.15 9.45h2.08c.31 0 .55.24.55.55v.72c.53-.9 1.5-1.42 2.91-1.42 2.4 0 3.76 1.57 3.76 4.43V19c0 .3-.21.5-.51.5h-2.19c-.3 0-.54-.2-.54-.5v-4.73c0-1.45-.63-2.21-1.7-2.21-1.09 0-1.74.82-1.74 2.25V19c0 .3-.23.5-.53.5h-2.1c-.3 0-.53-.2-.53-.5v-9c0-.31.24-.55.54-.55Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24">
+      <rect width="24" height="24" rx="3.15" fill="#43538b" stroke="none"/>
+      <path fill="#fff" stroke="none" d="M11.9 24v-8.6H9.8c-.42 0-.65-.22-.65-.65v-2.43c0-.46.25-.7.68-.7h2.07V9.15c0-3.19 1.95-4.99 4.94-4.99h1.9c.38 0 .57.23.57.64v2.02c0 .43-.22.68-.66.68h-1.06c-1.41 0-1.99.6-1.99 1.98v2.14h3.17c.46 0 .7.25.63.68l-.34 2.44c-.06.44-.28.66-.68.66H15.6V24Z"/>
+    </symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13.5 4-4m-5 6.25-1.5 1.5a3.2 3.2 0 1 1-4.5-4.5l3.5-3.5a3.2 3.2 0 0 1 4.5 0m4-1 1.5-1.5a3.2 3.2 0 1 1 4.5 4.5l-3.5 3.5a3.2 3.2 0 0 1-4.5 0"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </svg>
+
+  <div class="scene" aria-hidden="true"></div>
+  <div class="layout">
+    <header class="topbar">
+      <button class="glass share-button" type="button" aria-haspopup="dialog" aria-controls="share-dialog" id="share-page">
+        <svg class="icon" aria-hidden="true"><use href="#i-share"></use></svg>
+        <span>Share</span>
+      </button>
+    </header>
+
+    <main class="profile">
+      <div class="intro">
+        <p class="greeting" id="profile-greeting">Namaskaram</p>
+        <h1 id="profile-title">All my <em>links.</em></h1>
+        <p class="bio" id="profile-description">A little bit of everything I make and share.</p>
+      </div>
+
+      <nav class="links" aria-label="Personal links">
+        <ul id="link-list"></ul>
+        <noscript><p>Enable JavaScript to see the links.</p></noscript>
+      </nav>
+      <footer class="copyright">&copy; {new Date().getUTCFullYear()} sreedevrajendran</footer>
+    </main>
+  </div>
+
+  <dialog class="share-dialog" id="share-dialog" aria-labelledby="share-dialog-title">
+    <div class="dialog-top">
+      <h2 id="share-dialog-title">Share this page</h2>
+      <form method="dialog">
+        <button class="glass close-button" type="submit" aria-label="Close share dialog">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </form>
+    </div>
+    <div class="share-address">
+      <label class="visually-hidden" for="share-url">Page address</label>
+      <input id="share-url" type="url" readonly>
+      <button class="glass copy-button" type="button" id="copy-share-link" autofocus>
+        <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+        Copy link
+      </button>
+    </div>
+    <div class="share-options">
+      <a class="glass share-option" id="share-whatsapp" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+        <span><strong>WhatsApp</strong><small>Choose a chat</small></span>
+      </a>
+      <a class="glass share-option" id="share-instagram" href="https://www.instagram.com/direct/inbox/" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-instagram-share"></use></svg>
+        <span><strong>Instagram</strong><small>Copy link and open DMs</small></span>
+      </a>
+    </div>
+    <p id="share-feedback" class="share-feedback" role="status"></p>
+  </dialog>
+  <script>
+    import "../components/personal-links/app.js";
+  </script>
+</body>
+</html>

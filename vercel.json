@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/link/sreedevrajendran",
+      "destination": "/links",
+      "permanent": true
+    }
+  ]
+}

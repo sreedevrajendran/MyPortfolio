@@ -1,4 +1,4 @@
-import { profile, sampleLinks } from "./profile.js";
+import { profile } from "./profile.js";
 
 const id = (name) => document.getElementById(name);
 const shareDialog = id("share-dialog");
@@ -29,10 +29,7 @@ function renderProfile() {
   }
   id("profile-greeting").textContent = profile.greeting;
   id("profile-description").textContent = profile.description;
-  const isSample = profile.links.length === 0;
-  id("sample-label").hidden = !isSample;
-  const links = isSample ? sampleLinks : profile.links;
-  for (const link of links) {
+  for (const link of profile.links) {
     let destination;
     try {
       destination = new URL(link.url);
