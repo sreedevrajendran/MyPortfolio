@@ -81,16 +81,13 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 
 .scene {
-  --photo-width: max(100vw, 177.7vh);
-  /* The face is 76% of the way across the original image. */
-  --photo-x: calc(50vw - var(--photo-width) * .76);
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgb(33 29 30 / .38), transparent 21% 65%, rgb(33 29 30 / .34)),
-    linear-gradient(90deg, rgb(33 29 30 / .26), transparent 29% 55%, rgb(33 29 30 / .12) 59%, rgb(33 29 30 / .45) 64%, rgb(33 29 30 / .84) 69%, var(--canvas) 74%),
-    url("./assets/profile-background.webp") var(--photo-x) 12% / var(--photo-width) auto no-repeat var(--canvas);
+    linear-gradient(90deg, rgb(33 29 30 / .91), rgb(33 29 30 / .78) 25%, rgb(33 29 30 / .49) 42%, rgb(33 29 30 / .13) 55%, transparent 66%),
+    linear-gradient(180deg, rgb(33 29 30 / .31), transparent 22% 76%, rgb(33 29 30 / .22)),
+    url("./assets/profile-background.webp") right 12% / cover no-repeat var(--canvas);
 }
 
 .layout {
@@ -312,7 +309,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .share-feedback:not(:empty) { margin-top: .75rem; }
 
 @media (min-width: 70rem) and (min-aspect-ratio: 5/4) {
-  .profile { width: min(34vw, 29.75rem); margin-inline: auto 0; }
+  .profile { width: min(34vw, 29.75rem); margin-inline: 0 auto; }
   .intro { text-align: left; }
   .intro h1 { font-size: clamp(3.55rem, 5.25vw, 5.15rem); }
   .bio { margin-left: 0; text-wrap: pretty; }
@@ -328,7 +325,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     bottom: auto;
     height: var(--photo-height);
     background:
-      linear-gradient(180deg, rgb(33 29 30 / .4), transparent 17% 45%, rgb(33 29 30 / .12) 51%, rgb(33 29 30 / .4) 60%, rgb(33 29 30 / .74) 71%, rgb(33 29 30 / .94) 86%, var(--canvas) 100%),
+      linear-gradient(180deg, rgb(33 29 30 / .4), transparent 17% 50%, rgb(33 29 30 / .12) 55%, rgb(33 29 30 / .42) 63%, rgb(33 29 30 / .76) 72%, rgb(33 29 30 / .94) 86%, var(--canvas) 100%),
       url("./assets/profile-background.webp") var(--photo-x) 18% / var(--photo-width) auto no-repeat var(--canvas);
   }
   .profile {
@@ -346,7 +343,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 @media (max-width: 33rem) {
   :root {
     --header-height: 4.35rem;
-    --photo-height: min(177.7778vw, 97svh);
+    --photo-height: max(36vw, min(177.7778vw, 76svh));
   }
   .layout { width: calc(100% - 2rem); }
   .profile { padding-bottom: 2.25rem; }
