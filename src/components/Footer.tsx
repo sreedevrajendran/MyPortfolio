@@ -67,6 +67,9 @@ export default function Footer() {
                             <a href="/resume" className="text-[#666] hover:text-[#8ab4f8] text-sm transition-colors flex items-center gap-2">
                                 <span className="text-[#333]">→</span> Resume
                             </a>
+                            <a href="/links" className="text-[#666] hover:text-[#8ab4f8] text-sm transition-colors flex items-center gap-2">
+                                <span className="text-[#333]">→</span> Links
+                            </a>
                         </div>
                     </div>
                 </div>
