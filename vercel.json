@@ -4,6 +4,11 @@
       "source": "/link/sreedevrajendran",
       "destination": "/links",
       "permanent": true
+    },
+    {
+      "source": "/link/sreedevrajendran/",
+      "destination": "/links",
+      "permanent": true
     }
   ]
 }
