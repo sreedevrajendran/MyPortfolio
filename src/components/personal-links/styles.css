@@ -167,6 +167,12 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   font-size: .875rem;
   font-weight: 650;
 }
+.share-button {
+  position: fixed;
+  top: max(1.25rem, env(safe-area-inset-top));
+  right: max(1.5rem, env(safe-area-inset-right));
+  z-index: 40;
+}
 .share-button .icon { width: 1.05rem; height: 1.05rem; }
 .close-button { width: 2.8rem; padding: 0; }
 
@@ -337,6 +343,10 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 
 @media (max-width: 33rem) {
   .layout { width: calc(100% - 2rem); }
+  .share-button {
+    top: max(.85rem, env(safe-area-inset-top));
+    right: max(.85rem, env(safe-area-inset-right));
+  }
 }
 
 @media (max-width: 33rem), (max-height: 43rem), (max-width: 54rem) and (max-height: 50rem) {
