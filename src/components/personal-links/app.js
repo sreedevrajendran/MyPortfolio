@@ -25,14 +25,10 @@ function element(tag, className, value) {
 function renderProfile() {
   if (profile.name) {
     id("profile-title").textContent = profile.name;
-    document.title = `${profile.name} · Links & Official Profiles`;
+    document.title = `${profile.name} · Links`;
   }
   id("profile-greeting").textContent = profile.greeting;
   id("profile-description").textContent = profile.description;
-
-  // If already statically pre-rendered by Astro, skip client-side DOM insertion
-  if (id("link-list") && id("link-list").children.length > 0) return;
-
   for (const link of profile.links) {
     let destination;
     try {
