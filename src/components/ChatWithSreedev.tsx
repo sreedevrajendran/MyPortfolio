@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { X, Minus, Send, RotateCcw, ExternalLink, Terminal, ChevronUp } from "lucide-react";
+import DOMPurify from "dompurify";
 import { generateSreedevResponse } from "../lib/localResponder";
 
 interface Message {
@@ -28,7 +29,9 @@ function formatTime() {
 
 // Simple Markdown Renderer for links, bold, code, and bullet points
 function FormattedMessageText({ text }: { text: string }) {
-  const lines = text.split("\n");
+  // Sanitize text to strip any injected HTML/script tags
+  const sanitizedText = typeof window !== "undefined" ? DOMPurify.sanitize(text, { ALLOWED_TAGS: [] }) : text;
+  const lines = sanitizedText.split("\n");
 
   return (
     <div className="space-y-1.5 leading-relaxed text-xs md:text-sm">
@@ -84,16 +87,34 @@ function renderInlineFormatting(str: string): React.ReactNode[] {
       if (match) {
         const [, label, rawUrl] = match;
         const cleanUrl = rawUrl.trim();
-        // Prevent XSS: Only allow safe schemes (http, https, mailto) or relative paths
-        const isSafeProtocol = /^(https?:\/\/|mailto:|\/)/i.test(cleanUrl);
-        if (!isSafeProtocol) {
+
+        // Prevent XSS & protocol-relative bypasses: reject // or \ prefixes
+        if (cleanUrl.startsWith("//") || cleanUrl.startsWith("\\")) {
           return label;
         }
-        const isExternal = cleanUrl.startsWith("http");
+
+        let isExternal = false;
+        let safeHref = cleanUrl;
+
+        if (cleanUrl.startsWith("/")) {
+          isExternal = false;
+        } else {
+          try {
+            const parsed = new URL(cleanUrl);
+            if (parsed.protocol !== "https:" && parsed.protocol !== "http:" && parsed.protocol !== "mailto:") {
+              return label;
+            }
+            safeHref = parsed.href;
+            isExternal = parsed.protocol === "https:" || parsed.protocol === "http:";
+          } catch {
+            return label;
+          }
+        }
+
         return (
           <a
             key={i}
-            href={cleanUrl}
+            href={safeHref}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
             className="inline-flex items-center gap-1 text-[#4af626] hover:text-[#8ab4f8] underline decoration-[#4af626]/40 underline-offset-2 transition-colors font-medium"

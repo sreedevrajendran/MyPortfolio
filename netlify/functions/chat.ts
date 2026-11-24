@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import { z } from "zod";
 
 const SREEDEV_SYSTEM_PROMPT = `
 You are Sreedev Rajendran. You are speaking directly to visitors on your personal portfolio website (https://sreedevrajendran.in).
@@ -186,44 +187,43 @@ export default async function handler(req: Request) {
     );
   }
 
+// Zod Input Validation Schema
+const MessageSchema = z.object({
+  role: z.enum(["user", "assistant", "model"]),
+  content: z
+    .string()
+    .trim()
+    .min(1, "Message content cannot be empty")
+    .max(1500, "Message content exceeds limit of 1500 characters"),
+});
+
+const ChatRequestSchema = z.object({
+  messages: z
+    .array(MessageSchema)
+    .min(1, "At least one message is required")
+    .max(20, "Conversation history cannot exceed 20 messages"),
+});
+
   try {
-    const body = await req.json();
-    const rawMessages = body.messages;
+    const rawBody = await req.json();
 
-    // Strict input validation
-    if (!Array.isArray(rawMessages) || rawMessages.length === 0) {
-      return new Response(JSON.stringify({ error: "Invalid payload: messages must be a non-empty array" }), {
-        status: 400,
-        headers: corsHeaders,
-      });
+    // Strict Zod validation
+    const parseResult = ChatRequestSchema.safeParse(rawBody);
+    if (!parseResult.success) {
+      return new Response(
+        JSON.stringify({
+          error: "Invalid request payload",
+          details: parseResult.error.errors.map((e) => e.message),
+        }),
+        { status: 400, headers: corsHeaders }
+      );
     }
 
-    // Limit conversation context length to prevent prompt runaway / memory exhaustion
-    const MAX_HISTORY = 16;
-    const trimmedMessages = rawMessages.slice(-MAX_HISTORY);
-
-    // Validate each message structure and character length
-    const contents = [];
-    for (const m of trimmedMessages) {
-      if (!m || typeof m !== "object") continue;
-      const content = typeof m.content === "string" ? m.content.trim() : "";
-      if (!content) continue;
-
-      // Restrict single message length to 1,500 characters
-      const sanitizedContent = content.slice(0, 1500);
-      const role = m.role === "assistant" || m.role === "model" ? "model" : "user";
-      contents.push({
-        role,
-        parts: [{ text: sanitizedContent }],
-      });
-    }
-
-    if (contents.length === 0) {
-      return new Response(JSON.stringify({ error: "No valid message content provided" }), {
-        status: 400,
-        headers: corsHeaders,
-      });
-    }
+    const { messages } = parseResult.data;
+    const contents = messages.map((m) => ({
+      role: m.role === "assistant" || m.role === "model" ? ("model" as const) : ("user" as const),
+      parts: [{ text: m.content }],
+    }));
 
     const ai = new GoogleGenAI({ apiKey });
 
