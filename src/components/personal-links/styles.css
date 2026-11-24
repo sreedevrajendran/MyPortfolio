@@ -32,6 +32,9 @@
   --glass-highlight: rgb(255 232 219 / .52);
   --layout-width: max(83rem, 60vw);
   --header-height: 5.3rem;
+  --profile-space: 36.5rem;
+  --profile-top: max(var(--header-height), min(43svh, calc(100svh - var(--profile-space))));
+  --photo-height: max(36vw, calc(var(--profile-top) / .68));
   --sans: "DM Sans", system-ui, sans-serif;
   --serif: Fraunces, Georgia, serif;
 }
@@ -81,13 +84,16 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 
 .scene {
-  position: fixed;
-  inset: 0;
+  /* Frame the face near the center while keeping both edges covered. */
+  --photo-width: max(100vw, calc(var(--photo-height) * 1.777), min(200vw, calc(var(--photo-height) * 2.8)));
+  --photo-x: clamp(calc(100vw - var(--photo-width)), calc(50vw - var(--photo-width) * .76), 0px);
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--photo-height);
   z-index: -1;
   background:
-    linear-gradient(90deg, rgb(33 29 30 / .91), rgb(33 29 30 / .78) 25%, rgb(33 29 30 / .49) 42%, rgb(33 29 30 / .13) 55%, transparent 66%),
-    linear-gradient(180deg, rgb(33 29 30 / .31), transparent 22% 76%, rgb(33 29 30 / .22)),
-    url("./assets/profile-background.webp") right 12% / cover no-repeat var(--canvas);
+    linear-gradient(180deg, rgb(33 29 30 / .4), transparent 17% 50%, rgb(33 29 30 / .12) 55%, rgb(33 29 30 / .42) 63%, rgb(33 29 30 / .76) 72%, rgb(33 29 30 / .94) 86%, var(--canvas) 100%),
+    url("./assets/profile-background.webp") var(--photo-x) 18% / var(--photo-width) auto no-repeat var(--canvas);
 }
 
 .layout {
@@ -167,8 +173,9 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .profile {
   width: min(100%, 29.75rem);
   margin-inline: auto;
-  align-self: center;
-  padding-block: clamp(2.6rem, 6vh, 4.75rem) clamp(2.6rem, 6vh, 4.5rem);
+  align-self: start;
+  margin-top: calc(var(--profile-top) - var(--header-height));
+  padding-bottom: .9rem;
 }
 
 .intro {
@@ -176,14 +183,14 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   text-align: center;
   text-shadow: 0 2px 16px rgb(22 13 12 / .62);
 }
-.greeting, .links-caption {
+.greeting {
   margin: 0;
+  color: var(--accent);
   font-size: .75rem;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
 }
-.greeting { color: var(--accent); }
 .intro h1 {
   margin: .34rem 0 .68rem;
   font: 500 clamp(3.4rem, 6vw, 5.55rem)/.99 var(--serif);
@@ -201,21 +208,6 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   text-wrap: balance;
 }
 .bio:empty { display: none; }
-
-.links-caption {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  margin-bottom: .5rem;
-  color: var(--muted);
-  text-shadow: 0 1px 8px #201718;
-}
-.links-caption::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, rgb(249 215 199 / .4), transparent);
-}
 
 .links ul { display: grid; gap: .64rem; margin: 0; padding: 0; list-style: none; }
 .link-card {
@@ -239,22 +231,32 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   color: #fff3ea;
 }
 .link-icon[data-color="rose"] {
-  background: linear-gradient(155deg, #8a565f, #53363e);
+  background: linear-gradient(155deg, #533940, #35282c);
   color: #fff0f7;
 }
 .link-icon[data-color="clay"] {
-  background: linear-gradient(155deg, #a25246, #652f29);
+  background: linear-gradient(155deg, #63423a, #412b28);
   color: #fff1e8;
 }
 .link-icon[data-color="blue"] {
   background: linear-gradient(155deg, #70656a, #453c40);
   color: #f8eaeb;
 }
+.link-icon[data-color="light"] {
+  background: linear-gradient(155deg, #fff8f4, #ded2cb);
+}
+.link-icon .icon { width: 1.625rem; height: 1.625rem; }
 .link-copy { min-width: 0; flex: 1; }
 .link-name, .link-description { display: block; overflow-wrap: anywhere; }
 .link-name { font-size: 1.02rem; font-weight: 700; line-height: 1.2; }
 .link-description { margin-top: .2rem; color: var(--muted); font-size: .875rem; line-height: 1.25; }
 .link-action { width: 1.14rem; height: 1.14rem; margin-right: .32rem; color: var(--muted); }
+.copyright {
+  margin: .75rem 0 0;
+  color: var(--muted);
+  font-size: .75rem;
+  text-align: center;
+}
 
 .share-dialog {
   width: min(100% - 2rem, 32rem);
@@ -308,31 +310,24 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .share-feedback { margin: 0; color: var(--muted); font-size: .875rem; }
 .share-feedback:not(:empty) { margin-top: .75rem; }
 
-@media (min-width: 70rem) and (min-aspect-ratio: 5/4) {
-  .profile { width: min(34vw, 29.75rem); margin-inline: 0 auto; }
-  .intro { text-align: left; }
-  .intro h1 { font-size: clamp(3.55rem, 5.25vw, 5.15rem); }
-  .bio { margin-left: 0; text-wrap: pretty; }
-}
-
-@media (width < 70rem), (aspect-ratio < 5/4) {
-  :root { --photo-height: max(36vw, min(177.7778vw, 90svh, 43rem)); }
+@media (min-width: 60rem) and (min-aspect-ratio: 5/4), (min-width: 36rem) and (max-height: 28rem) and (min-aspect-ratio: 5/4) {
   .scene {
-    /* Keep enough width to center the face without exposing the canvas. Cap the zoom to retain the full head. */
-    --photo-width: max(100vw, calc(var(--photo-height) * 1.777), min(200vw, calc(var(--photo-height) * 2.8)));
-    --photo-x: clamp(calc(100vw - var(--photo-width)), calc(50vw - var(--photo-width) * .76), 0px);
-    position: absolute;
-    bottom: auto;
-    height: var(--photo-height);
+    position: fixed;
+    inset: 0;
+    height: auto;
     background:
-      linear-gradient(180deg, rgb(33 29 30 / .4), transparent 17% 50%, rgb(33 29 30 / .12) 55%, rgb(33 29 30 / .42) 63%, rgb(33 29 30 / .76) 72%, rgb(33 29 30 / .94) 86%, var(--canvas) 100%),
-      url("./assets/profile-background.webp") var(--photo-x) 18% / var(--photo-width) auto no-repeat var(--canvas);
+      linear-gradient(90deg, rgb(33 29 30 / .91), rgb(33 29 30 / .78) 25%, rgb(33 29 30 / .49) 42%, rgb(33 29 30 / .13) 55%, transparent 66%),
+      linear-gradient(180deg, rgb(33 29 30 / .31), transparent 22% 76%, rgb(33 29 30 / .22)),
+      url("./assets/profile-background.webp") right 12% / cover no-repeat var(--canvas);
   }
   .profile {
-    align-self: start;
-    margin-top: max(0px, calc(var(--photo-height) * .72 - var(--header-height)));
-    padding-block: 0 3rem;
+    width: min(34vw, 29.75rem);
+    margin-inline: 0 auto;
+    margin-top: clamp(0rem, calc((100svh - 35rem) * .24), 5rem);
   }
+  .intro, .copyright { text-align: left; }
+  .intro h1 { font-size: clamp(3.55rem, 5.25vw, 5.15rem); }
+  .bio { margin-left: 0; text-wrap: pretty; }
 }
 
 @media (max-width: 50rem) {
@@ -341,20 +336,38 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 
 @media (max-width: 33rem) {
-  :root {
-    --header-height: 4.35rem;
-    --photo-height: max(36vw, min(177.7778vw, 76svh));
-  }
   .layout { width: calc(100% - 2rem); }
-  .profile { padding-bottom: 2.25rem; }
-  .intro { margin-bottom: 1.3rem; }
-  .intro h1 { font-size: clamp(2.8rem, 12vw, 4.15rem); }
+}
+
+@media (max-width: 33rem), (max-height: 43rem), (max-width: 54rem) and (max-height: 50rem) {
+  :root { --header-height: 3.6rem; --profile-space: 28.75rem; }
+  .intro { margin-bottom: .8rem; }
+  .intro h1 {
+    margin-block: .25rem .4rem;
+    font-size: clamp(2.35rem, 10vmin, 3.45rem);
+  }
+  .bio { font-size: .9375rem; line-height: 1.35; }
+  .links ul { gap: .45rem; }
+  .link-card { min-height: 3.3rem; gap: .7rem; padding: .4rem .7rem; }
+  .link-icon { width: 2.2rem; height: 2.2rem; }
+  .link-description { font-size: .8125rem; }
+}
+
+@media (min-width: 36rem) and (max-height: 28rem) and (min-aspect-ratio: 5/4) {
+  .layout { width: calc(100% - 2rem); }
+  .profile { width: min(46vw, 29.75rem); }
+  .links ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .link-description, .link-action { display: none; }
 }
 
 @media (max-width: 23rem) {
   .share-button { padding-inline: .6rem; }
   .link-card { gap: .65rem; }
   .share-options { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 23rem) and (max-height: 38rem) {
+  .topbar { justify-content: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
